@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Uniform Inventory System</title>
+
+<!-- LINK SA CSS -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Uniform Inventory System</h1>
+<div class="container">
+
+<!-- LOGIN -->
+<div class="login-box" id="loginBox">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button type="button" onclick="login()">Login</button>
+    <p id="error" class="error"></p>
+</div>
+
+<!-- INVENTORY -->
+<div id="inventory" style="display:none;">
+<div class="logout">
+    <button type="button" onclick="logout()">Logout</button>
+</div>
+
+<!-- SSP UNIFORMS -->
+<div class="section">
+<h2>SSP Uniforms</h2>
+<table>
+<tr>
+<th>Size</th>
+<th>Stock</th>
+<th>Status</th>
+<th class="claim-col">Action</th>
+<th class="admin-control">Admin</th>
+</tr>
+
+<tr>
+<td>S</td>
+<td id="ssp-s-stock">10</td>
+<td id="ssp-s-status" class="available">Available</td>
+<td class="claim-col"><button onclick="claim('ssp-s', this)">Claim</button></td>
+<td class="admin-control">
+    <input type="number" min="0" id="ssp-s-stock-edit">
+    <select id="ssp-s-status-edit">
+        <option>Available</option>
+        <option>Not Available</option>
+    </select>
+    <button onclick="updateUniform('ssp-s')">Update</button>
+</td>
+</tr>
+
+<!-- (same pattern for M, L, XL at CRIM) -->
+
+</table>
+</div>
+
+<!-- THANK YOU -->
+<div id="thankYou">
+    <p>Thank you for claiming your uniform!</p>
+</div>
+
+</div>
+
+<!-- LINK SA JS -->
+<script src="script.js"></script>
+</body>
+</html>

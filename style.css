@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f9ff;
+    padding: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #0b4da2;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.login-box, .section, #thankYou {
+    background: white;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#thankYou {
+    display: none;
+    font-size: 24px;
+    color: green;
+    text-align: center;
+    padding: 50px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 8px 15px;
+    background: #0b4da2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background: gray;
+    cursor: not-allowed;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th {
+    background: #0b4da2;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.available {
+    color: green;
+    font-weight: bold;
+}
+
+.not-available {
+    color: red;
+    font-weight: bold;
+}
+
+.logout {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.admin-control input,
+.admin-control select {
+    width: 70px;
+    padding: 3px;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
