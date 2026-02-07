@@ -13,40 +13,13 @@ h1, h2 {
     max-width: 900px;
     margin: auto;
 }
-.login-box,
-.section,
-#thankYou {
+
+.login-box, .section, #thankYou {
     background: white;
     padding: 20px;
     margin-top: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.login-box {
-    max-width: 320px;      
-    margin: 40px auto;
-    padding: 15px;
-}
-
-.login-box h2 {
-    font-size: 18px;
-}
-
-.login-box input {
-    width: 100%;
-    max-width: 100%;         
-    padding: 6px 8px;
-    margin: 6px 0;
-    font-size: 13px;
-    box-sizing: border-box;  
-}
-
-.login-box button {
-    width: 100%;
-    padding: 7px;
-    font-size: 13px;
-    box-sizing: border-box;
 }
 
 #thankYou {
@@ -61,7 +34,6 @@ input {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    box-sizing: border-box;
 }
 
 button {
@@ -71,10 +43,6 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-button:hover {
-    opacity: 0.9;
 }
 
 button:disabled {
@@ -124,4 +92,30 @@ td {
 .error {
     color: red;
     text-align: center;
+}
+
+.login-box {
+    max-width: 320px;  
+    margin: 40px auto;  
+    padding: 15px;
+}
+
+.login-box input {
+    width: 100%;
+    max-width: 100%;
+    padding: 6px 8px;
+    margin: 6px 0;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 7px;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+.login-box h2 {
+    font-size: 18px;
 }
