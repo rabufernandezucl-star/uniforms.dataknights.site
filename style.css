@@ -1,6 +1,9 @@
 body {
     font-family: Arial, sans-serif;
-    background: #f4f9ff;
+    background: url('union.webp') no-repeat center center fixed;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     padding: 20px;
 }
 
@@ -98,15 +101,25 @@ td {
     max-width: 320px;  
     margin: 40px auto;  
     padding: 15px;
+
+    background: rgba(255, 255, 255, 0.5); 
+    backdrop-filter: blur(5px); 
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .login-box input {
     width: 100%;
     max-width: 100%;
-    padding: 6px 8px;
+    padding: 6px 8px; 
     margin: 6px 0;
     font-size: 13px;
     box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.5);
+    color: #000;
 }
 
 .login-box button {
@@ -118,4 +131,5 @@ td {
 
 .login-box h2 {
     font-size: 18px;
+    color: #0b4da2;
 }
