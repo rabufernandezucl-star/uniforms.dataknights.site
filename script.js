@@ -5,12 +5,14 @@ const users = [
 
 let currentUser = null;
 
-// LOGIN
+// ---------------- LOGIN ----------------
 function login() {
     const user = username.value.trim();
     const pass = password.value.trim();
 
-    const validUser = users.find(u => u.username === user && u.password === pass);
+    const validUser = users.find(
+        u => u.username === user && u.password === pass
+    );
 
     if (validUser) {
         currentUser = validUser;
@@ -19,18 +21,22 @@ function login() {
         error.innerText = "";
 
         if (currentUser.isAdmin) {
-            document.querySelectorAll(".admin-control").forEach(e => e.style.display = "table-cell");
-            document.querySelectorAll(".claim-col").forEach(e => e.style.display = "none");
+            document.querySelectorAll(".admin-control")
+                .forEach(e => e.style.display = "table-cell");
+            document.querySelectorAll(".claim-col")
+                .forEach(e => e.style.display = "none");
         } else {
-            document.querySelectorAll(".admin-control").forEach(e => e.style.display = "none");
-            document.querySelectorAll(".claim-col").forEach(e => e.style.display = "table-cell");
+            document.querySelectorAll(".admin-control")
+                .forEach(e => e.style.display = "none");
+            document.querySelectorAll(".claim-col")
+                .forEach(e => e.style.display = "table-cell");
         }
     } else {
         error.innerText = "Invalid username or password!";
     }
 }
 
-// LOGOUT
+// ---------------- LOGOUT ----------------
 function logout() {
     currentUser = null;
     inventory.style.display = "none";
@@ -39,52 +45,68 @@ function logout() {
     password.value = "";
 }
 
-// CLAIM
+// ---------------- CLAIM ----------------
 function claim(id, btn) {
     const stockEl = document.getElementById(id + "-stock");
     const statusEl = document.getElementById(id + "-status");
+
     let stock = parseInt(stockEl.innerText);
 
-    if (stock > 0) {
-        stock--;
-        stockEl.innerText = stock;
-
-        if (stock === 0) {
-            statusEl.innerText = "Not Available";
-            statusEl.className = "not-available";
-            btn.disabled = true;
-        }
-
-        inventory.style.display = "none";
-        thankYou.style.display = "block";
-        alert("Success!");
-
-        setTimeout(() => {
-            thankYou.style.display = "none";
-            inventory.style.display = "block";
-        }, 2000);
+    if (stock <= 0 || statusEl.innerText === "Not Available") {
+        btn.disabled = true;
+        return;
     }
+
+    stock--;
+    stockEl.innerText = stock;
+
+    if (stock === 0) {
+        statusEl.innerText = "Not Available";
+        statusEl.className = "not-available";
+        btn.disabled = true;
+    }
+
+    inventory.style.display = "none";
+    thankYou.style.display = "block";
+
+    setTimeout(() => {
+        thankYou.style.display = "none";
+        inventory.style.display = "block";
+    }, 2000);
 }
 
-// ADMIN UPDATE
+// ---------------- ADMIN UPDATE ----------------
 function updateUniform(id) {
     if (!currentUser || !currentUser.isAdmin) return;
 
     const stockEl = document.getElementById(id + "-stock");
     const statusEl = document.getElementById(id + "-status");
-
     const stockInput = document.getElementById(id + "-stock-edit");
     const statusInput = document.getElementById(id + "-status-edit");
 
     let newStock = parseInt(stockInput.value);
     let newStatus = statusInput.value;
 
-    if (!isNaN(newStock)) stockEl.innerText = newStock;
+    if (!isNaN(newStock)) {
+        stockEl.innerText = newStock;
+    }
 
     statusEl.innerText = newStatus;
-    statusEl.className = newStatus === "Available" ? "available" : "not-available";
+    statusEl.className =
+        newStatus === "Available" ? "available" : "not-available";
 
+    // enable / disable claim button
     const row = stockEl.parentElement;
     const btn = row.querySelector(".claim-col button");
-    if (btn) btn.disabled = (newStock === 0);
+
+    if (btn) {
+        if (newStatus === "Not Available" || newStock === 0) {
+            btn.disabled = true;
+        } else {
+            btn.disabled = false;
+        }
+    }
+
+    // clear inputs
+    stockInput.value = "";
 }
