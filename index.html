@@ -27,7 +27,7 @@
     <button type="button" onclick="logout()">Logout</button>
 </div>
 
-<!-- SSP UNIFORMS -->
+<!-- ================= SSP UNIFORMS ================= -->
 <div class="section">
 <h2>SSP Uniforms</h2>
 <table>
@@ -37,6 +37,22 @@
 <th>Status</th>
 <th class="claim-col">Action</th>
 <th class="admin-control">Admin</th>
+</tr>
+
+<!-- SSP SIZES -->
+<tr>
+<td>XS</td>
+<td id="ssp-xs-stock">5</td>
+<td id="ssp-xs-status" class="available">Available</td>
+<td class="claim-col"><button onclick="claim('ssp-xs', this)">Claim</button></td>
+<td class="admin-control">
+    <input type="number" min="0" id="ssp-xs-stock-edit">
+    <select id="ssp-xs-status-edit">
+        <option>Available</option>
+        <option>Not Available</option>
+    </select>
+    <button onclick="updateUniform('ssp-xs')">Update</button>
+</td>
 </tr>
 
 <tr>
@@ -54,7 +70,170 @@
 </td>
 </tr>
 
-<!-- (same pattern for M, L, XL at CRIM) -->
+<tr>
+<td>M</td>
+<td id="ssp-m-stock">8</td>
+<td id="ssp-m-status" class="available">Available</td>
+<td class="claim-col"><button onclick="claim('ssp-m', this)">Claim</button></td>
+<td class="admin-control">
+    <input type="number" min="0" id="ssp-m-stock-edit">
+    <select id="ssp-m-status-edit">
+        <option>Available</option>
+        <option>Not Available</option>
+    </select>
+    <button onclick="updateUniform('ssp-m')">Update</button>
+</td>
+</tr>
+
+<tr>
+<td>L</td>
+<td id="ssp-l-stock">6</td>
+<td id="ssp-l-status" class="available">Available</td>
+<td class="claim-col"><button onclick="claim('ssp-l', this)">Claim</button></td>
+<td class="admin-control">
+    <input type="number" min="0" id="ssp-l-stock-edit">
+    <select id="ssp-l-status-edit">
+        <option>Available</option>
+        <option>Not Available</option>
+    </select>
+    <button onclick="updateUniform('ssp-l')">Update</button>
+</td>
+</tr>
+
+<tr>
+<td>XL</td>
+<td id="ssp-xl-stock">4</td>
+<td id="ssp-xl-status" class="available">Available</td>
+<td class="claim-col"><button onclick="claim('ssp-xl', this)">Claim</button></td>
+<td class="admin-control">
+    <input type="number" min="0" id="ssp-xl-stock-edit">
+    <select id="ssp-xl-status-edit">
+        <option>Available</option>
+        <option>Not Available</option>
+    </select>
+    <button onclick="updateUniform('ssp-xl')">Update</button>
+</td>
+</tr>
+
+<tr>
+<td>XXL</td>
+<td id="ssp-xxl-stock">2</td>
+<td id="ssp-xxl-status" class="available">Available</td>
+<td class="claim-col"><button onclick="claim('ssp-xxl', this)">Claim</button></td>
+<td class="admin-control">
+    <input type="number" min="0" id="ssp-xxl-stock-edit">
+    <select id="ssp-xxl-status-edit">
+        <option>Available</option>
+        <option>Not Available</option>
+    </select>
+    <button onclick="updateUniform('ssp-xxl')">Update</button>
+</td>
+</tr>
+
+</table>
+</div>
+
+<!-- ================= CRIM UNIFORMS ================= -->
+<div class="section">
+<h2>CRIM Uniforms</h2>
+<table>
+<tr>
+<th>Size</th>
+<th>Stock</th>
+<th>Status</th>
+<th class="claim-col">Action</th>
+<th class="admin-control">Admin</th>
+</tr>
+
+<tr>
+<td>XS</td>
+<td id="crim-xs-stock">5</td>
+<td id="crim-xs-status" class="available">Available</td>
+<td class="claim-col"><button onclick="claim('crim-xs', this)">Claim</button></td>
+<td class="admin-control">
+    <input type="number" min="0" id="crim-xs-stock-edit">
+    <select id="crim-xs-status-edit">
+        <option>Available</option>
+        <option>Not Available</option>
+    </select>
+    <button onclick="updateUniform('crim-xs')">Update</button>
+</td>
+</tr>
+
+<tr>
+<td>S</td>
+<td id="crim-s-stock">9</td>
+<td id="crim-s-status" class="available">Available</td>
+<td class="claim-col"><button onclick="claim('crim-s', this)">Claim</button></td>
+<td class="admin-control">
+    <input type="number" min="0" id="crim-s-stock-edit">
+    <select id="crim-s-status-edit">
+        <option>Available</option>
+        <option>Not Available</option>
+    </select>
+    <button onclick="updateUniform('crim-s')">Update</button>
+</td>
+</tr>
+
+<tr>
+<td>M</td>
+<td id="crim-m-stock">7</td>
+<td id="crim-m-status" class="available">Available</td>
+<td class="claim-col"><button onclick="claim('crim-m', this)">Claim</button></td>
+<td class="admin-control">
+    <input type="number" min="0" id="crim-m-stock-edit">
+    <select id="crim-m-status-edit">
+        <option>Available</option>
+        <option>Not Available</option>
+    </select>
+    <button onclick="updateUniform('crim-m')">Update</button>
+</td>
+</tr>
+
+<tr>
+<td>L</td>
+<td id="crim-l-stock">5</td>
+<td id="crim-l-status" class="available">Available</td>
+<td class="claim-col"><button onclick="claim('crim-l', this)">Claim</button></td>
+<td class="admin-control">
+    <input type="number" min="0" id="crim-l-stock-edit">
+    <select id="crim-l-status-edit">
+        <option>Available</option>
+        <option>Not Available</option>
+    </select>
+    <button onclick="updateUniform('crim-l')">Update</button>
+</td>
+</tr>
+
+<tr>
+<td>XL</td>
+<td id="crim-xl-stock">3</td>
+<td id="crim-xl-status" class="available">Available</td>
+<td class="claim-col"><button onclick="claim('crim-xl', this)">Claim</button></td>
+<td class="admin-control">
+    <input type="number" min="0" id="crim-xl-stock-edit">
+    <select id="crim-xl-status-edit">
+        <option>Available</option>
+        <option>Not Available</option>
+    </select>
+    <button onclick="updateUniform('crim-xl')">Update</button>
+</td>
+</tr>
+
+<tr>
+<td>XXL</td>
+<td id="crim-xxl-stock">2</td>
+<td id="crim-xxl-status" class="available">Available</td>
+<td class="claim-col"><button onclick="claim('crim-xxl', this)">Claim</button></td>
+<td class="admin-control">
+    <input type="number" min="0" id="crim-xxl-stock-edit">
+    <select id="crim-xxl-status-edit">
+        <option>Available</option>
+        <option>Not Available</option>
+    </select>
+    <button onclick="updateUniform('crim-xxl')">Update</button>
+</td>
+</tr>
 
 </table>
 </div>
