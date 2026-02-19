@@ -1,8 +1,11 @@
 <?php
 $host = "localhost";
-$username = "root";
-$password = "";
-$dbname = "uniforms_db";
+
+$username = "knights2025_admin";
+
+$password = "fernandezraven@248";
+
+$dbname = "knights2025_uniforms_system";
 
 try {
     $pdo = new PDO(
