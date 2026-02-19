@@ -3,7 +3,7 @@ $host = "localhost";
 
 $username = "knights2025_admin";
 
-$password = "fernandezraven@248";
+$password = "M84Q.z]M~FjVO((!";
 
 $dbname = "knights2025_uniforms_system";
 
