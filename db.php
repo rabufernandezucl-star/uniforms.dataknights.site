@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$username = "knights_admin";
+$username = "knights2025_knights_admin";
 $password = "M84Q.z]M~FjVO((!";
 $dbname = "knights_uniforms_system";
 
