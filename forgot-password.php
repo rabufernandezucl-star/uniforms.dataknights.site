@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
 
             /* ================= RESET LINK ================= */
-            $link = "http://localhost/uniform/set-password.php?token=$token";
+            $link = "https://uniforms.dataknights.site/set-password.php?token=$token";
 
             $message = "
                 <div style='padding:10px;background:#e7f3ff;margin-top:10px;border-radius:5px;'>
@@ -134,3 +134,4 @@ button{
 
 </body>
 </html>
+
