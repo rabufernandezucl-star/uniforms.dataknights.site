@@ -1,18 +1,19 @@
 <?php
 $host = "localhost";
-$username = "knights2025_knights_admin";
+$username = "knights2025_knights_admin";  // ← tamang user
 $password = "M84Q.z]M~FjVO((!";
-$dbname = "knights_uniforms_system";
+$dbname = "knights2025_uniforms_system";
 
 try {
     $pdo = new PDO(
         "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
         $username,
-        $password
+        $password,
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 
     echo "Connected successfully!";
 } catch (PDOException $e) {
-    die("Connection failed!");
+    die("Database connection failed: " . $e->getMessage());
 }
 ?>
