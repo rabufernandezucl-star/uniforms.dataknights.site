@@ -4,6 +4,7 @@
 <table>
 <tr>
 <th>Item</th>
+<th>Stock</th> <!-- NEW COLUMN -->
 <th>Status</th>
 <th class="claim-col">Action</th>
 <th class="admin-control">Admin</th>
@@ -11,6 +12,9 @@
 
 <tr>
 <td>Cap – Black</td>
+
+<!-- STOCK COLUMN -->
+<td id="cap-black-stock">50</td>
 
 <td id="cap-black-status" class="available">
 Available
@@ -23,6 +27,9 @@ Claim
 </td>
 
 <td class="admin-control">
+
+<!-- STOCK EDIT (ADMIN) -->
+<input type="number" id="cap-black-stock-edit" value="25" min="0">
 
 <select id="cap-black-status-edit">
 <option>Available</option>
