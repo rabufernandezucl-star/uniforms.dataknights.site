@@ -13,48 +13,34 @@
 <tr>
 <td>Cap – Green</td>
 
-<!-- STOCK DISPLAY -->
-<td id="cap-green-stock">50</td>
+<td id="cap-green-stock">25</td>
 
-<!-- STATUS DISPLAY -->
 <td id="cap-green-status" class="available">
 Available
 </td>
 
-<!-- CLAIM BUTTON (USER VIEW) -->
 <td class="claim-col">
-<button onclick="claimCap('item-id',this)">
+<button onclick="claim('cap-green', this)">
 Claim
 </button>
 </td>
 
-<!-- ADMIN CONTROLS -->
 <td class="admin-control">
-
-<!-- EDIT STOCK -->
 <input type="number"
        id="cap-green-stock-edit"
-       value="50"
+       value="25"
        min="0">
 
-<br><br>
-
-<!-- EDIT STATUS -->
 <select id="cap-green-status-edit">
 <option value="Available">Available</option>
 <option value="Not Available">Not Available</option>
 </select>
 
-<br><br>
-
-<!-- UPDATE BUTTON -->
-<button onclick="updateCap('cap-green')">
+<button onclick="updateUniform('cap-green')">
 Update
 </button>
-
 </td>
-</tr>
 
+</tr>
 </table>
 </div>
-
