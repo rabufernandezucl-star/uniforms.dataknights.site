@@ -23,7 +23,7 @@ Available
 
 <!-- CLAIM BUTTON (USER VIEW) -->
 <td class="claim-col">
-<button onclick="claimCap('item-id',this)">
+<button onclick="claim('cap-black',this)">
 Claim
 </button>
 </td>
@@ -31,24 +31,17 @@ Claim
 <!-- ADMIN CONTROL -->
 <td class="admin-control">
 
-<!-- EDIT STOCK -->
 <input type="number"
        id="cap-black-stock-edit"
        value="25"
        min="0">
 
-<br><br>
-
-<!-- EDIT STATUS -->
 <select id="cap-black-status-edit">
 <option value="Available">Available</option>
 <option value="Not Available">Not Available</option>
 </select>
 
-<br><br>
-
-<!-- UPDATE BUTTON -->
-<button onclick="updateCap('cap-black')">
+<button onclick="updateUniform('cap-black')">
 Update
 </button>
 
@@ -57,4 +50,3 @@ Update
 
 </table>
 </div>
-
