@@ -79,10 +79,52 @@ function updateCap(id){
         `button[onclick="claimCap('${id}',this)"]`
     );
 
+/* ================= CAP UPDATE (FIXED VERSION) ================= */
+function updateCap(id){
+
+    const stockEl =
+        document.getElementById(id + "-stock");
+
+    const statusEl =
+        document.getElementById(id + "-status");
+
+    const stockEdit =
+        document.getElementById(id + "-stock-edit");
+
+    const statusEdit =
+        document.getElementById(id + "-status-edit");
+
+    const newStock = parseInt(stockEdit.value);
+    const newStatus = statusEdit.value;
+
+    /* UPDATE STOCK */
+    if(!isNaN(newStock)){
+        stockEl.innerText = newStock;
+    }
+
+    /* UPDATE STATUS */
+    statusEl.innerText = newStatus;
+
+    if(newStatus === "Available"){
+        statusEl.className = "available";
+    } else {
+        statusEl.className = "not-available";
+    }
+
+    /* AUTO FIX IF ZERO */
+    if(parseInt(stockEl.innerText) === 0){
+        statusEl.innerText = "Not Available";
+        statusEl.className = "not-available";
+    }
+
+    /* FIX: find claim button safely */
+    const row = stockEl.closest("tr");
+    const claimBtn = row.querySelector(".claim-col button");
+
     if(claimBtn){
         if(parseInt(stockEl.innerText) > 0 && newStatus === "Available"){
             claimBtn.disabled = false;
-        }else{
+        } else {
             claimBtn.disabled = true;
         }
     }
