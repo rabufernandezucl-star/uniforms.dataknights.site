@@ -1,10 +1,10 @@
 <div class="section">
 <h2>Cap – Black</h2>
 
-<table>
+<table border="1" width="100%">
 <tr>
 <th>Item</th>
-<th>Stock</th> <!-- NEW COLUMN -->
+<th>Stock</th>
 <th>Status</th>
 <th class="claim-col">Action</th>
 <th class="admin-control">Admin</th>
@@ -13,29 +13,41 @@
 <tr>
 <td>Cap – Black</td>
 
-<!-- STOCK COLUMN -->
+<!-- STOCK DISPLAY -->
 <td id="cap-black-stock">25</td>
 
+<!-- STATUS DISPLAY -->
 <td id="cap-black-status" class="available">
 Available
 </td>
 
+<!-- CLAIM BUTTON (USER VIEW) -->
 <td class="claim-col">
 <button onclick="claimCap('cap-black',this)">
 Claim
 </button>
 </td>
 
+<!-- ADMIN CONTROL -->
 <td class="admin-control">
 
-<!-- STOCK EDIT (ADMIN) -->
-<input type="number" id="cap-black-stock-edit" value="25" min="0">
+<!-- EDIT STOCK -->
+<input type="number"
+       id="cap-black-stock-edit"
+       value="25"
+       min="0">
 
+<br><br>
+
+<!-- EDIT STATUS -->
 <select id="cap-black-status-edit">
-<option>Available</option>
-<option>Not Available</option>
+<option value="Available">Available</option>
+<option value="Not Available">Not Available</option>
 </select>
 
+<br><br>
+
+<!-- UPDATE BUTTON -->
 <button onclick="updateCap('cap-black')">
 Update
 </button>
@@ -45,4 +57,3 @@ Update
 
 </table>
 </div>
-
