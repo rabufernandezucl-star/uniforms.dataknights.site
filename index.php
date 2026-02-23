@@ -53,7 +53,7 @@ function loadHTML(id, file){
 Promise.all([
 
     loadHTML("sections","college-polo.html"),
-    loadHTML("sections","shs.html"),
+    loadHTML("sections","humss.html"),
     loadHTML("sections","Cass shirt-ivory.html"),
     loadHTML("sections","peshirts.html"),
     loadHTML("sections","karate.html"),
@@ -110,3 +110,4 @@ Promise.all([
 
 </body>
 </html>
+
