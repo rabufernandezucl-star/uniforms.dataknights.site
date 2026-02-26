@@ -76,7 +76,8 @@ Promise.all([
     loadHTML("sections","shs pants.html"),
     loadHTML("sections","shs blouse.html"),
     loadHTML("sections","shs skirt.html"),
-    loadHTML("sections","tvl-red.html")
+    loadHTML("sections","tvl-red.html"),
+    loadHTML("sections","rotc shirt.html")
 
 ]).then(()=>{
 
@@ -110,4 +111,5 @@ Promise.all([
 
 </body>
 </html>
+
 
