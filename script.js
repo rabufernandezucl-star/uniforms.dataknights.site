@@ -1,3 +1,5 @@
+/* ================= USERS (FRONTEND LOGIN ONLY) ================= */
+
 const users = [
     { username: "admin", password: "adminpass", isAdmin: true },
     { username: "user1", password: "userpass", isAdmin: false }
@@ -5,6 +7,8 @@ const users = [
 
 let currentUser = null;
 
+
+/* ================= LOGIN ================= */
 
 function login(){
 
@@ -23,13 +27,11 @@ function login(){
 
         currentUser = validUser;
 
-        // Show inventory / hide login
         document.getElementById("loginBox").style.display = "none";
         document.getElementById("inventory").style.display = "block";
 
         errorEl.innerText = "";
 
-        /* ===== ADMIN VIEW ===== */
         if(currentUser.isAdmin){
 
             document.querySelectorAll(".admin-control")
@@ -38,9 +40,7 @@ function login(){
             document.querySelectorAll(".claim-col")
             .forEach(e => e.style.display = "none");
 
-        }
-        /* ===== USER VIEW ===== */
-        else{
+        }else{
 
             document.querySelectorAll(".admin-control")
             .forEach(e => e.style.display = "none");
@@ -56,6 +56,9 @@ function login(){
 
 }
 
+
+/* ================= LOGOUT ================= */
+
 function logout(){
 
     currentUser = null;
@@ -65,50 +68,69 @@ function logout(){
 
 }
 
+
+/* ================= CLAIM (CONNECTED TO DATABASE) ================= */
+
 function claim(id, btn){
 
-    const stockEl =
-        document.getElementById(id + "-stock");
+    fetch("claim_uniform.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "key=" + encodeURIComponent(id)
+    })
+    .then(res => res.text())
+    .then(data => {
 
-    const statusEl =
-        document.getElementById(id + "-status");
+        console.log("Claim response:", data);
 
-    let stock = parseInt(stockEl.innerText);
+        if(data === "out"){
+            alert("Out of stock!");
+            btn.disabled = true;
+            return;
+        }
 
-    if(stock <= 0){
-        btn.disabled = true;
-        return;
-    }
+        if(data === "error"){
+            alert("Error processing request.");
+            return;
+        }
 
-    // Reduce stock
-    stock--;
-    stockEl.innerText = stock;
+        const result = JSON.parse(data);
 
-    // If stock empty
-    if(stock === 0){
-        statusEl.innerText = "Not Available";
-        statusEl.className = "not-available";
-        btn.disabled = true;
-    }
+        const stockEl = document.getElementById(id + "-stock");
+        const statusEl = document.getElementById(id + "-status");
 
-    // Thank you screen
-    document.getElementById("inventory").style.display = "none";
-    document.getElementById("thankYou").style.display = "block";
+        stockEl.innerText = result.stock;
+        statusEl.innerText = result.status;
 
-    setTimeout(()=>{
-        document.getElementById("thankYou").style.display = "none";
-        document.getElementById("inventory").style.display = "block";
-    },2000);
+        if(result.status === "Available"){
+            statusEl.className = "available";
+        }else{
+            statusEl.className = "not-available";
+            btn.disabled = true;
+        }
+
+        document.getElementById("inventory").style.display = "none";
+        document.getElementById("thankYou").style.display = "block";
+
+        setTimeout(()=>{
+            document.getElementById("thankYou").style.display = "none";
+            document.getElementById("inventory").style.display = "block";
+        },2000);
+
+    })
+    .catch(err => {
+        console.log(err);
+        alert("Server error.");
+    });
 
 }
 
+
+/* ================= ADMIN UPDATE (CONNECTED TO DATABASE) ================= */
+
 function updateUniform(id){
-
-    const stockEl =
-        document.getElementById(id + "-stock");
-
-    const statusEl =
-        document.getElementById(id + "-status");
 
     const stockEdit =
         document.getElementById(id + "-stock-edit");
@@ -119,27 +141,53 @@ function updateUniform(id){
     const newStock = parseInt(stockEdit.value);
     const newStatus = statusEdit.value;
 
-    /* ===== UPDATE STOCK ===== */
-    if(!isNaN(newStock)){
-        stockEl.innerText = newStock;
+    if(isNaN(newStock)){
+        alert("Enter valid stock number.");
+        return;
     }
 
-    /* ===== UPDATE STATUS ===== */
-    statusEl.innerText = newStatus;
+    fetch("update_uniform.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body:
+            "key=" + encodeURIComponent(id) +
+            "&stock=" + encodeURIComponent(newStock) +
+            "&status=" + encodeURIComponent(newStatus)
+    })
+    .then(res => res.text())
+    .then(data => {
 
-    if(newStatus === "Available"){
-        statusEl.className = "available";
-    }else{
-        statusEl.className = "not-available";
-    }
+        console.log("Update response:", data);
 
-    /* ===== AUTO FIX IF ZERO ===== */
-    if(parseInt(stockEl.innerText) === 0){
-        statusEl.innerText = "Not Available";
-        statusEl.className = "not-available";
-    }
+        if(data.trim() === "Update Successful"){
 
-    alert("Uniform updated successfully!");
+            const stockEl =
+                document.getElementById(id + "-stock");
+
+            const statusEl =
+                document.getElementById(id + "-status");
+
+            stockEl.innerText = newStock;
+            statusEl.innerText = newStatus;
+
+            if(newStatus === "Available"){
+                statusEl.className = "available";
+            }else{
+                statusEl.className = "not-available";
+            }
+
+            alert("Saved to database!");
+
+        }else{
+            alert("Database update failed!");
+        }
+
+    })
+    .catch(err => {
+        console.log(err);
+        alert("Server connection error.");
+    });
 
 }
-
