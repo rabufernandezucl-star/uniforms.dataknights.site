@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function(){
     /* ================= LOAD ALL FILES ================= */
     Promise.all([
 
-        loadHTML("sections","college polo.php"),
+        loadHTML("sections","college-polo.php"),
         loadHTML("sections","humss.php"),
         loadHTML("sections","cass ivory.php"),
         loadHTML("sections","peshirts.php"),
@@ -123,5 +123,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
+
 
 
