@@ -1,16 +1,11 @@
 <?php
-require_once "shared/config/db.php";
+require_once 'shared/config/db.php';
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $key = $_POST['key'] ?? '';
-    $stock = intval($_POST['stock'] ?? 0);
-    $status = $_POST['status'] ?? '';
-
-    if(empty($key)){
-        echo "error";
-        exit;
-    }
+    $key = $_POST['uniform_key'] ?? '';
+    $stock = $_POST['stock'] ?? 0;
+    $status = $_POST['status'] ?? 'Not Available';
 
     $stmt = $pdo->prepare("
         UPDATE uniforms
@@ -20,10 +15,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $stmt->execute([$stock, $status, $key]);
 
-    if($stmt->rowCount() > 0){
-        echo "success";
-    } else {
-        echo "no_row_updated";
-    }
+    echo "Updated";
 }
 ?>
