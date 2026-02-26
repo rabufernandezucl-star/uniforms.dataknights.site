@@ -63,9 +63,9 @@ document.addEventListener("DOMContentLoaded", function(){
     /* ================= LOAD ALL FILES ================= */
     Promise.all([
 
-        loadHTML("sections","college-polo.php"),
+        loadHTML("sections","college polo.php"),
         loadHTML("sections","humss.php"),
-        loadHTML("sections","cass-ivory.php"),
+        loadHTML("sections","cass ivory.php"),
         loadHTML("sections","peshirts.php"),
         loadHTML("sections","karate.php"),
         loadHTML("sections","cap-black.php"),
@@ -74,19 +74,19 @@ document.addEventListener("DOMContentLoaded", function(){
         loadHTML("sections","ispa.php"),
         loadHTML("sections","nstp.php"),
         loadHTML("sections","stem.php"),
-        loadHTML("sections","cass-hm.php"),
+        loadHTML("sections","cass hm.php"),
         loadHTML("sections","cass-yellow-shirt.php"),
         loadHTML("sections","cass-shirt-yellow.php"),
         loadHTML("sections","cass-blue-shirt.php"),
-        loadHTML("sections","cass-shirts.php"),
-        loadHTML("sections","abm-blue.php"),
-        loadHTML("sections","college-pants.php"),
-        loadHTML("sections","college-blouse.php"),
-        loadHTML("sections","college-skirt.php"),
-        loadHTML("sections","shs-polo.php"),
-        loadHTML("sections","shs-pants.php"),
-        loadHTML("sections","shs-blouse.php"),
-        loadHTML("sections","shs-skirt.php"),
+        loadHTML("sections","cass shirts.php"),
+        loadHTML("sections","abm blue.php"),
+        loadHTML("sections","college pants.php"),
+        loadHTML("sections","college blouse.php"),
+        loadHTML("sections","college skirt.php"),
+        loadHTML("sections","shs polo.php"),
+        loadHTML("sections","shs pants.php"),
+        loadHTML("sections","shs blouse.php"),
+        loadHTML("sections","shs skirt.php"),
         loadHTML("sections","tvl-red.php")
 
     ]).then(() => {
@@ -123,3 +123,4 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
+
