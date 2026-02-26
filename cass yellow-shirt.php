@@ -1,114 +1,92 @@
 <?php
 require_once 'shared/config/db.php';
 
-/* ================= UPDATE ================= */
-if(isset($_POST['update_uniform'])){
-    $key = $_POST['uniform_key'];
-    $stock = $_POST['stock'];
-    $status = $_POST['status'];
+$keys = [
+    'cass-it-xs',
+    'cass-it-s',
+    'cass-it-m',
+    'cass-it-l'
+];
 
-    $stmt = $pdo->prepare("UPDATE uniforms SET stock=?, status=? WHERE uniform_key=?");
-    $stmt->execute([$stock,$status,$key]);
+$uniformData = [];
 
-    header("Location: ".$_SERVER['PHP_SELF']);
-    exit();
-}
+$stmt = $pdo->prepare("SELECT uniform_key, stock, status FROM uniforms WHERE uniform_key = ?");
 
-/* ================= CLAIM ================= */
-if(isset($_POST['claim_uniform'])){
-    $key = $_POST['uniform_key'];
-
-    $stmt = $pdo->prepare("SELECT stock FROM uniforms WHERE uniform_key=?");
+foreach ($keys as $key) {
     $stmt->execute([$key]);
-    $row = $stmt->fetch();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if($row && $row['stock'] > 0){
-        $newStock = $row['stock'] - 1;
-        $newStatus = ($newStock > 0) ? "Available" : "Not Available";
-
-        $update = $pdo->prepare("UPDATE uniforms SET stock=?, status=? WHERE uniform_key=?");
-        $update->execute([$newStock,$newStatus,$key]);
+    if ($result) {
+        $uniformData[$key] = $result;
+    } else {
+        $uniformData[$key] = [
+            'stock' => 0,
+            'status' => 'Not Available'
+        ];
     }
-
-    header("Location: ".$_SERVER['PHP_SELF']);
-    exit();
-}
-
-/* ================= FETCH ================= */
-$stmt = $pdo->prepare("SELECT * FROM uniforms");
-$stmt->execute();
-$uniforms = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-$data = [];
-foreach($uniforms as $u){
-    $data[$u['uniform_key']] = $u;
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>CASS IT</title>
-<style>
-table { border-collapse: collapse; width:100%; }
-th,td { border:1px solid #ccc; padding:8px; text-align:center; }
-.available { color:green; font-weight:bold; }
-.not-available { color:red; font-weight:bold; }
-</style>
-</head>
-<body>
-
 <div class="section">
-<h2>CASS Shirt Yellow (IT)</h2>
+
+<h2>CASS Yellow-Shirt (IT)</h2>
 
 <table>
+
 <tr>
 <th>Size</th>
 <th>Stock</th>
 <th>Status</th>
-<th>Action</th>
-<th>Admin</th>
+<th class="claim-col">Action</th>
+<th class="admin-control">Admin</th>
 </tr>
 
 <?php
-$sizes = ['xs','s','m','l'];
+$sizes = ['XS','S','M','L'];
 
-foreach($sizes as $size):
+foreach ($sizes as $size):
 
-$key = "cass-it-$size";
-$stock = $data[$key]['stock'] ?? 0;
-$status = $data[$key]['status'] ?? "Not Available";
-$statusClass = ($status=="Available") ? "available" : "not-available";
+$key = 'cass-it-' . strtolower($size);
+$stock = $uniformData[$key]['stock'];
+$status = $uniformData[$key]['status'];
+$statusClass = ($status == 'Available') ? 'available' : 'not-available';
 ?>
 
 <tr>
-<td><?= strtoupper($size) ?></td>
 
-<td><?= $stock ?></td>
+<td><?= $size ?></td>
 
-<td class="<?= $statusClass ?>">
-<?= $status ?>
+<td id="<?= $key ?>-stock">
+<?= htmlspecialchars($stock) ?>
 </td>
 
-<td>
-<form method="POST">
-<input type="hidden" name="uniform_key" value="<?= $key ?>">
-<button type="submit" name="claim_uniform">Claim</button>
-</form>
+<td id="<?= $key ?>-status" class="<?= $statusClass ?>">
+<?= htmlspecialchars($status) ?>
 </td>
 
-<td>
-<form method="POST">
-<input type="hidden" name="uniform_key" value="<?= $key ?>">
-<input type="number" name="stock" value="<?= $stock ?>" required>
+<td class="claim-col">
+<button onclick="claim('<?= $key ?>', this)">Claim</button>
+</td>
 
-<select name="status">
-<option value="Available" <?= ($status=="Available")?'selected':'' ?>>Available</option>
-<option value="Not Available" <?= ($status=="Not Available")?'selected':'' ?>>Not Available</option>
+<td class="admin-control">
+
+<input type="number"
+       id="<?= $key ?>-stock-edit"
+       value="<?= htmlspecialchars($stock) ?>">
+
+<select id="<?= $key ?>-status-edit">
+<option value="Available" <?= $status=='Available'?'selected':'' ?>>
+Available
+</option>
+<option value="Not Available" <?= $status=='Not Available'?'selected':'' ?>>
+Not Available
+</option>
 </select>
 
-<button type="submit" name="update_uniform">Update</button>
-</form>
+<button onclick="updateUniform('<?= $key ?>')">
+Update
+</button>
+
 </td>
 
 </tr>
@@ -117,6 +95,3 @@ $statusClass = ($status=="Available") ? "available" : "not-available";
 
 </table>
 </div>
-
-</body>
-</html>
