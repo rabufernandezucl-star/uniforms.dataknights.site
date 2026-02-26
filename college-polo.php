@@ -2,13 +2,13 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'polo-xs',
-    'polo-s',
-    'polo-m',
-    'polo-l',
-    'polo-xl',
-    'polo-xxl',
-    'polo-xxxl'
+    'polo_xs',
+    'polo_s',
+    'polo_m',
+    'polo_l',
+    'polo_xl',
+    'polo_xxl',
+    'polo_xxxl'
 ];
 
 $uniformData = [];
@@ -87,3 +87,4 @@ Update
 
 </table>
 </div>
+
