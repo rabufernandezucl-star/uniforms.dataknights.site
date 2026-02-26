@@ -7,8 +7,7 @@ $keys = [
     'polo_m',
     'polo_l',
     'polo_xl',
-    'polo_xxl',
-    'polo_xxxl'
+    'polo_xxl'
 ];
 
 $uniformData = [];
@@ -87,4 +86,5 @@ Update
 
 </table>
 </div>
+
 
