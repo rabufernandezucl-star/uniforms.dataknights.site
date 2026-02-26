@@ -12,52 +12,113 @@
 <th class="admin-control">Admin</th>
 </tr>
 
-<?php
-$sizes = ["xs","s","m","l","xl","xxl"];
-
-foreach($sizes as $size):
-
-$key = "shsblouse-$size";
-$stock = $uniforms[$key]['stock'] ?? 0;
-$status = $uniforms[$key]['status'] ?? "Not Available";
-?>
-
+<!-- XS -->
 <tr>
-<td><?= strtoupper($size) ?></td>
-
-<td id="<?= $key ?>-stock">
-<?= $stock ?>
-</td>
-
-<td id="<?= $key ?>-status"
-class="<?= $status === 'Available' ? 'available' : 'not-available' ?>">
-<?= $status ?>
-</td>
-
+<td>XS</td>
+<td id="shsblouse-xs-stock">5</td>
+<td id="shsblouse-xs-status" class="available">Available</td>
 <td class="claim-col">
-<button onclick="claim('<?= $key ?>',this)">Claim</button>
+<button onclick="claim('shsblouse-xs',this)">Claim</button>
 </td>
-
 <td class="admin-control">
-
-<input type="number"
-id="<?= $key ?>-stock-edit"
-value="<?= $stock ?>">
-
-<select id="<?= $key ?>-status-edit">
-<option <?= $status==="Available"?"selected":"" ?>>Available</option>
-<option <?= $status==="Not Available"?"selected":"" ?>>Not Available</option>
+<input type="number" id="shsblouse-xs-stock-edit">
+<select id="shsblouse-xs-status-edit">
+<option>Available</option>
+<option>Not Available</option>
 </select>
-
-<button onclick="updateUniform('<?= $key ?>')">
-Update
-</button>
-
+<button onclick="updateUniform('shsblouse-xs')">Update</button>
 </td>
-
 </tr>
 
-<?php endforeach; ?>
+<!-- S -->
+<tr>
+<td>S</td>
+<td id="shsblouse-s-stock">5</td>
+<td id="shsblouse-s-status" class="available">Available</td>
+<td class="claim-col">
+<button onclick="claim('shsblouse-s',this)">Claim</button>
+</td>
+<td class="admin-control">
+<input type="number" id="shsblouse-s-stock-edit">
+<select id="shsblouse-s-status-edit">
+<option>Available</option>
+<option>Not Available</option>
+</select>
+<button onclick="updateUniform('shsblouse-s')">Update</button>
+</td>
+</tr>
+
+<!-- M -->
+<tr>
+<td>M</td>
+<td id="shsblouse-m-stock">5</td>
+<td id="shsblouse-m-status" class="available">Available</td>
+<td class="claim-col">
+<button onclick="claim('shsblouse-m',this)">Claim</button>
+</td>
+<td class="admin-control">
+<input type="number" id="shsblouse-m-stock-edit">
+<select id="shsblouse-m-status-edit">
+<option>Available</option>
+<option>Not Available</option>
+</select>
+<button onclick="updateUniform('shsblouse-m')">Update</button>
+</td>
+</tr>
+
+<!-- L -->
+<tr>
+<td>L</td>
+<td id="shsblouse-l-stock">5</td>
+<td id="shsblouse-l-status" class="available">Available</td>
+<td class="claim-col">
+<button onclick="claim('shsblouse-l',this)">Claim</button>
+</td>
+<td class="admin-control">
+<input type="number" id="shsblouse-l-stock-edit">
+<select id="shsblouse-l-status-edit">
+<option>Available</option>
+<option>Not Available</option>
+</select>
+<button onclick="updateUniform('shsblouse-l')">Update</button>
+</td>
+</tr>
+
+<!-- XL -->
+<tr>
+<td>XL</td>
+<td id="shsblouse-xl-stock">5</td>
+<td id="shsblouse-xl-status" class="available">Available</td>
+<td class="claim-col">
+<button onclick="claim('shsblouse-xl',this)">Claim</button>
+</td>
+<td class="admin-control">
+<input type="number" id="shsblouse-xl-stock-edit">
+<select id="shsblouse-xl-status-edit">
+<option>Available</option>
+<option>Not Available</option>
+</select>
+<button onclick="updateUniform('shsblouse-xl')">Update</button>
+</td>
+</tr>
+
+<!-- XXL -->
+<tr>
+<td>XXL</td>
+<td id="shsblouse-xxl-stock">5</td>
+<td id="shsblouse-xxl-status" class="available">Available</td>
+<td class="claim-col">
+<button onclick="claim('shsblouse-xxl',this)">Claim</button>
+</td>
+<td class="admin-control">
+<input type="number" id="shsblouse-xxl-stock-edit">
+<select id="shsblouse-xxl-status-edit">
+<option>Available</option>
+<option>Not Available</option>
+</select>
+<button onclick="updateUniform('shsblouse-xxl')">Update</button>
+</td>
+</tr>
 
 </table>
 </div>
