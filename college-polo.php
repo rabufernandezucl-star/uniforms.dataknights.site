@@ -2,14 +2,13 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'polo_xs',
-    'polo_s',
-    'polo_m',
-    'polo_l',
-    'polo_xl',
-    'polo_xxl'
+    'college_polo_xs',
+    'college_polo_s',
+    'college_polo_m',
+    'college_polo_l',
+    'college_polo_xl',
+    'college_polo_xxl'
 ];
-
 $uniformData = [];
 
 $stmt = $pdo->prepare("SELECT uniform_key, stock, status FROM uniforms WHERE uniform_key = ?");
@@ -86,6 +85,7 @@ Update
 
 </table>
 </div>
+
 
 
 
