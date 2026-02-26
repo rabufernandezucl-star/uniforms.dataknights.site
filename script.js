@@ -146,7 +146,7 @@ function updateUniform(id){
         return;
     }
 
-    fetch("update_uniform.php", {
+    fetch("update_uniforms.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -191,3 +191,4 @@ function updateUniform(id){
     });
 
 }
+
