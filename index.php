@@ -52,33 +52,33 @@ function loadHTML(id, file){
 /* LOAD FILES */
 Promise.all([
 
-    loadHTML("sections","college-polo.html"),
-    loadHTML("sections","humss.html"),
-    loadHTML("sections","cass ivory.html"),
-    loadHTML("sections","peshirts.html"),
-    loadHTML("sections","karate.html"),
-    loadHTML("sections","cap black.html"),
-    loadHTML("sections","cap green.html"),
-    loadHTML("sections","pe joggingpants.html"),
-    loadHTML("sections","ispa.html"),
-    loadHTML("sections","nstp.html"),
-    loadHTML("sections","stem.html"),
-    loadHTML("sections","cass hm.html"),
-    loadHTML("sections","cass yellow-shirt.html"),
-    loadHTML("sections","cass shirt-yellow.html"),
-    loadHTML("sections","cass blue-shirt.html"),
-    loadHTML("sections","cass-shirts.html"),
-    loadHTML("sections","abm blue.html"),
-    loadHTML("sections","college pants.html"),
-    loadHTML("sections","college blouse.html"),
-    loadHTML("sections","college skirt.html"),
-    loadHTML("sections","shs polo.html"),
-    loadHTML("sections","shs pants.html"),
-    loadHTML("sections","shs blouse.html"),
-    loadHTML("sections","shs skirt.html"),
-    loadHTML("sections","tvl-red.html"),
+    loadHTML("sections","college-polo.php"),
+    loadHTML("sections","humss.php"),
+    loadHTML("sections","cass-ivory.php"),
+    loadHTML("sections","peshirts.php"),
+    loadHTML("sections","karate.php"),
+    loadHTML("sections","cap-black.php"),
+    loadHTML("sections","cap-green.php"),
+    loadHTML("sections","pe-joggingpants.php"),
+    loadHTML("sections","ispa.php"),
+    loadHTML("sections","nstp.php"),
+    loadHTML("sections","stem.php"),
+    loadHTML("sections","cass-hm.php"),
+    loadHTML("sections","cass-yellow-shirt.php"),
+    loadHTML("sections","cass-shirt-yellow.php"),
+    loadHTML("sections","cass-blue-shirt.php"),
+    loadHTML("sections","cass-shirts.php"),
+    loadHTML("sections","abm-blue.php"),
+    loadHTML("sections","college-pants.php"),
+    loadHTML("sections","college-blouse.php"),
+    loadHTML("sections","college-skirt.php"),
+    loadHTML("sections","shs-polo.php"),
+    loadHTML("sections","shs-pants.php"),
+    loadHTML("sections","shs-blouse.php"),
+    loadHTML("sections","shs-skirt.php"),
+    loadHTML("sections","tvl-red.php")
 
-]).then(()=>{
+]);
 
     /* ================= ADMIN CHECK ================= */
     const isAdmin = <?php echo ($_SESSION['is_admin'] ?? 0); ?>;
@@ -110,6 +110,7 @@ Promise.all([
 
 </body>
 </html>
+
 
 
 
