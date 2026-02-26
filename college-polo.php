@@ -44,7 +44,7 @@ foreach ($keys as $key) {
 </tr>
 
 <?php
-$sizes = ['XS','S','M','L','XL','XXL','XXXL'];
+$sizes = ['XS','S','M','L','XL','XXL'];
 
 foreach ($sizes as $size):
 
@@ -86,5 +86,6 @@ Update
 
 </table>
 </div>
+
 
 
