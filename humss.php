@@ -2,14 +2,12 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'shs-humss-xs',
-    'shs-humss-s',
-    'shs-humss-m',
-    'shs-humss-l',
-    'shs-humss-xl',
-    'shs-humss-xxl',
-    'shs-humss-xxxl',
-    'shs-humss-xxxxl'
+    'shs_humss_xs',
+    'shs_humss_s',
+    'shs_humss_m',
+    'shs_humss_l',
+    'shs_humss_xl',
+    'shs_humss_xxl'
 ];
 
 $uniformData = [];
@@ -46,7 +44,7 @@ foreach ($keys as $key) {
 </tr>
 
 <?php
-$sizes = ['XS','S','M','L','XL','XXL','XXXL','XXXXL'];
+$sizes = ['XS','S','M','L','XL','XXL'];
 
 foreach ($sizes as $size):
 
