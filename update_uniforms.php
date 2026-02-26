@@ -18,10 +18,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         WHERE uniform_key = ?
     ");
 
-    if($stmt->execute([$stock, $status, $key])){
-        echo "Update Successful";
+    $stmt->execute([$stock, $status, $key]);
+
+    if($stmt->rowCount() > 0){
+        echo "success";
     } else {
-        echo "error";
+        echo "no_row_updated";
     }
 }
 ?>
