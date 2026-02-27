@@ -7,17 +7,27 @@ if(isset($_POST['key'], $_POST['stock'], $_POST['status'])){
     $stock = intval($_POST['stock']);
     $status = $_POST['status'];
 
-    $stmt = $pdo->prepare("
-        UPDATE uniforms
-        SET stock = ?, status = ?
-        WHERE uniform_key = ?
-    ");
+    try {
 
-    if($stmt->execute([$stock, $status, $key])){
-        echo "success";
-    } else {
-        echo "error";
+        $stmt = $pdo->prepare("
+            UPDATE uniforms
+            SET stock = ?, status = ?
+            WHERE uniform_key = ?
+        ");
+
+        $stmt->execute([$stock, $status, $key]);
+
+        if($stmt->rowCount() > 0){
+            echo "success";
+        } else {
+            echo "no_row_updated";
+        }
+
+    } catch(PDOException $e){
+        echo "SQL ERROR: " . $e->getMessage();
     }
 
+} else {
+    echo "invalid_post";
 }
 ?>
