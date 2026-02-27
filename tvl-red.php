@@ -7,7 +7,8 @@ $keys = [
     'shs_tvl_red_m',
     'shs_tvl_red_l',
     'shs_tvl_red_xl',
-    'shs_tvl_red_xxl'
+    'shs_tvl_red_xxl',
+     'shs_tvl_red_xxxl'
 ];
 
 $uniformData = [];
@@ -97,3 +98,4 @@ Update
 
 </table>
 </div>
+
