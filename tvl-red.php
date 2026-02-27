@@ -2,13 +2,12 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'tvl-xs',
-    'tvl-s',
-    'tvl-m',
-    'tvl-l',
-    'tvl-xl',
-    'tvl-xxl',
-    'tvl-xxxl'
+    'shs_tvl_red_xs',
+    'shs_tvl_red_s',
+    'shs_tvl_red_m',
+    'shs_tvl_red_l',
+    'shs_tvl_red_xl',
+    'shs_tvl_red_xxl'
 ];
 
 $uniformData = [];
@@ -49,7 +48,7 @@ $sizes = ['XS','S','M','L','XL','XXL','XXXL'];
 
 foreach ($sizes as $size):
 
-$key = 'tvl-' . strtolower($size);
+$key = 'shs_tvl_red_' . strtolower($size);
 $stock = $uniformData[$key]['stock'];
 $status = $uniformData[$key]['status'];
 $statusClass = ($status == 'Available') ? 'available' : 'not-available';
