@@ -2,7 +2,7 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'college_cass_blue_xs',
+    'cass_coed_blue_xs',
     'college_cass_blue_s',
     'college_cass_blue_m',
     'college_cass_blue_l',
@@ -102,3 +102,4 @@ Update
 
 </table>
 </div>
+
