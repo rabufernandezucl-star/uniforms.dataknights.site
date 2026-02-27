@@ -2,14 +2,14 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'cass-bsba-xs',
-    'cass-bsba-s',
-    'cass-bsba-m',
-    'cass-bsba-l',
-    'cass-bsba-xl',
-    'cass-bsba-xxl',
-    'cass-bsba-xxxl',
-    'cass-bsba-xxxxl'
+    'college_cass_bsba_yellow_xs',
+    'college_cass_bsba_yellow_s',
+    'college_cass_bsba_yellow_m',
+    'college_cass_bsba_yellow_l',
+    'college_cass_bsba_yellow_xl',
+    'college_cass_bsba_yellow_xxl',
+    'college_cass_bsba_yellow_xxxl',
+    'college_cass_bsba_yellow_xxxxl'
 ];
 
 $uniformData = [];
@@ -50,7 +50,7 @@ $sizes = ['XS','S','M','L','XL','XXL','XXXL','XXXXL'];
 
 foreach ($sizes as $size):
 
-$key = 'cass-bsba-' . strtolower($size);
+$key = 'college_cass_bsba_yellow_' . strtolower($size);
 $stock = $uniformData[$key]['stock'];
 $status = $uniformData[$key]['status'];
 $statusClass = ($status == 'Available') ? 'available' : 'not-available';
