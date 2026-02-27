@@ -2,11 +2,11 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'cass-cma-s',
-    'cass-cma-m',
-    'cass-cma-l',
-    'cass-cma-xl',
-    'cass-cma-xxl'
+    'college_cass_cma_yellow_s',
+    'college_cass_cma_yellow_m',
+    'college_cass_cma_yellow_l',
+    'college_cass_cma_yellow_xl',
+    'college_cass_cma_yellow_xxl'
 ];
 
 $uniformData = [];
@@ -47,7 +47,7 @@ $sizes = ['S','M','L','XL','XXL'];
 
 foreach ($sizes as $size):
 
-$key = 'cass-cma-' . strtolower($size);
+$key = 'college_cass_cma_yellow_' . strtolower($size);
 $stock = $uniformData[$key]['stock'];
 $status = $uniformData[$key]['status'];
 $statusClass = ($status == 'Available') ? 'available' : 'not-available';
