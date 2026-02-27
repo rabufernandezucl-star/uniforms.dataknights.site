@@ -2,13 +2,13 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'college_cass_hm_xs',
-    'college_cass_hm_s',
-    'college_cass_hm_m',
-    'college_cass_hm_l',
-    'college_cass_hm_xl',
-    'college_cass_hm_xxl',
-    'college_cass_hm_xxxl'
+    'college_cass_hm_yellow_xs',
+    'college_cass_hm_yellow_s',
+    'college_cass_hm_yellow_m',
+    'college_cass_hm_yellow_l',
+    'college_cass_hm_yellow_xl',
+    'college_cass_hm_yellow_xxl',
+    'college_cass_hm_yellow_xxxl'
 ];
 
 $uniformData = [];
