@@ -48,7 +48,7 @@ $sizes = ['XS','S','M','L','XL','XXL'];
 
 foreach ($sizes as $size):
 
-$key = 'shs_polo' . strtolower($size);
+$key = 'shs_polo_' . strtolower($size);
 $stock = $uniformData[$key]['stock'];
 $status = $uniformData[$key]['status'];
 $statusClass = ($status == 'Available') ? 'available' : 'not-available';
@@ -84,3 +84,4 @@ $statusClass = ($status == 'Available') ? 'available' : 'not-available';
 
 </table>
 </div>
+
