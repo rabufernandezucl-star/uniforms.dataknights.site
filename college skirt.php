@@ -6,7 +6,7 @@ $keys = [
     'college_skirt_s',
     'college_skirt_m',
     'college_skirt_l',
-    'college_skirtxl',
+    'college_skirt_xl',
     'college_skirt_xxl'
 ];
 
@@ -82,3 +82,4 @@ $statusClass = ($status == 'Available') ? 'available' : 'not-available';
 
 </table>
 </div>
+
