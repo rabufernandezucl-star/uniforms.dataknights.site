@@ -6,7 +6,7 @@ $keys = [
     'shs_abm_blue_s',
     'shs_abm_blue_m',
     'shs_abm_blue_l',
-    'shs_abm_bluexl',
+    'shs_abm_blue_xl',
     'shs_abm_blue_xxl'
 ];
 
@@ -100,4 +100,5 @@ Update
 
 </table>
 </div>
+
 
