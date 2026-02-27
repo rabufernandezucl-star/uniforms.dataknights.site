@@ -2,12 +2,12 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'jogging-xs',
-    'jogging-s',
-    'jogging-m',
-    'jogging-l',
-    'jogging-xl',
-    'jogging-xxl'
+    'pe_jogging_pants_xs',
+    'pe_jogging_pants_s',
+    'pe_jogging_pants_m',
+    'pe_jogging_pants_l',
+    'pe_jogging_pants_xl',
+    'pe_jogging_pants_xxl'
 ];
 
 $uniformData = [];
@@ -48,7 +48,7 @@ $sizes = ['XS','S','M','L','XL','XXL'];
 
 foreach ($sizes as $size):
 
-$key = 'jogging-' . strtolower($size);
+$key = 'pe_jogging_pants_' . strtolower($size);
 $stock = $uniformData[$key]['stock'];
 $status = $uniformData[$key]['status'];
 $statusClass = ($status == 'Available') ? 'available' : 'not-available';
