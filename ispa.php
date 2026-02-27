@@ -2,14 +2,10 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'shs-humss-xs',
-    'shs-humss-s',
-    'shs-humss-m',
-    'shs-humss-l',
-    'shs-humss-xl',
-    'shs-humss-xxl',
-    'shs-humss-xxxl',
-    'shs-humss-xxxxl'
+    'college_res_ispa_xs',
+    'college_res_ispa_s',
+    'college_res_ispa_m',
+    'college_res_ispa_l'
 ];
 
 $uniformData = [];
@@ -33,7 +29,7 @@ foreach ($keys as $key) {
 
 <div class="section">
 
-<h2>SHS Uniform – HUMSS (Black)</h2>
+<h2>Res Ipsa</h2>
 
 <table>
 
@@ -46,11 +42,11 @@ foreach ($keys as $key) {
 </tr>
 
 <?php
-$sizes = ['XS','S','M','L','XL','XXL','XXXL','XXXXL'];
+$sizes = ['XS','S','M','L'];
 
 foreach ($sizes as $size):
 
-$key = 'shs-humss-' . strtolower($size);
+$key = 'college_res_ispa_' . strtolower($size);
 $stock = $uniformData[$key]['stock'];
 $status = $uniformData[$key]['status'];
 $statusClass = ($status == 'Available') ? 'available' : 'not-available';
@@ -73,8 +69,8 @@ $statusClass = ($status == 'Available') ? 'available' : 'not-available';
 <input type="number" id="<?= $key ?>-stock-edit" value="<?= $stock ?>">
 
 <select id="<?= $key ?>-status-edit">
-<option value="Available" <?= $status=='Available'?'selected':'' ?>>Available</option>
-<option value="Not Available" <?= $status=='Not Available'?'selected':'' ?>>Not Available</option>
+<option <?= $status=='Available'?'selected':'' ?>>Available</option>
+<option <?= $status=='Not Available'?'selected':'' ?>>Not Available</option>
 </select>
 
 <button onclick="updateUniform('<?= $key ?>')">Update</button>
