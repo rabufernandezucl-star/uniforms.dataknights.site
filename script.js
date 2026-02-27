@@ -73,6 +73,17 @@ function logout(){
 
 function claim(id, btn){
 
+    // 🚫 Prevent admin from claiming
+    if(currentUser && currentUser.isAdmin){
+        alert("Admin cannot claim uniforms.");
+        return;
+    }
+
+    // 🚫 Prevent clicking if already disabled
+    if(btn.disabled){
+        return;
+    }
+
     fetch("claim_uniform.php", {
         method: "POST",
         headers: {
@@ -84,6 +95,17 @@ function claim(id, btn){
     .then(data => {
 
         console.log("Claim response:", data);
+
+        if(data === "unauthorized"){
+            alert("Unauthorized action.");
+            return;
+        }
+
+        if(data === "not_available"){
+            alert("This item is not available.");
+            btn.disabled = true;
+            return;
+        }
 
         if(data === "out"){
             alert("Out of stock!");
@@ -191,4 +213,3 @@ function updateUniform(id){
     });
 
 }
-
