@@ -49,7 +49,7 @@ $sizes = ['XS','S','M','L','XL','XXL','XXXL'];
 
 foreach ($sizes as $size):
 
-$key = 'college_cass_hm_' . strtolower($size);
+$key = 'college_cass_hm_yellow' . strtolower($size);
 $stock = $uniformData[$key]['stock'];
 $status = $uniformData[$key]['status'];
 $statusClass = ($status == 'Available') ? 'available' : 'not-available';
@@ -101,3 +101,4 @@ Update
 
 </table>
 </div>
+
