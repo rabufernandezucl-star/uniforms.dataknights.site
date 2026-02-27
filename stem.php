@@ -2,10 +2,10 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'stem-xs',
-    'stem-s',
-    'stem-m',
-    'stem-l'
+    'shs_stem_green_xs',
+    'shs_stem_green_s',
+    'shs_stem_green_m',
+    'shs_stem_green_l'
 ];
 
 $uniformData = [];
@@ -46,7 +46,7 @@ $sizes = ['XS','S','M','L'];
 
 foreach ($sizes as $size):
 
-$key = 'stem-' . strtolower($size);
+$key = 'shs_stem_green_' . strtolower($size);
 $stock = $uniformData[$key]['stock'];
 $status = $uniformData[$key]['status'];
 $statusClass = ($status == 'Available') ? 'available' : 'not-available';
