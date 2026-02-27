@@ -2,12 +2,12 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'shs_humss_xs',
-    'shs_humss_s',
-    'shs_humss_m',
-    'shs_humss_l',
-    'shs_humss_xl',
-    'shs_humss_xxl'
+    'shs_humss_black_xs',
+    'shs_humss_black_s',
+    'shs_humss_black_m',
+    'shs_humss_black_l',
+    'shs_humss_black_xl',
+    'shs_humss_black_xxl'
 ];
 
 $uniformData = [];
@@ -48,7 +48,7 @@ $sizes = ['XS','S','M','L','XL','XXL'];
 
 foreach ($sizes as $size):
 
-$key = 'shs_humss_' . strtolower(trim($size));
+$key = 'shs_humss_black_' . strtolower(trim($size));
 $stock = $uniformData[$key]['stock'];
 $status = $uniformData[$key]['status'];
 $statusClass = ($status == 'Available') ? 'available' : 'not-available';
