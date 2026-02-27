@@ -1,5 +1,12 @@
 <?php
 require_once "shared/config/db.php";
+session_start();
+
+/* USER ONLY CAN CLAIM */
+if(!isset($_SESSION['username']) || $_SESSION['is_admin']){
+    echo "unauthorized";
+    exit;
+}
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
@@ -10,13 +17,22 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         exit;
     }
 
-    // Kunin muna current stock
-    $stmt = $pdo->prepare("SELECT stock, status FROM uniforms WHERE uniform_key = ?");
+    $stmt = $pdo->prepare("
+        SELECT stock, status 
+        FROM uniforms 
+        WHERE uniform_key = ?
+    ");
     $stmt->execute([$key]);
     $uniform = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if(!$uniform){
         echo "error";
+        exit;
+    }
+
+    /* CHECK STATUS */
+    if($uniform['status'] !== 'Available'){
+        echo "not_available";
         exit;
     }
 
@@ -28,16 +44,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
 
     $newStock = $currentStock - 1;
-
-    // Optional: automatic status kapag 0
-    $newStatus = ($newStock == 0) ? "Not Available" : $uniform['status'];
+    $newStatus = ($newStock == 0) ? "Not Available" : "Available";
 
     $update = $pdo->prepare("
         UPDATE uniforms
         SET stock = ?, status = ?
         WHERE uniform_key = ?
     ");
-
     $update->execute([$newStock, $newStatus, $key]);
 
     echo json_encode([
@@ -45,3 +58,4 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         "status" => $newStatus
     ]);
 }
+?>
