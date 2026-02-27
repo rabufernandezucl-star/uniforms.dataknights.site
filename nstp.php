@@ -2,12 +2,12 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'nstp-xs',
-    'nstp-s',
-    'nstp-m',
-    'nstp-l',
-    'nstp-xl',
-    'nstp-xxl'
+    'nstp_xs',
+    'nstp_s',
+    'nstp_m',
+    'nstp_l',
+    'nstp_xl',
+    'nstp_xxl'
 ];
 
 $uniformData = [];
@@ -48,7 +48,7 @@ $sizes = ['XS','S','M','L','XL','XXL'];
 
 foreach ($sizes as $size):
 
-$key = 'nstp-' . strtolower($size);
+$key = 'nstp_' . strtolower($size);
 $stock = $uniformData[$key]['stock'];
 $status = $uniformData[$key]['status'];
 $statusClass = ($status == 'Available') ? 'available' : 'not-available';
