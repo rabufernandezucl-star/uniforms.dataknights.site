@@ -1,10 +1,10 @@
 <?php
-require_once 'shared/config/db.php';
+require_once "shared/config/db.php";
 
 if(isset($_POST['key'], $_POST['stock'], $_POST['status'])){
 
     $key = $_POST['key'];
-    $stock = $_POST['stock'];
+    $stock = intval($_POST['stock']);
     $status = $_POST['status'];
 
     $stmt = $pdo->prepare("
@@ -14,12 +14,10 @@ if(isset($_POST['key'], $_POST['stock'], $_POST['status'])){
     ");
 
     if($stmt->execute([$stock, $status, $key])){
-        echo "Update Successful";
-    }else{
-        echo "Update Failed";
+        echo "success";
+    } else {
+        echo "error";
     }
 
-}else{
-    echo "Invalid Request";
 }
 ?>
