@@ -40,9 +40,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-<!-- TOP BAR -->
+<!-- ===== TOP BAR ===== -->
 <div class="top-bar">
-    <div>PHINMA UCL Learning Module System</div>
+    <div class="logo-title">
+        PHINMA UCL Learning Module System
+    </div>
 
     <div class="top-links">
         <a href="#">Home</a>
@@ -50,16 +52,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="main-container">
+<!-- ===== MAIN OVERLAY ===== -->
+<div class="overlay">
 
-    <!-- LEFT ANNOUNCEMENT -->
+    <!-- ANNOUNCEMENT CARD -->
     <div class="announcement-card">
         <h2>Announcements</h2>
         <p>No active schedules as of the moment.</p>
     </div>
 
-    <!-- RIGHT LOGIN -->
+    <!-- LOGIN CARD -->
     <div class="login-card">
 
         <h2>PUCL Module Access System</h2>
@@ -82,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </div>
 
-<!-- FOOTER -->
+<!-- ===== FOOTER ===== -->
 <div class="footer">
     © <?php echo date("Y"); ?> PHINMA UCL Learning Module System
 </div>
