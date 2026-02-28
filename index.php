@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once __DIR__ . '/shared/config/db.php';
 
 /* ================= LOGIN REQUIRED ================= */
 if (!isset($_SESSION['username'])) {
@@ -8,6 +9,18 @@ if (!isset($_SESSION['username'])) {
 }
 
 $isAdmin = $_SESSION['is_admin'] ?? 0;
+
+/* ================= GET ACTIVE ANNOUNCEMENT ================= */
+$today = date('Y-m-d');
+
+$stmt = $pdo->prepare("
+    SELECT * FROM announcements
+    WHERE start_date <= ? AND end_date >= ?
+    ORDER BY id DESC
+    LIMIT 1
+");
+$stmt->execute([$today, $today]);
+$announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,6 +32,25 @@ $isAdmin = $_SESSION['is_admin'] ?? 0;
 <body>
 
 <h1>Uniform Inventory System</h1>
+
+<!-- ================= ANNOUNCEMENT SECTION ================= -->
+<div class="announcement-box">
+
+    <h2>📢 Announcement</h2>
+
+    <?php if($announcement): ?>
+        <p><?= htmlspecialchars($announcement['message']); ?></p>
+    <?php else: ?>
+        <p>No active announcement.</p>
+    <?php endif; ?>
+
+    <?php if($isAdmin == 1): ?>
+        <a href="manage-announcement.php">
+            <button class="edit-btn">Edit Announcement</button>
+        </a>
+    <?php endif; ?>
+
+</div>
 
 <div id="inventory">
 
@@ -60,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     }
 
-    /* ================= LOAD ALL FILES ================= */
     Promise.all([
 
         loadHTML("sections","college-polo.php"),
@@ -78,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function(){
         loadHTML("sections","cass yellow-shirt.php"),
         loadHTML("sections","cass shirt-yellow.php"),
         loadHTML("sections","cass blue-shirt.php"),
-        loadHTML("sections","cass shirts.php"),
+        loadHTML("sections","cass-shirts.php"),
         loadHTML("sections","abm blue.php"),
         loadHTML("sections","college pants.php"),
         loadHTML("sections","college blouse.php"),
@@ -93,7 +124,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
     ]).then(() => {
 
-        /* ================= ADMIN CHECK ================= */
         const isAdmin = <?php echo $isAdmin; ?>;
 
         if(isAdmin == 1){
@@ -125,8 +155,3 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
-
-
-
-
-
