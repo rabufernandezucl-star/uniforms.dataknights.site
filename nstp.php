@@ -11,9 +11,7 @@ $keys = [
     'nstp_xxxl',
     'nstp_xxxxl',
     'nstp_xxxxxl',
-    'nstp_xxxxxxl',
-    'nstp_xxxxxxxl',
-    'nstp_xxxxxxxxl'
+    'nstp_xxxxxxl'
 ];
 
 $uniformData = [];
@@ -52,7 +50,7 @@ foreach ($keys as $key) {
 <?php
 $sizes = [
     'XS','S','M','L','XL','XXL',
-    'XXXL','XXXXL','XXXXXL','XXXXXXL','XXXXXXXL','XXXXXXXXL'
+    'XXXL','XXXXL','XXXXXL','XXXXXXL'
 ];
 
 foreach ($sizes as $size):
