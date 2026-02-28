@@ -25,7 +25,7 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Uniform Inventory</title>
+    <title>PHINMA UCL Learning Module System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -35,8 +35,6 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <!-- ================= ANNOUNCEMENT SECTION ================= -->
 <div class="announcement-box">
-
-    <h2>📢 Announcement</h2>
 
     <?php if($announcement): ?>
         <p><?= htmlspecialchars($announcement['message']); ?></p>
@@ -155,4 +153,5 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
+
 
