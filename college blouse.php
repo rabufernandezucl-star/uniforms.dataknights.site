@@ -7,7 +7,10 @@ $keys = [
     'college_blouse_m',
     'college_blouse_l',
     'college_blouse_xl',
-    'college_blouse_xxl'
+    'college_blouse_xxl',
+    'college_blouse_xxxl',
+    'college_blouse_xxxxl',
+    'college_blouse_xxxxxl'
 ];
 
 $uniformData = [];
@@ -44,7 +47,7 @@ foreach ($keys as $key) {
 </tr>
 
 <?php
-$sizes = ['XS','S','M','L','XL','XXL'];
+$sizes = ['XS','S','M','L','XL','XXL','XXXL','XXXXL','XXXXXL'];
 
 foreach ($sizes as $size):
 
