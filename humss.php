@@ -7,7 +7,10 @@ $keys = [
     'shs_humss_black_m',
     'shs_humss_black_l',
     'shs_humss_black_xl',
-    'shs_humss_black_xxl'
+    'shs_humss_black_xxl',
+    'shs_humss_black_xxxl',
+    'shs_humss_black_xxxxl',
+    'shs_humss_black_xxxxxl'
 ];
 
 $uniformData = [];
@@ -44,11 +47,11 @@ foreach ($keys as $key) {
 </tr>
 
 <?php
-$sizes = ['XS','S','M','L','XL','XXL'];
+$sizes = ['XS','S','M','L','XL','XXL','XXXL','XXXXL','XXXXXL'];
 
 foreach ($sizes as $size):
 
-$key = 'shs_humss_black_' . strtolower(trim($size));
+$key = 'shs_humss_black_' . strtolower($size);
 $stock = $uniformData[$key]['stock'];
 $status = $uniformData[$key]['status'];
 $statusClass = ($status == 'Available') ? 'available' : 'not-available';
