@@ -20,6 +20,7 @@ $sizedCategories = [
     "shs_polo",
 
     "shs_abm_blue",
+    "college_bsa",
     "shs_stem_green",
     "shs_humss_black",
 
@@ -170,3 +171,4 @@ $class = ($status == "Available") ? "available" : "not-available";
 
 </body>
 </html>
+
