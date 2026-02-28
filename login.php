@@ -7,14 +7,15 @@ $error = "";
 /* ===== GET ACTIVE ANNOUNCEMENT ===== */
 $today = date('Y-m-d');
 
+/* ===== GET ACTIVE ANNOUNCEMENT ===== */
 $stmt = $pdo->prepare("
     SELECT message 
     FROM announcements
-    WHERE start_date <= ? AND end_date >= ?
+    WHERE CURDATE() BETWEEN start_date AND end_date
     ORDER BY id DESC
     LIMIT 1
 ");
-$stmt->execute([$today, $today]);
+$stmt->execute();
 $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
@@ -172,3 +173,4 @@ button:hover{
 
 </body>
 </html>
+
