@@ -5,7 +5,10 @@ $keys = [
     'shs_stem_green_xs',
     'shs_stem_green_s',
     'shs_stem_green_m',
-    'shs_stem_green_l'
+    'shs_stem_green_l',
+    'shs_stem_green_xl',     // ✅ added
+    'shs_stem_green_xxl',    // ✅ added
+    'shs_stem_green_xxxl'    // ✅ added
 ];
 
 $uniformData = [];
@@ -42,7 +45,7 @@ foreach ($keys as $key) {
 </tr>
 
 <?php
-$sizes = ['XS','S','M','L'];
+$sizes = ['XS','S','M','L','XL','XXL','XXXL'];  // ✅ updated
 
 foreach ($sizes as $size):
 
@@ -55,10 +58,10 @@ $statusClass = ($status == 'Available') ? 'available' : 'not-available';
 <tr>
 <td><?= $size ?></td>
 
-<td id="<?= $key ?>-stock"><?= $stock ?></td>
+<td id="<?= $key ?>-stock"><?= htmlspecialchars($stock) ?></td>
 
 <td id="<?= $key ?>-status" class="<?= $statusClass ?>">
-<?= $status ?>
+<?= htmlspecialchars($status) ?>
 </td>
 
 <td class="claim-col">
@@ -66,11 +69,15 @@ $statusClass = ($status == 'Available') ? 'available' : 'not-available';
 </td>
 
 <td class="admin-control">
-<input type="number" id="<?= $key ?>-stock-edit" value="<?= $stock ?>">
+<input type="number" id="<?= $key ?>-stock-edit" value="<?= htmlspecialchars($stock) ?>">
 
 <select id="<?= $key ?>-status-edit">
-<option <?= $status=='Available'?'selected':'' ?>>Available</option>
-<option <?= $status=='Not Available'?'selected':'' ?>>Not Available</option>
+<option value="Available" <?= $status=='Available'?'selected':'' ?>>
+Available
+</option>
+<option value="Not Available" <?= $status=='Not Available'?'selected':'' ?>>
+Not Available
+</option>
 </select>
 
 <button onclick="updateUniform('<?= $key ?>')">Update</button>
