@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/shared/config/db.php';
-
 session_start();
 
 $error = "";
@@ -10,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    /* ===== GET USER ===== */
     $stmt = $pdo->prepare("
         SELECT *
         FROM users
@@ -19,13 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute([$username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    /* ===== VERIFY ===== */
-    if ($user && password_verify(
-            $password,
-            $user['password_hash']
-        )) {
+    if ($user && password_verify($password, $user['password_hash'])) {
 
-        /* SAVE SESSION */
         $_SESSION['username'] = $user['username'];
         $_SESSION['is_admin'] = $user['is_admin'];
 
@@ -38,78 +31,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>PHINMA UCL Learning Module System</title>
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        body{
-            font-family: Arial;
-            background: url('union.jpg') no-repeat center center fixed;
-            background-size: cover;
-        }
-
-        .login-box{
-            width: 340px;
-            margin: 120px auto;
-            padding: 25px;
-            background: rgba(255,255,255,0.85);
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-
-        input{
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-        }
-
-        button{
-            width: 100%;
-            padding: 10px;
-            background: #0b4da2;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .forgot{
-            margin-top: 12px;
-        }
-
-        .forgot a{
-            color: #0b4da2;
-            font-size: 13px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .forgot a:hover{
-            text-decoration: underline;
-        }
-    </style>
 </head>
 
 <body>
 
-<div class="login-box">
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div>PHINMA UCL Learning Module System</div>
 
-    <h2>Login</h2>
+    <div class="top-links">
+        <a href="#">Home</a>
+        <a href="#">Feedback</a>
+    </div>
+</div>
 
-    <form method="POST">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
+<!-- MAIN CONTENT -->
+<div class="main-container">
 
-        <p class="forgot">
-            <a href="forgot-password.php">Forgot Password?</a>
-        </p>
-    </form>
+    <!-- LEFT ANNOUNCEMENT -->
+    <div class="announcement-card">
+        <h2>Announcements</h2>
+        <p>No active schedules as of the moment.</p>
+    </div>
 
+    <!-- RIGHT LOGIN -->
+    <div class="login-card">
+
+        <h2>PUCL Module Access System</h2>
+
+        <?php if($error): ?>
+            <div class="error"><?php echo $error; ?></div>
+        <?php endif; ?>
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+
+            <div class="forgot">
+                <a href="forgot-password.php">Forgot Password?</a>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © <?php echo date("Y"); ?> PHINMA UCL Learning Module System
 </div>
 
 </body>
