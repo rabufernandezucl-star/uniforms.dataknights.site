@@ -12,17 +12,17 @@ body {
 /* ================= HEADINGS ================= */
 h1, h2 {
     text-align: center;
-    color: #0b4da2;
+    color: #2fb36f; /* GREEN THEME */
 }
 
-/* ================= MAIN FLEX CONTAINER (LOGIN + ANNOUNCEMENT) ================= */
+/* ================= MAIN FLEX CONTAINER ================= */
 .main-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 60px;
     min-height: 80vh;
-    flex-wrap: wrap; /* responsive */
+    flex-wrap: wrap;
 }
 
 /* ================= GENERAL CONTAINER ================= */
@@ -36,7 +36,6 @@ h1, h2 {
     max-width: 320px;
     padding: 25px;
     margin: 80px auto;
-
     background: rgba(255, 255, 255, 0.5); 
     backdrop-filter: blur(5px); 
     -webkit-backdrop-filter: blur(5px);
@@ -46,7 +45,7 @@ h1, h2 {
 
 .login-box h2 {
     font-size: 18px;
-    color: #0b4da2;
+    color: #2fb36f;
 }
 
 .login-box input {
@@ -96,7 +95,7 @@ h1, h2 {
 }
 
 .forgot a {
-    color: #0b4da2;
+    color: #2fb36f;
     font-size: 13px;
     text-decoration: none;
 }
@@ -132,7 +131,7 @@ input {
 /* ================= BUTTON ================= */
 button {
     padding: 8px 15px;
-    background: #0b4da2;
+    background: linear-gradient(135deg, #2fb36f, #1f8f57);
     color: white;
     border: none;
     border-radius: 5px;
@@ -140,7 +139,7 @@ button {
 }
 
 button:hover {
-    background: #083a7a;
+    background: #23995c;
 }
 
 button:disabled {
@@ -156,7 +155,7 @@ table {
 }
 
 th {
-    background: #0b4da2;
+    background: #2fb36f;
     color: white;
     padding: 10px;
 }
@@ -169,7 +168,7 @@ td {
 
 /* ================= STATUS COLORS ================= */
 .available {
-    color: green;
+    color: #2fb36f;
     font-weight: bold;
 }
 
@@ -198,7 +197,6 @@ td {
 }
 
 /* ================= ADMIN ANNOUNCEMENT FORM ================= */
-
 .admin-box {
     max-width: 500px;
     margin: 80px auto;
@@ -209,7 +207,6 @@ td {
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
-/* FORCE STYLE FOR ANNOUNCEMENT PAGE */
 
 textarea[name="message"] {
     width: 100%;
