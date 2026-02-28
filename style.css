@@ -151,6 +151,40 @@ td {
 
 .forgot a:hover {
     text-decoration: underline;
+
+    /* ================= ANNOUNCEMENT (LOGIN PAGE) ================= */
+
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 60px;
+    flex-wrap: wrap;
 }
+
+/* Announcement Card */
+.announcement-card{
+    width: 480px;
+    padding: 40px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.announcement-card h2{
+    color: #2fb36f;
+    margin-bottom: 20px;
+}
+
+.announcement-card p{
+    font-size: 16px;
+    line-height: 1.6;
+}
+}
+
 
 
