@@ -46,70 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
 <title>PUCL Module Access System</title>
-
-<style>
-body{
-    font-family: Arial;
-    margin: 0;
-    background: url('union.jpg') no-repeat center center fixed;
-    background-size: cover;
-}
-
-/* MAIN LAYOUT */
-.main-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    gap: 60px;
-}
-
-/* ANNOUNCEMENT CARD */
-.announcement-card{
-    width: 500px;
-    padding: 40px;
-    background: rgba(255,255,255,0.9);
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-}
-
-.announcement-card h2{
-    color: #2fb36f;
-}
-
-/* LOGIN CARD */
-.login-card{
-    width: 350px;
-    padding: 30px;
-    background: rgba(255,255,255,0.9);
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    text-align: center;
-}
-
-input{
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-}
-
-button{
-    width: 100%;
-    padding: 10px;
-    background: linear-gradient(to right, #2fb36f, #2a8ecb);
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-}
-
-.error{
-    color: red;
-    font-size: 14px;
-}
-</style>
-
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
