@@ -31,7 +31,7 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <body>
 
-<h1>Uniform Inventory System</h1>
+<h1>PHINMA UCL Learning Module System</h1>
 
 <!-- ================= ANNOUNCEMENT SECTION ================= -->
 <div class="announcement-box">
@@ -153,5 +153,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
+
 
 
