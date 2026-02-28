@@ -45,7 +45,7 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
     <?php endif; ?>
 
     <?php if($isAdmin == 1): ?>
-        <a href="manage-announcement.php">
+        <a href="admin_announcement.php">
             <button class="edit-btn">Edit Announcement</button>
         </a>
     <?php endif; ?>
@@ -155,3 +155,4 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
+
