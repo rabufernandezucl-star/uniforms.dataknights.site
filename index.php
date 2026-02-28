@@ -88,7 +88,8 @@ document.addEventListener("DOMContentLoaded", function(){
         loadHTML("sections","shs blouse.php"),
         loadHTML("sections","shs skirt.php"),
         loadHTML("sections","tvl-red.php"),
-        loadHTML("sections","rotc.php")
+        loadHTML("sections","rotc.php"),
+        loadHTML("sections","bsa.php")
 
     ]).then(() => {
 
@@ -124,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
+
 
 
 
