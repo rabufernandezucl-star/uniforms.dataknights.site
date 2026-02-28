@@ -24,11 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $stmt = $pdo->prepare("
-        SELECT *
-        FROM users
-        WHERE username = ?
-    ");
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->execute([$username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -52,9 +48,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>PUCL Module Access System</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="nav-left">PHINMA UCL Learning Module System</div>
+    <div class="nav-right">
+        <a href="#">Home</a>
+        <a href="#">Feedback</a>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
 <div class="main-container">
 
     <!-- ANNOUNCEMENT -->
@@ -69,26 +74,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <!-- LOGIN -->
-    <div class="login-box">
+    <div class="login-card">
+        <img src="ucl-logo.png" class="logo">
 
-        <h2>Login</h2>
+        <h2>PUCL Module Access System</h2>
 
         <?php if($error): ?>
             <p class="error"><?= $error ?></p>
         <?php endif; ?>
 
         <form method="POST">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
+            <label>Username</label>
+            <input type="text" name="username" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
             <button type="submit">Login</button>
-
-            <p class="forgot">
-                <a href="forgot-password.php">Forgot Password?</a>
-            </p>
         </form>
-
     </div>
 
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2026 PHINMA UCL Learning Module System.
 </div>
 
 </body>
