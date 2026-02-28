@@ -7,7 +7,10 @@ $keys = [
     'shs_blouse_m',
     'shs_blouse_l',
     'shs_blouse_xl',
-    'shs_blouse_xxl'
+    'shs_blouse_xxl',
+    'shs_blouse_xxxl',
+    'shs_blouse_xxxxl',
+    'shs_blouse_xxxxxl'
 ];
 
 $uniformData = [];
@@ -44,7 +47,7 @@ foreach ($keys as $key) {
 </tr>
 
 <?php
-$sizes = ['XS','S','M','L','XL','XXL'];
+$sizes = ['XS','S','M','L','XL','XXL','XXXL','XXXXL','XXXXXL'];
 
 foreach ($sizes as $size):
 
@@ -84,4 +87,3 @@ $statusClass = ($status == 'Available') ? 'available' : 'not-available';
 
 </table>
 </div>
-
