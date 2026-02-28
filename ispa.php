@@ -2,10 +2,13 @@
 require_once 'shared/config/db.php';
 
 $keys = [
-    'college_res_ispa_xs',
     'college_res_ispa_s',
     'college_res_ispa_m',
-    'college_res_ispa_l'
+    'college_res_ispa_l',
+    'college_res_ispa_xl',
+    'college_res_ispa_xxl',
+    'college_res_ispa_xxxl',
+    'college_res_ispa_xxxxl'
 ];
 
 $uniformData = [];
@@ -42,7 +45,7 @@ foreach ($keys as $key) {
 </tr>
 
 <?php
-$sizes = ['XS','S','M','L'];
+$sizes = ['S','M','L','XL','XXL','XXXL','XXXXL'];
 
 foreach ($sizes as $size):
 
