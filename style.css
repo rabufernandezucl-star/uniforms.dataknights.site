@@ -209,32 +209,22 @@ td {
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
+/* FORCE STYLE FOR ANNOUNCEMENT PAGE */
 
-/* MAS MALAKI ANNOUNCEMENT BOX */
-.admin-box textarea {
+textarea[name="message"] {
     width: 100%;
-    height: 160px;   /* laki ng announcement */
+    height: 180px;
     padding: 12px;
-    margin-bottom: 15px;
-    font-size: 15px;
+    font-size: 16px;
     border-radius: 8px;
     border: 1px solid #ccc;
     resize: none;
 }
 
-/* MAS MALIIT DATE INPUT */
-.admin-box input[type="date"] {
-    width: 180px;   /* liit ng date */
+input[name="start_date"],
+input[name="end_date"] {
+    width: 160px;
     padding: 6px;
     font-size: 14px;
     border-radius: 6px;
-    border: 1px solid #ccc;
-    margin-bottom: 15px;
-}
-
-/* PARA MAGKATABI YUNG DATES */
-.date-group {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 15px;
 }
