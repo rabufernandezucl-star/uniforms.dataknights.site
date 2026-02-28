@@ -7,8 +7,12 @@ $keys = [
     'college_polo_m',
     'college_polo_l',
     'college_polo_xl',
-    'college_polo_xxl'
+    'college_polo_xxl',
+    'college_polo_xxxl',
+    'college_polo_xxxxl',
+    'college_polo_xxxxxl'
 ];
+
 $uniformData = [];
 
 $stmt = $pdo->prepare("SELECT uniform_key, stock, status FROM uniforms WHERE uniform_key = ?");
@@ -43,7 +47,7 @@ foreach ($keys as $key) {
 </tr>
 
 <?php
-$sizes = ['XS','S','M','L','XL','XXL'];
+$sizes = ['XS','S','M','L','XL','XXL','XXXL','XXXXL','XXXXXL'];
 
 foreach ($sizes as $size):
 
@@ -85,8 +89,3 @@ Update
 
 </table>
 </div>
-
-
-
-
-
