@@ -62,6 +62,7 @@ body{
     align-items: center;
     height: 100vh;
     gap: 60px;
+    flex-wrap: wrap;
 }
 
 /* ANNOUNCEMENT CARD */
@@ -92,6 +93,7 @@ input{
     width: 100%;
     padding: 10px;
     margin: 8px 0;
+    box-sizing: border-box;
 }
 
 button{
@@ -102,11 +104,32 @@ button{
     border: none;
     cursor: pointer;
     border-radius: 6px;
+    font-weight: bold;
+}
+
+button:hover{
+    opacity: 0.9;
 }
 
 .error{
     color: red;
     font-size: 14px;
+}
+
+/* FORGOT PASSWORD */
+.forgot {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.forgot a {
+    font-size: 14px;
+    color: #2a8ecb;
+    text-decoration: none;
+}
+
+.forgot a:hover {
+    text-decoration: underline;
 }
 </style>
 
@@ -138,6 +161,10 @@ button{
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
+
+            <div class="forgot">
+                <a href="forgot-password.php">Forgot Password?</a>
+            </div>
         </form>
     </div>
 
