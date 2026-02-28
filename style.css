@@ -7,6 +7,7 @@ body {
     padding: 20px;
 }
 
+/* ================= HEADINGS ================= */
 h1, h2 {
     text-align: center;
     color: #0b4da2;
@@ -17,35 +18,96 @@ h1, h2 {
     margin: auto;
 }
 
-.login-box, .section, #thankYou {
-    background: white;
-    padding: 20px;
-    margin-top: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+/* ================= MAIN LAYOUT (LOGIN PAGE) ================= */
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 60px;
+    flex-wrap: wrap;
 }
 
-#thankYou {
-    display: none;
-    font-size: 24px;
-    color: green;
+/* ================= ANNOUNCEMENT CARD ================= */
+.announcement-card{
+    width: 480px;
+    padding: 40px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.4);
     text-align: center;
-    padding: 50px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
+.announcement-card h2{
+    color: #2fb36f;
+    margin-bottom: 20px;
+}
+
+.announcement-card p{
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* ================= LOGIN GLASS BOX ================= */
+.login-box {
+    max-width: 320px;
+    margin: 80px auto;
+    padding: 25px;
+
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* If using login-card instead of login-box */
+.login-card{
+    width: 350px;
+    padding: 30px;
+
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+/* ================= INPUT STYLE ================= */
 input {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-sizing: border-box;
 }
 
+/* ================= BUTTON ================= */
 button {
     padding: 8px 15px;
-    background: #0b4da2;
+    background: linear-gradient(to right, #0b4da2, #2a8ecb);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
 }
 
 button:disabled {
@@ -53,6 +115,7 @@ button:disabled {
     cursor: not-allowed;
 }
 
+/* ================= TABLE ================= */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -81,6 +144,7 @@ td {
     font-weight: bold;
 }
 
+/* ================= ADMIN ================= */
 .logout {
     text-align: right;
     margin-bottom: 10px;
@@ -92,52 +156,22 @@ td {
     padding: 3px;
 }
 
+/* ================= THANK YOU ================= */
+#thankYou {
+    display: none;
+    font-size: 24px;
+    color: green;
+    text-align: center;
+    padding: 50px;
+}
+
+/* ================= ERROR ================= */
 .error {
     color: red;
     text-align: center;
 }
 
-.login-box {
-    max-width: 320px;
-    margin: 80px auto;
-    padding: 25px;
-
-
-
-    background: rgba(255, 255, 255, 0.5); 
-    backdrop-filter: blur(5px); 
-    -webkit-backdrop-filter: blur(5px);
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.login-box input {
-    width: 100%;
-    max-width: 100%;
-    padding: 6px 8px; 
-    margin: 6px 0;
-    font-size: 13px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid rgba(255,255,255,0.6);
-    background: rgba(255,255,255,0.5);
-    color: #000;
-}
-
-.login-box button {
-    width: 100%;
-    padding: 7px;
-    font-size: 13px;
-    box-sizing: border-box;
-}
-
-.login-box h2 {
-    font-size: 18px;
-    color: #0b4da2;
-}
-
-
-/* ===== FORGOT PASSWORD LINK ===== */
+/* ================= FORGOT PASSWORD ================= */
 .forgot {
     margin-top: 8px;
     text-align: center;
@@ -152,5 +186,3 @@ td {
 .forgot a:hover {
     text-decoration: underline;
 }
-
-
