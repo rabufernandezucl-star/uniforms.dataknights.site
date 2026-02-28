@@ -1,15 +1,20 @@
-body {
-    font-family: Arial, sans-serif;
+/* ================= LOGIN PAGE ONLY ================= */
+
+.login-page {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
     background: url('union.jpg') no-repeat center center fixed;
     background-size: cover;
-    margin: 0;
+}
+
+.login-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* ===== TOP BAR ===== */
-.top-bar {
+.login-wrapper .top-bar {
     background: linear-gradient(to right, #2ecc71, #3498db);
     padding: 15px 40px;
     display: flex;
@@ -19,14 +24,13 @@ body {
     font-weight: bold;
 }
 
-.top-links a {
+.login-wrapper .top-links a {
     color: white;
     text-decoration: none;
     margin-left: 20px;
 }
 
-/* ===== MAIN OVERLAY ===== */
-.overlay {
+.login-content {
     flex: 1;
     background: rgba(0,0,0,0.55);
     display: flex;
@@ -35,8 +39,7 @@ body {
     padding: 60px;
 }
 
-/* ===== ANNOUNCEMENT CARD ===== */
-.announcement-card {
+.login-wrapper .announcement-card {
     background: white;
     width: 480px;
     padding: 40px;
@@ -45,13 +48,12 @@ body {
     box-shadow: 0 15px 35px rgba(0,0,0,0.3);
 }
 
-.announcement-card h2 {
+.login-wrapper .announcement-card h2 {
     color: #2ecc71;
     margin-bottom: 20px;
 }
 
-/* ===== LOGIN CARD ===== */
-.login-card {
+.login-wrapper .login-card {
     width: 420px;
     padding: 40px;
     border-radius: 15px;
@@ -59,13 +61,13 @@ body {
     box-shadow: 0 15px 35px rgba(0,0,0,0.3);
 }
 
-.login-card h2 {
+.login-wrapper .login-card h2 {
     text-align: center;
     color: #2ecc71;
     margin-bottom: 25px;
 }
 
-.login-card input {
+.login-wrapper .login-card input {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -73,7 +75,7 @@ body {
     border: 1px solid #ccc;
 }
 
-.login-card button {
+.login-wrapper .login-card button {
     width: 100%;
     padding: 12px;
     border-radius: 6px;
@@ -84,44 +86,19 @@ body {
     cursor: pointer;
 }
 
-.login-card button:hover {
+.login-wrapper .login-card button:hover {
     opacity: 0.9;
 }
 
-/* ===== ERROR ===== */
-.error {
-    color: red;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-/* ===== FORGOT ===== */
-.forgot {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.forgot a {
-    color: #0b4da2;
-    font-size: 13px;
-    text-decoration: none;
-}
-
-.forgot a:hover {
-    text-decoration: underline;
-}
-
-/* ===== FOOTER ===== */
-.footer {
+.login-wrapper .footer {
     background: linear-gradient(to right, #2ecc71, #3498db);
     color: white;
     text-align: center;
     padding: 10px;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
-    .overlay {
+    .login-content {
         flex-direction: column;
         gap: 40px;
     }
