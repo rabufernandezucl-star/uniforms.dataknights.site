@@ -1,106 +1,114 @@
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
     background: url('union.jpg') no-repeat center center fixed;
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    padding: 20px;
+    background-size: cover;
 }
 
-h1, h2 {
-    text-align: center;
-    color: #0b4da2;
-}
-
-/* ===== FLEX LAYOUT FOR LOGIN PAGE ===== */
-.main-container{
+/* ===== NAVBAR ===== */
+.navbar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 60px;
-    min-height: 100vh;
-}
-
-/* ===== ANNOUNCEMENT CARD ===== */
-.announcement-card{
-    width: 480px;
-    padding: 35px;
-    background: rgba(255,255,255,0.6);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border-radius: 20px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    text-align: center;
-}
-
-.announcement-card h2{
-    color: #2fb36f;
-    margin-bottom: 15px;
-}
-
-.announcement-card p{
-    font-size: 15px;
-    line-height: 1.6;
-    color: #333;
-}
-
-/* ===== LOGIN BOX ===== */
-.login-box {
-    max-width: 320px;
-    padding: 25px;
-    background: rgba(255, 255, 255, 0.6); 
-    backdrop-filter: blur(5px); 
-    -webkit-backdrop-filter: blur(5px);
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.login-box input {
-    width: 100%;
-    padding: 6px 8px; 
-    margin: 6px 0;
-    font-size: 13px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid rgba(255,255,255,0.6);
-    background: rgba(255,255,255,0.5);
-    color: #000;
-}
-
-.login-box button {
-    width: 100%;
-    padding: 7px;
-    font-size: 13px;
-    box-sizing: border-box;
-    background: #0b4da2;
+    padding: 15px 30px;
+    background: linear-gradient(to right, #39b86e, #3b8ed0);
     color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    font-weight: bold;
 }
 
-.login-box button:hover {
-    opacity: 0.9;
-}
-
-/* ===== ERROR ===== */
-.error {
-    color: red;
-    text-align: center;
-}
-
-/* ===== FORGOT PASSWORD LINK ===== */
-.forgot {
-    margin-top: 8px;
-    text-align: center;
-}
-
-.forgot a {
-    color: #0b4da2;
-    font-size: 13px;
+.navbar a {
+    color: white;
+    margin-left: 20px;
     text-decoration: none;
 }
 
-.forgot a:hover {
+.navbar a:hover {
     text-decoration: underline;
+}
+
+/* ===== MAIN LAYOUT ===== */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    min-height: 85vh;
+}
+
+/* ===== ANNOUNCEMENT CARD ===== */
+.announcement-card {
+    width: 520px;
+    padding: 40px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.announcement-card h2 {
+    color: #2fb36f;
+}
+
+/* ===== LOGIN CARD ===== */
+.login-card {
+    width: 380px;
+    padding: 40px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.logo {
+    width: 70px;
+    margin-bottom: 10px;
+}
+
+.login-card h2 {
+    color: #2fb36f;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #39b86e, #3b8ed0);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(to right, #39b86e, #3b8ed0);
+    color: white;
 }
