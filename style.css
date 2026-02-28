@@ -1,3 +1,4 @@
+/* ================= BODY ================= */
 body {
     font-family: Arial, sans-serif;
     background: url('union.jpg') no-repeat center center fixed;
@@ -5,19 +6,107 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     padding: 20px;
+    margin: 0;
 }
 
+/* ================= HEADINGS ================= */
 h1, h2 {
     text-align: center;
     color: #0b4da2;
 }
 
+/* ================= MAIN FLEX CONTAINER (LOGIN + ANNOUNCEMENT) ================= */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    min-height: 80vh;
+    flex-wrap: wrap; /* responsive */
+}
+
+/* ================= GENERAL CONTAINER ================= */
 .container {
     max-width: 900px;
     margin: auto;
 }
 
-.login-box, .section, #thankYou {
+/* ================= LOGIN BOX ================= */
+.login-box {
+    max-width: 320px;
+    padding: 25px;
+    margin: 80px auto;
+
+    background: rgba(255, 255, 255, 0.5); 
+    backdrop-filter: blur(5px); 
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.login-box h2 {
+    font-size: 18px;
+    color: #0b4da2;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 6px 8px; 
+    margin: 6px 0;
+    font-size: 13px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.5);
+    color: #000;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 8px;
+    font-size: 13px;
+}
+
+/* ================= ANNOUNCEMENT CARD ================= */
+.announcement-card {
+    max-width: 500px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+.announcement-card h2 {
+    color: #2fb36f;
+    margin-bottom: 15px;
+}
+
+.announcement-card p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* ================= FORGOT PASSWORD ================= */
+.forgot {
+    margin-top: 8px;
+    text-align: center;
+}
+
+.forgot a {
+    color: #0b4da2;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.forgot a:hover {
+    text-decoration: underline;
+}
+
+/* ================= SECTIONS ================= */
+.section, #thankYou {
     background: white;
     padding: 20px;
     margin-top: 30px;
@@ -33,12 +122,14 @@ h1, h2 {
     padding: 50px;
 }
 
+/* ================= INPUT ================= */
 input {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
 }
 
+/* ================= BUTTON ================= */
 button {
     padding: 8px 15px;
     background: #0b4da2;
@@ -48,11 +139,16 @@ button {
     cursor: pointer;
 }
 
+button:hover {
+    background: #083a7a;
+}
+
 button:disabled {
     background: gray;
     cursor: not-allowed;
 }
 
+/* ================= TABLE ================= */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -71,6 +167,7 @@ td {
     border: 1px solid #ddd;
 }
 
+/* ================= STATUS COLORS ================= */
 .available {
     color: green;
     font-weight: bold;
@@ -81,76 +178,21 @@ td {
     font-weight: bold;
 }
 
+/* ================= LOGOUT ================= */
 .logout {
     text-align: right;
     margin-bottom: 10px;
 }
 
+/* ================= ADMIN CONTROL ================= */
 .admin-control input,
 .admin-control select {
     width: 70px;
     padding: 3px;
 }
 
+/* ================= ERROR MESSAGE ================= */
 .error {
     color: red;
     text-align: center;
 }
-
-.login-box {
-    max-width: 320px;
-    margin: 80px auto;
-    padding: 25px;
-
-
-
-    background: rgba(255, 255, 255, 0.5); 
-    backdrop-filter: blur(5px); 
-    -webkit-backdrop-filter: blur(5px);
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.login-box input {
-    width: 100%;
-    max-width: 100%;
-    padding: 6px 8px; 
-    margin: 6px 0;
-    font-size: 13px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid rgba(255,255,255,0.6);
-    background: rgba(255,255,255,0.5);
-    color: #000;
-}
-
-.login-box button {
-    width: 100%;
-    padding: 7px;
-    font-size: 13px;
-    box-sizing: border-box;
-}
-
-.login-box h2 {
-    font-size: 18px;
-    color: #0b4da2;
-}
-
-
-/* ===== FORGOT PASSWORD LINK ===== */
-.forgot {
-    margin-top: 8px;
-    text-align: center;
-}
-
-.forgot a {
-    color: #0b4da2;
-    font-size: 13px;
-    text-decoration: none;
-}
-
-.forgot a:hover {
-    text-decoration: underline;
-}
-
-
