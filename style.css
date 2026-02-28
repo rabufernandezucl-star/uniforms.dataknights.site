@@ -5,110 +5,101 @@ body {
     background-size: cover;
 }
 
-/* ===== NAVBAR ===== */
+/* DARK OVERLAY */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: -1;
+}
+
+/* NAVBAR */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background: linear-gradient(to right, #39b86e, #3b8ed0);
+    background: linear-gradient(to right, #35c36b, #3b82f6);
     color: white;
     font-weight: bold;
 }
 
 .navbar a {
     color: white;
-    margin-left: 20px;
     text-decoration: none;
+    margin-left: 20px;
 }
 
 .navbar a:hover {
     text-decoration: underline;
 }
 
-/* ===== MAIN LAYOUT ===== */
-.main-container {
+/* MAIN LAYOUT */
+.main {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    gap: 80px;
-    min-height: 85vh;
+    height: 80vh;
 }
 
-/* ===== ANNOUNCEMENT CARD ===== */
-.announcement-card {
-    width: 520px;
-    padding: 40px;
-    background: rgba(255,255,255,0.85);
-    border-radius: 20px;
+/* ANNOUNCEMENT CARD */
+.announcement-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 40%;
     text-align: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-.announcement-card h2 {
-    color: #2fb36f;
+.announcement-box h2 {
+    color: #35c36b;
 }
 
-/* ===== LOGIN CARD ===== */
+/* LOGIN CARD */
 .login-card {
-    width: 380px;
-    padding: 40px;
-    background: rgba(255,255,255,0.95);
-    border-radius: 20px;
+    background: #f2f2f2;
+    padding: 30px;
+    border-radius: 15px;
+    width: 320px;
     text-align: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-
-.logo {
-    width: 70px;
-    margin-bottom: 10px;
 }
 
 .login-card h2 {
-    color: #2fb36f;
-    margin-bottom: 20px;
+    color: #35c36b;
 }
 
-label {
-    display: block;
-    text-align: left;
-    margin-top: 10px;
-    font-size: 14px;
+.logo {
+    width: 80px;
+    margin-bottom: 10px;
 }
 
-input {
+/* FORM */
+.login-card input {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    margin: 10px 0;
 }
 
-button {
+.login-card button {
     width: 100%;
-    padding: 12px;
-    background: linear-gradient(to right, #39b86e, #3b8ed0);
+    padding: 10px;
+    background: linear-gradient(to right, #35c36b, #3b82f6);
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;
 }
 
-button:hover {
+.login-card button:hover {
     opacity: 0.9;
 }
 
-.error {
-    color: red;
-    margin-bottom: 10px;
-}
-
-/* ===== FOOTER ===== */
+/* FOOTER */
 .footer {
     text-align: center;
     padding: 15px;
-    background: linear-gradient(to right, #39b86e, #3b8ed0);
+    background: linear-gradient(to right, #35c36b, #3b82f6);
     color: white;
 }
