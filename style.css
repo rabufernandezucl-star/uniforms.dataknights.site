@@ -8,17 +8,6 @@ body {
     min-height: 100vh;
 }
 
-/* ===== HEADINGS ===== */
-h1, h2 {
-    text-align: center;
-    color: #0b4da2;
-}
-
-.container {
-    max-width: 900px;
-    margin: auto;
-}
-
 /* ===== TOP BAR ===== */
 .top-bar {
     background: linear-gradient(to right, #2ecc71, #3498db);
@@ -36,14 +25,14 @@ h1, h2 {
     margin-left: 20px;
 }
 
-/* ===== MAIN LOGIN LAYOUT ===== */
-.main-container {
+/* ===== MAIN OVERLAY ===== */
+.overlay {
     flex: 1;
-    background: rgba(0,0,0,0.45);
+    background: rgba(0,0,0,0.55);
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 40px;
+    padding: 60px;
 }
 
 /* ===== ANNOUNCEMENT CARD ===== */
@@ -53,7 +42,7 @@ h1, h2 {
     padding: 40px;
     border-radius: 15px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
 }
 
 .announcement-card h2 {
@@ -63,12 +52,11 @@ h1, h2 {
 
 /* ===== LOGIN CARD ===== */
 .login-card {
-    width: 400px;
+    width: 420px;
     padding: 40px;
     border-radius: 15px;
-    background: rgba(255,255,255,0.6);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    background: #f2f2f2;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
 }
 
 .login-card h2 {
@@ -79,19 +67,20 @@ h1, h2 {
 
 .login-card input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 12px;
+    padding: 12px;
+    margin-bottom: 15px;
     border-radius: 6px;
     border: 1px solid #ccc;
 }
 
 .login-card button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
     background: linear-gradient(to right, #2ecc71, #3498db);
     color: white;
-    border: none;
-    border-radius: 6px;
+    font-weight: bold;
     cursor: pointer;
 }
 
@@ -99,7 +88,14 @@ h1, h2 {
     opacity: 0.9;
 }
 
-/* ===== FORGOT LINK ===== */
+/* ===== ERROR ===== */
+.error {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* ===== FORGOT ===== */
 .forgot {
     margin-top: 10px;
     text-align: center;
@@ -115,13 +111,6 @@ h1, h2 {
     text-decoration: underline;
 }
 
-/* ===== ERROR ===== */
-.error {
-    color: red;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
 /* ===== FOOTER ===== */
 .footer {
     background: linear-gradient(to right, #2ecc71, #3498db);
@@ -130,40 +119,11 @@ h1, h2 {
     padding: 10px;
 }
 
-/* ===== TABLE STYLES (INVENTORY SAFE) ===== */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-th {
-    background: #0b4da2;
-    color: white;
-    padding: 10px;
-}
-
-td {
-    text-align: center;
-    padding: 8px;
-    border: 1px solid #ddd;
-}
-
-.available {
-    color: green;
-    font-weight: bold;
-}
-
-.not-available {
-    color: red;
-    font-weight: bold;
-}
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
-    .main-container {
+    .overlay {
         flex-direction: column;
-        gap: 30px;
+        gap: 40px;
     }
 
     .announcement-card,
