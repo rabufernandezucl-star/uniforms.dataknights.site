@@ -1,31 +1,35 @@
 <?php
 require_once __DIR__ . '/shared/config/db.php';
-
 session_start();
 
 $error = "";
 
+/* ===== GET ACTIVE ANNOUNCEMENT ===== */
+$today = date('Y-m-d');
+
+$stmt = $pdo->prepare("
+    SELECT message 
+    FROM announcements
+    WHERE start_date <= ? AND end_date >= ?
+    ORDER BY id DESC
+    LIMIT 1
+");
+$stmt->execute([$today, $today]);
+$announcement = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+/* ===== LOGIN PROCESS ===== */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    /* ===== GET USER ===== */
-    $stmt = $pdo->prepare("
-        SELECT *
-        FROM users
-        WHERE username = ?
-    ");
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->execute([$username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    /* ===== VERIFY ===== */
-    if ($user && password_verify(
-            $password,
-            $user['password_hash']
-        )) {
+    if ($user && password_verify($password, $user['password_hash'])) {
 
-        /* SAVE SESSION */
         $_SESSION['username'] = $user['username'];
         $_SESSION['is_admin'] = $user['is_admin'];
 
@@ -38,77 +42,104 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+<title>PUCL Module Access System</title>
 
-    <style>
-        body{
-            font-family: Arial;
-            background: url('union.jpg') no-repeat center center fixed;
-            background-size: cover;
-        }
+<style>
+body{
+    font-family: Arial;
+    margin: 0;
+    background: url('union.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
 
-        .login-box{
-            width: 340px;
-            margin: 120px auto;
-            padding: 25px;
-            background: rgba(255,255,255,0.85);
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-            text-align: center;
-        }
+/* MAIN LAYOUT */
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 60px;
+}
 
-        input{
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-        }
+/* ANNOUNCEMENT CARD */
+.announcement-card{
+    width: 500px;
+    padding: 40px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
 
-        button{
-            width: 100%;
-            padding: 10px;
-            background: #0b4da2;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+.announcement-card h2{
+    color: #2fb36f;
+}
 
-        .forgot{
-            margin-top: 12px;
-        }
+/* LOGIN CARD */
+.login-card{
+    width: 350px;
+    padding: 30px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
 
-        .forgot a{
-            color: #0b4da2;
-            font-size: 13px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+input{
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+}
 
-        .forgot a:hover{
-            text-decoration: underline;
-        }
-    </style>
+button{
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(to right, #2fb36f, #2a8ecb);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.error{
+    color: red;
+    font-size: 14px;
+}
+</style>
+
 </head>
-
 <body>
 
-<div class="login-box">
+<div class="main-container">
 
-    <h2>Login</h2>
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement-card">
+        <h2>Announcements</h2>
 
-    <form method="POST">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
+        <?php if($announcement): ?>
+            <p><?= htmlspecialchars($announcement['message']) ?></p>
+        <?php else: ?>
+            <p>No active schedules as of the moment.</p>
+        <?php endif; ?>
+    </div>
 
-        <p class="forgot">
-            <a href="forgot-password.php">Forgot Password?</a>
-        </p>
-    </form>
+    <!-- LOGIN -->
+    <div class="login-card">
+        <h2>Login</h2>
+
+        <?php if($error): ?>
+            <p class="error"><?= $error ?></p>
+        <?php endif; ?>
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 
 </div>
 
