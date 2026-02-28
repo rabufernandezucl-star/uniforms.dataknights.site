@@ -7,7 +7,10 @@ $keys = [
     'shs_pants_m',
     'shs_pants_l',
     'shs_pants_xl',
-    'shs_pants_xxl'
+    'shs_pants_xxl',
+    'shs_pants_xxxl',
+    'shs_pants_xxxxl',
+    'shs_pants_xxxxxl'
 ];
 
 $pantsData = [];
@@ -44,7 +47,7 @@ foreach ($keys as $key) {
 </tr>
 
 <?php
-$sizes = ['XS','S','M','L','XL','XXL'];
+$sizes = ['XS','S','M','L','XL','XXL','XXXL','XXXXL','XXXXXL'];
 
 foreach ($sizes as $size):
 
