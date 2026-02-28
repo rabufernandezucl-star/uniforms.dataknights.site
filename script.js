@@ -1,237 +1,215 @@
-/* ================= BODY ================= */
-body {
-    font-family: Arial, sans-serif;
-    background: url('union.jpg') no-repeat center center fixed;
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    padding: 20px;
-    margin: 0;
+/* ================= USERS (FRONTEND LOGIN ONLY) ================= */
+
+const users = [
+    { username: "admin", password: "adminpass", isAdmin: true },
+    { username: "user1", password: "userpass", isAdmin: false }
+];
+
+let currentUser = null;
+
+
+/* ================= LOGIN ================= */
+
+function login(){
+
+    const usernameEl = document.getElementById("username");
+    const passwordEl = document.getElementById("password");
+    const errorEl = document.getElementById("error");
+
+    const user = usernameEl.value.trim();
+    const pass = passwordEl.value.trim();
+
+    const validUser = users.find(
+        u => u.username === user && u.password === pass
+    );
+
+    if(validUser){
+
+        currentUser = validUser;
+
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("inventory").style.display = "block";
+
+        errorEl.innerText = "";
+
+        if(currentUser.isAdmin){
+
+            document.querySelectorAll(".admin-control")
+            .forEach(e => e.style.display = "table-cell");
+
+            document.querySelectorAll(".claim-col")
+            .forEach(e => e.style.display = "none");
+
+        }else{
+
+            document.querySelectorAll(".admin-control")
+            .forEach(e => e.style.display = "none");
+
+            document.querySelectorAll(".claim-col")
+            .forEach(e => e.style.display = "table-cell");
+
+        }
+
+    }else{
+        errorEl.innerText = "Invalid username or password!";
+    }
+
 }
 
-/* ================= HEADINGS ================= */
-h1, h2 {
-    text-align: center;
-    color: #0b4da2;
-}
-
-/* ================= MAIN FLEX CONTAINER (LOGIN + ANNOUNCEMENT) ================= */
-.main-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 60px;
-    min-height: 80vh;
-    flex-wrap: wrap; /* responsive */
-}
-
-/* ================= GENERAL CONTAINER ================= */
-.container {
-    max-width: 900px;
-    margin: auto;
-}
-
-/* ================= LOGIN BOX ================= */
-.login-box {
-    max-width: 320px;
-    padding: 25px;
-    margin: 80px auto;
-
-    background: rgba(255, 255, 255, 0.5); 
-    backdrop-filter: blur(5px); 
-    -webkit-backdrop-filter: blur(5px);
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.login-box h2 {
-    font-size: 18px;
-    color: #0b4da2;
-}
-
-.login-box input {
-    width: 100%;
-    padding: 6px 8px; 
-    margin: 6px 0;
-    font-size: 13px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid rgba(255,255,255,0.6);
-    background: rgba(255,255,255,0.5);
-    color: #000;
-}
-
-.login-box button {
-    width: 100%;
-    padding: 8px;
-    font-size: 13px;
-}
-
-/* ================= ANNOUNCEMENT CARD ================= */
-.announcement-card {
-    max-width: 500px;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    text-align: center;
-}
-
-.announcement-card h2 {
-    color: #2fb36f;
-    margin-bottom: 15px;
-}
-
-.announcement-card p {
-    font-size: 16px;
-    color: #333;
-}
-
-/* ================= FORGOT PASSWORD ================= */
-.forgot {
-    margin-top: 8px;
-    text-align: center;
-}
-
-.forgot a {
-    color: #0b4da2;
-    font-size: 13px;
-    text-decoration: none;
-}
-
-.forgot a:hover {
-    text-decoration: underline;
-}
-
-/* ================= SECTIONS ================= */
-.section, #thankYou {
-    background: white;
-    padding: 20px;
-    margin-top: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-#thankYou {
-    display: none;
-    font-size: 24px;
-    color: green;
-    text-align: center;
-    padding: 50px;
-}
-
-/* ================= INPUT ================= */
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-/* ================= BUTTON ================= */
-button {
-    padding: 8px 15px;
-    background: #0b4da2;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #083a7a;
-}
-
-button:disabled {
-    background: gray;
-    cursor: not-allowed;
-}
-
-/* ================= TABLE ================= */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-th {
-    background: #0b4da2;
-    color: white;
-    padding: 10px;
-}
-
-td {
-    text-align: center;
-    padding: 8px;
-    border: 1px solid #ddd;
-}
-
-/* ================= STATUS COLORS ================= */
-.available {
-    color: green;
-    font-weight: bold;
-}
-
-.not-available {
-    color: red;
-    font-weight: bold;
-}
 
 /* ================= LOGOUT ================= */
-.logout {
-    text-align: right;
-    margin-bottom: 10px;
+
+function logout(){
+
+    currentUser = null;
+
+    document.getElementById("inventory").style.display = "none";
+    document.getElementById("loginBox").style.display = "block";
+
 }
 
-/* ================= ADMIN CONTROL ================= */
-.admin-control input,
-.admin-control select {
-    width: 70px;
-    padding: 3px;
+
+/* ================= CLAIM (CONNECTED TO DATABASE) ================= */
+
+function claim(id, btn){
+
+    // ðŸš« Prevent admin from claiming
+    if(currentUser && currentUser.isAdmin){
+        alert("Admin cannot claim uniforms.");
+        return;
+    }
+
+    // ðŸš« Prevent clicking if already disabled
+    if(btn.disabled){
+        return;
+    }
+
+    fetch("claim_uniform.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "key=" + encodeURIComponent(id)
+    })
+    .then(res => res.text())
+    .then(data => {
+
+        console.log("Claim response:", data);
+
+        if(data === "unauthorized"){
+            alert("Unauthorized action.");
+            return;
+        }
+
+        if(data === "not_available"){
+            alert("This item is not available.");
+            btn.disabled = true;
+            return;
+        }
+
+        if(data === "out"){
+            alert("Out of stock!");
+            btn.disabled = true;
+            return;
+        }
+
+        if(data === "error"){
+            alert("Error processing request.");
+            return;
+        }
+
+        const result = JSON.parse(data);
+
+        const stockEl = document.getElementById(id + "-stock");
+        const statusEl = document.getElementById(id + "-status");
+
+        stockEl.innerText = result.stock;
+        statusEl.innerText = result.status;
+
+        if(result.status === "Available"){
+            statusEl.className = "available";
+        }else{
+            statusEl.className = "not-available";
+            btn.disabled = true;
+        }
+
+        document.getElementById("inventory").style.display = "none";
+        document.getElementById("thankYou").style.display = "block";
+
+        setTimeout(()=>{
+            document.getElementById("thankYou").style.display = "none";
+            document.getElementById("inventory").style.display = "block";
+        },2000);
+
+    })
+    .catch(err => {
+        console.log(err);
+        alert("Server error.");
+    });
+
 }
 
-/* ================= ERROR MESSAGE ================= */
-.error {
-    color: red;
-    text-align: center;
-}
 
-/* ================= ADMIN ANNOUNCEMENT FORM ================= */
+/* ================= ADMIN UPDATE (CONNECTED TO DATABASE) ================= */
 
-.admin-box {
-    max-width: 500px;
-    margin: 80px auto;
-    padding: 30px;
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
+function updateUniform(id){
 
-.admin-box textarea {
-    width: 100%;
-    height: 160px;  
-    padding: 12px;
-    margin-bottom: 15px;
-    font-size: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    resize: none;
-}
+    const stockEdit =
+        document.getElementById(id + "-stock-edit");
 
-.admin-box input[type="date"] {
-    width: 180px;   
-    padding: 6px;
-    font-size: 14px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    margin-bottom: 15px;
-}
+    const statusEdit =
+        document.getElementById(id + "-status-edit");
 
-.date-group {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 15px;
+    const newStock = parseInt(stockEdit.value);
+    const newStatus = statusEdit.value;
+
+    if(isNaN(newStock)){
+        alert("Enter valid stock number.");
+        return;
+    }
+
+    fetch("update_uniforms.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body:
+            "key=" + encodeURIComponent(id) +
+            "&stock=" + encodeURIComponent(newStock) +
+            "&status=" + encodeURIComponent(newStatus)
+    })
+    .then(res => res.text())
+    .then(data => {
+
+        console.log("Update response:", data);
+
+        if(data.trim() === "Update Successful"){
+
+            const stockEl =
+                document.getElementById(id + "-stock");
+
+            const statusEl =
+                document.getElementById(id + "-status");
+
+            stockEl.innerText = newStock;
+            statusEl.innerText = newStatus;
+
+            if(newStatus === "Available"){
+                statusEl.className = "available";
+            }else{
+                statusEl.className = "not-available";
+            }
+
+            alert("Saved to database!");
+
+        }else{
+            alert("Database update failed!");
+        }
+
+    })
+    .catch(err => {
+        console.log(err);
+        alert("Server connection error.");
+    });
+
 }
