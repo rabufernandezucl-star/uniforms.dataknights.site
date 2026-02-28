@@ -7,7 +7,8 @@ $keys = [
     'shs_abm_blue_m',
     'shs_abm_blue_l',
     'shs_abm_blue_xl',
-    'shs_abm_blue_xxl'
+    'shs_abm_blue_xxl',
+    'shs_abm_blue_xxxl'
 ];
 
 $uniformData = [];
@@ -44,7 +45,7 @@ foreach ($keys as $key) {
 </tr>
 
 <?php
-$sizes = ['XS','S','M','L','XL','XXL'];
+$sizes = ['XS','S','M','L','XL','XXL','XXXL'];  // ✅ added
 
 foreach ($sizes as $size):
 
@@ -100,5 +101,3 @@ Update
 
 </table>
 </div>
-
-
