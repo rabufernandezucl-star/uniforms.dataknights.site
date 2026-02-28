@@ -7,7 +7,13 @@ $keys = [
     'nstp_m',
     'nstp_l',
     'nstp_xl',
-    'nstp_xxl'
+    'nstp_xxl',
+    'nstp_xxxl',
+    'nstp_xxxxl',
+    'nstp_xxxxxl',
+    'nstp_xxxxxxl',
+    'nstp_xxxxxxxl',
+    'nstp_xxxxxxxxl'
 ];
 
 $uniformData = [];
@@ -44,7 +50,10 @@ foreach ($keys as $key) {
 </tr>
 
 <?php
-$sizes = ['XS','S','M','L','XL','XXL'];
+$sizes = [
+    'XS','S','M','L','XL','XXL',
+    'XXXL','XXXXL','XXXXXL','XXXXXXL','XXXXXXXL','XXXXXXXXL'
+];
 
 foreach ($sizes as $size):
 
