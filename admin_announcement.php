@@ -20,6 +20,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if(!empty($announcement) && !empty($start) && !empty($end)){
 
+        // DELETE OLD ANNOUNCEMENT
+        $pdo->exec("DELETE FROM announcements");
+
+        // INSERT NEW ANNOUNCEMENT
         $stmt = $pdo->prepare("
             INSERT INTO announcements (message, start_date, end_date)
             VALUES (?, ?, ?)
@@ -42,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <body>
 
-<div class="admin-box">
+<div class=".admin-box">
 
     <h2>Edit Announcement</h2>
 
