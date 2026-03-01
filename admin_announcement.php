@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <body>
 
-<div class=".admin-box">
+<div class="admin-box">
 
     <h2>Edit Announcement</h2>
 
@@ -85,3 +85,4 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 </body>
 </html>
+
