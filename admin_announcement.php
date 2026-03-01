@@ -14,24 +14,30 @@ $success = "";
 /* ================= SAVE ANNOUNCEMENT ================= */
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    $announcement = $_POST['message'];
+    $announcement = trim($_POST['message']);
     $start = $_POST['start_date'];
     $end = $_POST['end_date'];
 
     if(!empty($announcement) && !empty($start) && !empty($end)){
 
-        // DELETE OLD ANNOUNCEMENT
-        $pdo->exec("DELETE FROM announcements");
+        if($end >= $start){
 
-        // INSERT NEW ANNOUNCEMENT
-        $stmt = $pdo->prepare("
-            INSERT INTO announcements (message, start_date, end_date)
-            VALUES (?, ?, ?)
-        ");
+            // DELETE OLD ANNOUNCEMENT
+            $pdo->exec("DELETE FROM announcements");
 
-        $stmt->execute([$announcement, $start, $end]);
+            // INSERT NEW ANNOUNCEMENT
+            $stmt = $pdo->prepare("
+                INSERT INTO announcements (message, start_date, end_date)
+                VALUES (?, ?, ?)
+            ");
 
-        $success = "Announcement successfully updated!";
+            $stmt->execute([$announcement, $start, $end]);
+
+            $success = "Announcement successfully updated!";
+        } else {
+            $message = "End date must be after start date.";
+        }
+
     } else {
         $message = "All fields are required.";
     }
