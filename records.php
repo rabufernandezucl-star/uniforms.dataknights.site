@@ -12,13 +12,12 @@ if(!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1){
 $stmt = $pdo->query("
     SELECT 
         u.uniform_key,
-        u.size,
+        u.uniform_name,
         COUNT(c.id) AS total_claimed
     FROM uniforms u
     LEFT JOIN claimed_uniforms c 
-        ON u.uniform_key = c.uniform_key 
-        AND u.size = c.size
-    GROUP BY u.uniform_key, u.size
+        ON u.uniform_key = c.uniform_key
+    GROUP BY u.uniform_key, u.uniform_name
     ORDER BY u.uniform_key
 ");
 
