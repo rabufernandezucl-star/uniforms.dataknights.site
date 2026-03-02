@@ -34,28 +34,38 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 <h1>PHINMA UCL Learning Module System</h1>
 
 <!-- ================= ANNOUNCEMENT SECTION ================= -->
-<div class="announcement-box">
+<div class="announcement-box" style="padding:15px;">
 
-    <?php if($announcement): ?>
-        <p><?= htmlspecialchars($announcement['message']); ?></p>
-    <?php else: ?>
-        <p>No active announcement.</p>
-    <?php endif; ?>
+    <!-- TOP ROW -->
+    <div style="display:flex; justify-content:space-between; align-items:center;">
 
-    <?php if($isAdmin == 1): ?>
-        <a href="admin_announcement.php">
-            <button class="edit-btn">Edit Announcement</button>
-        </a>
-    <?php endif; ?>
+        <!-- LEFT: Announcement Message -->
+        <div>
+            <?php if($announcement): ?>
+                <p><?= htmlspecialchars($announcement['message']); ?></p>
+            <?php else: ?>
+                <p>No active announcement.</p>
+            <?php endif; ?>
+        </div>
+
+        <!-- RIGHT: ADMIN BUTTONS ONLY -->
+        <?php if($isAdmin == 1): ?>
+            <div style="display:flex; gap:10px;">
+                <a href="admin_announcement.php">
+                    <button class="edit-btn">Edit Announcement</button>
+                </a>
+
+                <a href="records.php">
+                    <button style="background:#0b4da2; color:white;">
+                        View Claimed Records
+                    </button>
+                </a>
+            </div>
+        <?php endif; ?>
+
+    </div>
 
 </div>
-
-<div id="inventory">
-
-    <p>
-        Welcome,
-        <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>
-    </p>
 
     <!-- ===== BUTTONS AREA ===== -->
     <div style="margin-bottom:15px;">
@@ -164,4 +174,3 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
-
