@@ -11,14 +11,12 @@ if(!isset($_SESSION['username']) || $_SESSION['is_admin']){
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $key = $_POST['key'] ?? '';
-    $size = $_POST['size'] ?? '';
 
-    if(empty($key) || empty($size)){
+    if(empty($key)){
         echo "error";
         exit;
     }
 
-    // GET UNIFORM
     $stmt = $pdo->prepare("
         SELECT stock, status 
         FROM uniforms 
@@ -32,6 +30,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         exit;
     }
 
+    /* CHECK STATUS */
     if($uniform['status'] !== 'Available'){
         echo "not_available";
         exit;
@@ -44,23 +43,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         exit;
     }
 
-    // INSERT CLAIM RECORD
-    $insert = $pdo->prepare("
-        INSERT INTO claimed_uniforms 
-        (student_db_id, student_id, student_name, uniform_key, size, quantity)
-        VALUES (?, ?, ?, ?, ?, ?)
-    ");
-
-    $insert->execute([
-        $_SESSION['student_db_id'],
-        $_SESSION['student_id'],
-        $_SESSION['student_name'],
-        $key,
-        $size,
-        1
-    ]);
-
-    // UPDATE STOCK
     $newStock = $currentStock - 1;
     $newStatus = ($newStock == 0) ? "Not Available" : "Available";
 
