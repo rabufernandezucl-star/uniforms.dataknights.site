@@ -74,13 +74,6 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
             <button>Logout</button>
         </a>
 
-        <?php if($isAdmin == 1): ?>
-            <a href="records.php">
-                <button style="background:#0b4da2; color:white;">
-                    View Claimed Records
-                </button>
-            </a>
-        <?php endif; ?>
 
     </div>
 
