@@ -11,12 +11,15 @@ if(!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1){
 /* ===== GET CLAIMED DATA ===== */
 $stmt = $pdo->query("
     SELECT 
-        uniform_key,
-        size,
-        COUNT(*) as total_claimed
-    FROM claimed_uniforms
-    GROUP BY uniform_key, size
-    ORDER BY uniform_key
+        u.uniform_key,
+        u.size,
+        COUNT(c.id) AS total_claimed
+    FROM uniforms u
+    LEFT JOIN claimed_uniforms c 
+        ON u.uniform_key = c.uniform_key 
+        AND u.size = c.size
+    GROUP BY u.uniform_key, u.size
+    ORDER BY u.uniform_key
 ");
 
 $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
