@@ -57,9 +57,22 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
         <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>
     </p>
 
-    <a href="logout.php">
-        <button>Logout</button>
-    </a>
+    <!-- ===== BUTTONS AREA ===== -->
+    <div style="margin-bottom:15px;">
+
+        <a href="logout.php">
+            <button>Logout</button>
+        </a>
+
+        <?php if($isAdmin == 1): ?>
+            <a href="claimed_records.php">
+                <button style="background:#0b4da2; color:white;">
+                    View Claimed Records
+                </button>
+            </a>
+        <?php endif; ?>
+
+    </div>
 
     <div id="sections"></div>
 
@@ -91,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     Promise.all([
-
         loadHTML("sections","college-polo.php"),
         loadHTML("sections","humss.php"),
         loadHTML("sections","cass ivory.php"),
@@ -119,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function(){
         loadHTML("sections","tvl-red.php"),
         loadHTML("sections","rotc.php"),
         loadHTML("sections","bsa.php")
-
     ]).then(() => {
 
         const isAdmin = <?php echo $isAdmin; ?>;
@@ -153,6 +164,3 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
-
-
-
