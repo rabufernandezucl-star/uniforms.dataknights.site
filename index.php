@@ -34,48 +34,34 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 <h1>PHINMA UCL Learning Module System</h1>
 
 <!-- ================= ANNOUNCEMENT SECTION ================= -->
-<div class="announcement-box" style="padding:15px;">
+<div class="announcement-box">
 
-    <!-- TOP ROW -->
-    <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h2></h2>
 
-        <!-- LEFT: Announcement Message -->
-        <div>
-            <?php if($announcement): ?>
-                <p><?= htmlspecialchars($announcement['message']); ?></p>
-            <?php else: ?>
-                <p>No active announcement.</p>
-            <?php endif; ?>
-        </div>
+    <?php if($announcement): ?>
+        <p><?= htmlspecialchars($announcement['message']); ?></p>
+    <?php else: ?>
+        <p>No active announcement.</p>
+    <?php endif; ?>
 
-        <!-- RIGHT: ADMIN BUTTONS ONLY -->
-        <?php if($isAdmin == 1): ?>
-            <div style="display:flex; gap:10px;">
-                <a href="admin_announcement.php">
-                    <button class="edit-btn">Edit Announcement</button>
-                </a>
-
-                <a href="records.php">
-                    <button style="background:#0b4da2; color:white;">
-                        View Claimed Records
-                    </button>
-                </a>
-            </div>
-        <?php endif; ?>
-
-    </div>
+    <?php if($isAdmin == 1): ?>
+        <a href="admin_announcement.php">
+            <button class="edit-btn">Edit Announcement</button>
+        </a>
+    <?php endif; ?>
 
 </div>
 
-    <!-- ===== BUTTONS AREA ===== -->
-    <div style="margin-bottom:15px;">
+<div id="inventory">
 
-        <a href="logout.php">
-            <button>Logout</button>
-        </a>
+    <p>
+        Welcome,
+        <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>
+    </p>
 
-
-    </div>
+    <a href="logout.php">
+        <button>Logout</button>
+    </a>
 
     <div id="sections"></div>
 
@@ -107,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     Promise.all([
+
         loadHTML("sections","college-polo.php"),
         loadHTML("sections","humss.php"),
         loadHTML("sections","cass ivory.php"),
@@ -134,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function(){
         loadHTML("sections","tvl-red.php"),
         loadHTML("sections","rotc.php"),
         loadHTML("sections","bsa.php")
+
     ]).then(() => {
 
         const isAdmin = <?php echo $isAdmin; ?>;
