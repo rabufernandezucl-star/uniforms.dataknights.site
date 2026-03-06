@@ -60,6 +60,14 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
         <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>
     </p>
 
+    <!-- ================= BUTTONS ================= -->
+
+    <a href="logout.php">
+        <button style="style.css">
+            Logout
+        </button>
+    </a>
+
     <!-- ===== RECORDS BUTTON ===== -->
 
     <a href="records.php">
@@ -173,5 +181,3 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
-
-
