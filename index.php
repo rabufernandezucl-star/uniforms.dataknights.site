@@ -68,13 +68,14 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
         </button>
     </a>
 
-    <!-- ===== RECORDS BUTTON ===== -->
-
+    <?php if($isAdmin == 1): ?>
+    <!-- ===== RECORDS BUTTON (ADMIN ONLY) ===== -->
     <a href="./records.php">
         <button style="style.css">
             View Records
         </button>
     </a>
+<?php endif; ?>
 
     <?php if($isAdmin == 1): ?>
         <span style="margin-left:10px;font-weight:bold;">
@@ -173,5 +174,3 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
-
-
