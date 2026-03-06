@@ -11,29 +11,23 @@ if (!isset($_SESSION['username']) || $_SESSION['is_admin'] == 1) {
 /* ================= CHECK REQUEST ================= */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $key  = $_POST['key'] ?? '';
-    $size = $_POST['size'] ?? '';
+    $key = $_POST['key'] ?? '';
 
-    if (empty($key) || empty($size)) {
+    if (empty($key)) {
         echo "error";
         exit;
     }
 
-    /* ================= CHECK SESSION DATA ================= */
-    if (
-        !isset($_SESSION['username']) ||
-        !isset($_SESSION['student_id'])
-    ) {
+    if (!isset($_SESSION['username'])) {
         echo "session_error";
         exit;
     }
 
-    $username  = $_SESSION['username'];
-    $studentId = $_SESSION['student_id'];
+    $username = $_SESSION['username'];
 
     /* ================= GET UNIFORM ================= */
     $stmt = $pdo->prepare("
-        SELECT stock, status 
+        SELECT stock, status, uniform_name 
         FROM uniforms 
         WHERE uniform_key = ?
     ");
@@ -41,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uniform = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$uniform) {
-        echo "error";
+        echo "uniform_not_found";
         exit;
     }
 
@@ -53,43 +47,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $currentStock = intval($uniform['stock']);
 
     if ($currentStock <= 0) {
-        echo "out";
+        echo "out_of_stock";
         exit;
     }
 
-    /* ================= INSERT CLAIM RECORD ================= */
-    $insert = $pdo->prepare("
-        INSERT INTO claim_records 
-        (username, uniform_name, size)
-        VALUES (?, ?, ?)
-    ");
+    try {
 
-    $insert->execute([
-        $username,
-        $key,
-        $size
-    ]);
+        /* ================= INSERT INTO CLAIM_RECORDS ================= */
 
-    /* ================= UPDATE STOCK ================= */
-    $newStock = $currentStock - 1;
-    $newStatus = ($newStock <= 0) ? "Not Available" : "Available";
+        $insert = $pdo->prepare("
+            INSERT INTO claim_records 
+            (uniform_key, uniform_name)
+            VALUES (?, ?)
+        ");
 
-    $update = $pdo->prepare("
-        UPDATE uniforms
-        SET stock = ?, status = ?
-        WHERE uniform_key = ?
-    ");
+        $insert->execute([
+            $key,
+            $uniform['uniform_name']
+        ]);
 
-    $update->execute([
-        $newStock,
-        $newStatus,
-        $key
-    ]);
+        /* ================= UPDATE STOCK ================= */
 
-    /* ================= RETURN RESPONSE ================= */
-    echo json_encode([
-        "stock"  => $newStock,
-        "status" => $newStatus
-    ]);
+        $newStock = $currentStock - 1;
+        $newStatus = ($newStock <= 0) ? "Not Available" : "Available";
+
+        $update = $pdo->prepare("
+            UPDATE uniforms
+            SET stock = ?, status = ?
+            WHERE uniform_key = ?
+        ");
+
+        $update->execute([
+            $newStock,
+            $newStatus,
+            $key
+        ]);
+
+        echo json_encode([
+            "success" => true,
+            "stock" => $newStock,
+            "status" => $newStatus
+        ]);
+
+    } catch(PDOException $e) {
+
+        echo "DB_ERROR: " . $e->getMessage();
+        exit;
+
+    }
 }
 ?>
