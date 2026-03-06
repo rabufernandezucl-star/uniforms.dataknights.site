@@ -8,16 +8,15 @@ if(!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1){
     exit();
 }
 
-/* ===== GET CLAIMED DATA ===== */
+/* ===== GET CLAIMED DATA FROM YOUR ACTUAL TABLE ===== */
+
 $stmt = $pdo->query("
     SELECT 
-        u.uniform_name,
-        COUNT(c.id) AS total_claimed
-    FROM uniforms u
-    LEFT JOIN claimed_uniforms c 
-        ON u.uniform_key = c.uniform_key
-    GROUP BY u.uniform_name
-    ORDER BY u.uniform_name
+        uniform_name,
+        COUNT(id) AS total_claimed
+    FROM claim_records
+    GROUP BY uniform_name
+    ORDER BY uniform_name
 ");
 
 $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -40,10 +39,13 @@ $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <br><br>
 
 <table border="1" cellpadding="10">
+
 <tr>
     <th>Uniform</th>
     <th>Total Claimed</th>
 </tr>
+
+<?php if(count($records) > 0): ?>
 
 <?php foreach($records as $row): ?>
 <tr>
@@ -51,6 +53,14 @@ $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <td><?= $row['total_claimed']; ?></td>
 </tr>
 <?php endforeach; ?>
+
+<?php else: ?>
+
+<tr>
+    <td colspan="2">No Records Found</td>
+</tr>
+
+<?php endif; ?>
 
 </table>
 
