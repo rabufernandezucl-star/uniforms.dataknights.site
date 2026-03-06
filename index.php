@@ -22,6 +22,7 @@ $stmt = $pdo->prepare("
 $stmt->execute([$today, $today]);
 $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,9 +60,42 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
         <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>
     </p>
 
+    <!-- ================= BUTTONS ================= -->
+
     <a href="logout.php">
-        <button>Logout</button>
+        <button style="
+            background:red;
+            color:white;
+            border:none;
+            padding:10px 15px;
+            border-radius:5px;
+            cursor:pointer;
+        ">
+            Logout
+        </button>
     </a>
+
+    <!-- ===== RECORDS BUTTON ===== -->
+
+    <a href="records.php">
+        <button style="
+            background:#0b4da2;
+            color:white;
+            border:none;
+            padding:10px 15px;
+            margin-left:10px;
+            border-radius:5px;
+            cursor:pointer;
+        ">
+            View Records
+        </button>
+    </a>
+
+    <?php if($isAdmin == 1): ?>
+        <span style="margin-left:10px;font-weight:bold;">
+            (Admin Access)
+        </span>
+    <?php endif; ?>
 
     <div id="sections"></div>
 
