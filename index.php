@@ -70,7 +70,7 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <!-- ===== RECORDS BUTTON ===== -->
 
-    <a href="records.php">
+    <a href="./records.php">
         <button style="style.css">
             View Records
         </button>
@@ -173,4 +173,5 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </body>
 </html>
+
 
