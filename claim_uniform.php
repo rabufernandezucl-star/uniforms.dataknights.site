@@ -2,37 +2,36 @@
 require_once "shared/config/db.php";
 session_start();
 
-/* USER ONLY CAN CLAIM */
-if(!isset($_SESSION['username']) || $_SESSION['is_admin']){
+/* ================= USER ONLY CAN CLAIM ================= */
+if (!isset($_SESSION['username']) || $_SESSION['is_admin'] == 1) {
     echo "unauthorized";
     exit;
 }
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+/* ================= CHECK REQUEST ================= */
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $key = $_POST['key'] ?? '';
+    $key  = $_POST['key'] ?? '';
     $size = $_POST['size'] ?? '';
 
-    if(empty($key) || empty($size)){
+    if (empty($key) || empty($size)) {
         echo "error";
         exit;
     }
 
-    /* CHECK SESSION DATA */
-    if(
-        !isset($_SESSION['student_db_id']) ||
-        !isset($_SESSION['student_id']) ||
-        !isset($_SESSION['student_name'])
-    ){
+    /* ================= CHECK SESSION DATA ================= */
+    if (
+        !isset($_SESSION['username']) ||
+        !isset($_SESSION['student_id'])
+    ) {
         echo "session_error";
         exit;
     }
 
-    $student_db_id = $_SESSION['student_db_id'];
-    $student_id = $_SESSION['student_id'];
-    $student_name = $_SESSION['student_name'];
+    $username  = $_SESSION['username'];
+    $studentId = $_SESSION['student_id'];
 
-    /* GET UNIFORM */
+    /* ================= GET UNIFORM ================= */
     $stmt = $pdo->prepare("
         SELECT stock, status 
         FROM uniforms 
@@ -41,42 +40,39 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $stmt->execute([$key]);
     $uniform = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if(!$uniform){
+    if (!$uniform) {
         echo "error";
         exit;
     }
 
-    if($uniform['status'] !== 'Available'){
+    if ($uniform['status'] !== 'Available') {
         echo "not_available";
         exit;
     }
 
     $currentStock = intval($uniform['stock']);
 
-    if($currentStock <= 0){
+    if ($currentStock <= 0) {
         echo "out";
         exit;
     }
 
-    /* INSERT CLAIM RECORD */
+    /* ================= INSERT CLAIM RECORD ================= */
     $insert = $pdo->prepare("
-        INSERT INTO claimed_uniforms 
-        (student_db_id, student_id, student_name, uniform_key, size, quantity)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO claim_records 
+        (username, uniform_name, size)
+        VALUES (?, ?, ?)
     ");
 
     $insert->execute([
-        $student_db_id,
-        $student_id,
-        $student_name,
+        $username,
         $key,
-        $size,
-        1
+        $size
     ]);
 
-    /* UPDATE STOCK */
+    /* ================= UPDATE STOCK ================= */
     $newStock = $currentStock - 1;
-    $newStatus = ($newStock == 0) ? "Not Available" : "Available";
+    $newStatus = ($newStock <= 0) ? "Not Available" : "Available";
 
     $update = $pdo->prepare("
         UPDATE uniforms
@@ -90,8 +86,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $key
     ]);
 
+    /* ================= RETURN RESPONSE ================= */
     echo json_encode([
-        "stock" => $newStock,
+        "stock"  => $newStock,
         "status" => $newStatus
     ]);
 }
