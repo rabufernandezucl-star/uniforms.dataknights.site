@@ -97,6 +97,20 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
         <span style="style.css">
         </span>
     <?php endif; ?>
+    
+    <?php if($isAdmin == 1): ?>
+    <!-- ===== RECORDS BUTTON (ADMIN ONLY) ===== -->
+    <a href="./records.php">
+        <button style="style.css">
+            Revenue
+        </button>
+    </a>
+<?php endif; ?>
+
+    <?php if($isAdmin == 1): ?>
+        <span style="style.css">
+        </span>
+    <?php endif; ?>
 
     <div id="sections"></div>
 
