@@ -100,7 +100,7 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
     
     <?php if($isAdmin == 1): ?>
     <!-- ===== RECORDS BUTTON (ADMIN ONLY) ===== -->
-    <a href="./record_sale.php">
+    <a href="record_sale.php">
         <button style="style.css">
             Revenue
         </button>
