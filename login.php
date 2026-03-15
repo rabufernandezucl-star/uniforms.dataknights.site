@@ -143,7 +143,7 @@ button:hover{
         PHINMA UCL Learning Module System
     </div>
 
-    <div class="topbar-right">
+    <div class="topbar-right-links">
         <a href="https://dataknights.site/">Home</a>
     <a href="https://feedback.dataknights.site/">Feedback</a>
     </div>
