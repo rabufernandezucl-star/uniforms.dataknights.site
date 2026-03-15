@@ -144,8 +144,8 @@ button:hover{
     </div>
 
     <div class="topbar-right">
-        <a href="login.php">Home</a>
-        <a href="feedback.php">Feedback</a>
+        <a href="https://dataknights.site/">Home</a>
+    <a href="https://feedback.dataknights.site/">Feedback</a>
     </div>
 </div>
 
