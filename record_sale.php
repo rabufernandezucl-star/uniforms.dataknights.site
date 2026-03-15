@@ -32,7 +32,8 @@ a { text-decoration: none; padding: 4px 8px; background: #0b4da2; color: #fff; b
 </head>
 <body>
 <h2 style="text-align:center;">Uniform Sales Dashboard</h2>
-<p style="text-align:center;">Welcome, <?= $_SESSION['username'] ?> | <a href="logout.php">Logout</a></p>
+<p style="text-align:center;">Welcome, <?= $_SESSION['username'] ?> | 
+    <a href="index.php">Back</a></p>
 
 <p style="text-align:center; font-weight:bold;">Total Revenue: ₱<?= number_format($totalRevenue, 2) ?></p>
 
