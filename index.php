@@ -75,27 +75,7 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
         Welcome,
         <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>
     </p>
-    
-    <!-- ================= DASHBOARD ================= -->
-<div class="dashboard">
 
-    <div class="card">
-        <h3>Total Revenue</h3>
-        <h1>₱<?php echo number_format($totalRevenue ?? 0,2); ?></h1>
-    </div>
-
-    <div class="card">
-        <h3>Items Sold</h3>
-        <h1><?php echo $totalItems ?? 0; ?></h1>
-    </div>
-
-    <div class="card">
-        <h3>Today's Sales</h3>
-        <h1>₱<?php echo number_format($todayRevenue ?? 0,2); ?></h1>
-    </div>
-
-</div>
-    
     <!-- ================= BUTTONS ================= -->
 
     <a href="logout.php">
