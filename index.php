@@ -2,6 +2,7 @@
 session_start();
 require_once __DIR__ . '/shared/config/db.php';
 
+/* ================= LOGIN REQUIRED ================= */
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
@@ -9,112 +10,135 @@ if (!isset($_SESSION['username'])) {
 
 $isAdmin = $_SESSION['is_admin'] ?? 0;
 
+/* ================= DASHBOARD DATA ================= */
+
+$totalRevenue = $pdo->query("
+SELECT SUM(total) FROM sales
+")->fetchColumn();
+
+$totalItems = $pdo->query("
+SELECT SUM(quantity) FROM sales
+")->fetchColumn();
+
+$todayRevenue = $pdo->query("
+SELECT SUM(total)
+FROM sales
+WHERE sale_date = CURDATE()
+")->fetchColumn();
+
+/* ================= GET ACTIVE ANNOUNCEMENT ================= */
 $today = date('Y-m-d');
 
 $stmt = $pdo->prepare("
-SELECT * FROM announcements
-WHERE start_date <= ? AND end_date >= ?
-ORDER BY id DESC
-LIMIT 1
+    SELECT * FROM announcements
+    WHERE start_date <= ? AND end_date >= ?
+    ORDER BY id DESC
+    LIMIT 1
 ");
-$stmt->execute([$today,$today]);
+$stmt->execute([$today, $today]);
 $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>PHINMA UCL Dashboard</title>
-<link rel="stylesheet" href="style.css">
+    <title>PHINMA UCL Learning Module System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar">
 
-    <h2 class="logo">PHINMA UCL</h2>
+<!-- ================= ANNOUNCEMENT SECTION ================= -->
+<div class="announcement-box">
+
+    <h2></h2>
+
+    <?php if($announcement): ?>
+        <p><?= htmlspecialchars($announcement['message']); ?></p>
+    <?php else: ?>
+        <p>No active announcement.</p>
+    <?php endif; ?>
 
     <?php if($isAdmin == 1): ?>
+        <a href="admin_announcement.php">
+            <button class="edit-btn">Edit Announcement</button>
+        </a>
     <?php endif; ?>
 
 </div>
 
+<div id="inventory">
 
-<!-- MAIN CONTENT -->
-<div class="main-content">
+    <p>
+        Welcome,
+        <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>
+    </p>
 
-    <!-- TOP BAR -->
-    <div class="topbar">
+    <!-- ================= BUTTONS ================= -->
 
-        <div>
-            Welcome,
-            <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>
-        </div>
+    <a href="logout.php">
+        <button style="style.css">
+            Logout
+        </button>
+    </a>
 
-        <div>
+    <?php if($isAdmin == 1): ?>
+    <!-- ===== RECORDS BUTTON (ADMIN ONLY) ===== -->
+    <a href="./records.php">
+        <button style="style.css">
+            View Records
+        </button>
+    </a>
+<?php endif; ?>
 
-            <?php if($isAdmin == 1): ?>
-            <a href="records.php">
-                <button class="green-button">View Records</button>
-            </a>
-            <?php endif; ?>
+    <?php if($isAdmin == 1): ?>
+        <span style="style.css">
+        </span>
+    <?php endif; ?>
+    
+    <?php if($isAdmin == 1): ?>
+    <!-- ===== RECORDS BUTTON (ADMIN ONLY) ===== -->
+    <a href="./record_sale.php">
+        <button style="style.css">
+            Revenue
+        </button>
+    </a>
+<?php endif; ?>
 
-            <?php if($isAdmin == 1): ?>
-            <a href="record_sale.php">
-                <button class="green-button">Revenue</button>
-            </a>
-            <?php endif; ?>
+    <?php if($isAdmin == 1): ?>
+        <span style="style.css">
+        </span>
+    <?php endif; ?>
 
-            <a href="logout.php">
-                <button class="green-button">Logout</button>
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <!-- ANNOUNCEMENT -->
-    <div class="announcement-box">
-
-        <h3>Announcement</h3>
-
-        <?php if($announcement): ?>
-            <p><?= htmlspecialchars($announcement['message']); ?></p>
-        <?php else: ?>
-            <p>No active announcement.</p>
-        <?php endif; ?>
-
-        <?php if($isAdmin == 1): ?>
-        <a href="admin_announcement.php">
-            <button class="green-button">Edit Announcement</button>
-        </a>
-        <?php endif; ?>
-
-    </div>
-
-
-    <!-- PRODUCTS / UNIFORMS -->
     <div id="sections"></div>
 
 </div>
 
+<div id="thankYou" style="display:none;">
+    <h2>Thank you for claiming!</h2>
+</div>
+
+<script src="script.js"></script>
 
 <script>
-
 document.addEventListener("DOMContentLoaded", function(){
 
-    function loadHTML(id,file){
-
+    function loadHTML(id, file){
         return fetch(file)
-        .then(res => res.text())
+        .then(res => {
+            if(!res.ok){
+                throw new Error(file + " not found");
+            }
+            return res.text();
+        })
         .then(data => {
             document.getElementById(id).innerHTML += data;
+        })
+        .catch(error => {
+            console.error("Error loading:", error);
         });
-
     }
-
 
     Promise.all([
 
