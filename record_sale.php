@@ -1,10 +1,6 @@
 <?php
 session_start();
-require 'db.php';
-if(!isset($_SESSION['username'])){
-    header('Location: index.php');
-    exit;
-}
+require_once __DIR__ . '/shared/config/db.php';
 
 // Fetch all sales for listing
 $stmt = $pdo->query("SELECT * FROM sales ORDER BY sale_date DESC");
