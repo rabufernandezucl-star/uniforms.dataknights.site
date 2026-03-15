@@ -136,6 +136,18 @@ button:hover{
 
 </head>
 <body>
+    
+    <!-- TOP NAVBAR -->
+<div class="topbar">
+    <div class="topbar-left">
+        PHINMA UCL Learning Module System
+    </div>
+
+    <div class="topbar-right">
+        <a href="login.php">Home</a>
+        <a href="feedback.php">Feedback</a>
+    </div>
+</div>
 
 <div class="main-container">
 
@@ -173,4 +185,3 @@ button:hover{
 
 </body>
 </html>
-
