@@ -114,7 +114,6 @@ document.addEventListener("DOMContentLoaded", function(){
     Promise.all([
 
         loadHTML("sections","college-polo.php"),
-        loadHTML("sections","humss.php"),
         loadHTML("sections","cass ivory.php"),
         loadHTML("sections","peshirts.php"),
         loadHTML("sections","karate.php"),
@@ -123,21 +122,13 @@ document.addEventListener("DOMContentLoaded", function(){
         loadHTML("sections","pe joggingpants.php"),
         loadHTML("sections","ispa.php"),
         loadHTML("sections","nstp.php"),
-        loadHTML("sections","stem.php"),
-        loadHTML("sections","cass hm.php"),
         loadHTML("sections","cass yellow-shirt.php"),
         loadHTML("sections","cass shirt-yellow.php"),
         loadHTML("sections","cass blue-shirt.php"),
         loadHTML("sections","cass-shirts.php"),
-        loadHTML("sections","abm blue.php"),
         loadHTML("sections","college pants.php"),
         loadHTML("sections","college blouse.php"),
         loadHTML("sections","college skirt.php"),
-        loadHTML("sections","shs polo.php"),
-        loadHTML("sections","shs pants.php"),
-        loadHTML("sections","shs blouse.php"),
-        loadHTML("sections","shs skirt.php"),
-        loadHTML("sections","tvl-red.php"),
         loadHTML("sections","rotc.php"),
         loadHTML("sections","bsa.php")
 
