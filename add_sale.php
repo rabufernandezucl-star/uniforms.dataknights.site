@@ -27,6 +27,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     Price: <input type="number" step="0.01" name="price" required><br><br>
     <button type="submit">Add Sale</button>
 </form>
-<p><a href="dashboard.php">Back to Dashboard</a></p>
+<p><a href="record_sale.php">Back to Dashboard</a></p>
 </body>
 </html>
