@@ -12,6 +12,41 @@ body {
     position: relative;
 }
 
+/* ================= TOP NAVBAR ================= */
+
+.topbar{
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to right,#2fb36f,#2a8ecb);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+    color: white;
+
+    position: fixed;   /* para naka stay sa taas */
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.topbar-left{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.topbar-right a{
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 16px;
+}
+
+.topbar-right a:hover{
+    text-decoration: underline;
+}
+
 /* ================= HEADINGS ================= */
 h1, h2 {
     text-align: center;
@@ -226,6 +261,25 @@ textarea[name="message"] {
     border-radius: 8px;
     border: 1px solid #ccc;
     resize: none;
+}
+
+.dashboard {
+    display:flex;
+    gap:20px;
+    margin:20px 0;
+}
+
+.card {
+    background:#0b4da2;
+    color:white;
+    padding:20px;
+    border-radius:10px;
+    flex:1;
+    text-align:center;
+}
+
+.card h1 {
+    font-size:32px;
 }
 
 /* ================= DATE INPUT ================= */
