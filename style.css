@@ -1,30 +1,18 @@
-/* ================= BODY ================= */
-body {
-    font-family: Arial, sans-serif;
+body{
+    font-family: Arial;
+    margin: 0;
+    padding-top:60px;
     background: url('union.jpg') no-repeat center center fixed;
     background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    padding: 20px;
-    margin: 0;
-
-
 }
 
 /* ================= TOP NAVBAR ================= */
-
-/* RESET */
-body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    padding-top:60px; /* para hindi matakpan ng navbar */
-}
 
 /* TOP NAVBAR */
 .topbar{
     width:100%;
     height:60px;
-    background: linear-gradient(90deg,#2fb36f,#2a8ecb);
+    background: linear-gradient(to right,#2fb36f,#2a8ecb);
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -35,23 +23,16 @@ body{
     position:fixed;
     top:0;
     left:0;
-    z-index:999;
-
-    box-shadow:0 3px 8px rgba(0,0,0,0.2);
+    z-index:1000;
 }
 
-/* LEFT TITLE */
+/* TITLE LEFT */
 .topbar-left{
-    font-size:22px;
-    font-weight:600;
+    font-size:20px;
+    font-weight:bold;
 }
 
-/* RIGHT MENU */
-.topbar-right{
-    display:flex;
-    align-items:center;
-}
-
+/* LINKS RIGHT */
 .topbar-right a{
     color:white;
     text-decoration:none;
@@ -59,11 +40,9 @@ body{
     font-size:16px;
 }
 
-/* HOVER EFFECT */
 .topbar-right a:hover{
     text-decoration:underline;
 }
-
 /* ================= GENERAL CONTAINER ================= */
 .container {
     max-width: 900px;
