@@ -94,7 +94,7 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 <?php endif; ?>
 
     <?php if($isAdmin == 1): ?>
-        <span style="margin-left:10px;font-weight:bold;">
+        <span style="style.css">
         </span>
     <?php endif; ?>
 
