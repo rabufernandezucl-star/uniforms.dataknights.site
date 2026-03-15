@@ -194,7 +194,7 @@ button:disabled {
 
 /* ================= TABLE ================= */
 table {
-    width: 75%;
+    width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
 }
