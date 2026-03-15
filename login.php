@@ -7,7 +7,6 @@ $error = "";
 /* ===== GET ACTIVE ANNOUNCEMENT ===== */
 $today = date('Y-m-d');
 
-/* ===== GET ACTIVE ANNOUNCEMENT ===== */
 $stmt = $pdo->prepare("
     SELECT message 
     FROM announcements
@@ -17,7 +16,6 @@ $stmt = $pdo->prepare("
 ");
 $stmt->execute();
 $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
-
 
 /* ===== LOGIN PROCESS ===== */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -49,24 +47,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <title>PUCL Module Access System</title>
 
 <style>
+/* ================= GLOBAL ================= */
 body{
     font-family: Arial;
     margin: 0;
+    padding-top: 60px; /* space for fixed topbar */
     background: url('union.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
-/* MAIN LAYOUT */
+/* ================= TOPBAR ================= */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to right, #2fb36f, #2a8ecb);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+    z-index: 9999;
+}
+
+.topbar-left {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.topbar-right-links {
+    display: flex;
+    gap: 20px;
+}
+
+.topbar-right-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.topbar-right-links a:hover {
+    text-decoration: underline;
+}
+
+/* ================= MAIN LAYOUT ================= */
 .main-container{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: calc(100vh - 60px); /* adjust for topbar height */
     gap: 60px;
     flex-wrap: wrap;
 }
 
-/* ANNOUNCEMENT CARD */
+/* ================= ANNOUNCEMENT CARD ================= */
 .announcement-card{
     width: 500px;
     padding: 40px;
@@ -80,7 +117,7 @@ body{
     color: #2fb36f;
 }
 
-/* LOGIN CARD */
+/* ================= LOGIN CARD ================= */
 .login-card{
     width: 350px;
     padding: 30px;
@@ -136,7 +173,7 @@ button:hover{
 
 </head>
 <body>
-    
+
 <!-- TOPBAR -->
 <div class="topbar">
     <div class="topbar-left">
@@ -149,6 +186,7 @@ button:hover{
     </div>
 </div>
 
+<!-- MAIN CONTENT -->
 <div class="main-container">
 
     <!-- ANNOUNCEMENT -->
