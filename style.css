@@ -8,15 +8,23 @@ body {
     padding: 20px;
     margin: 0;
 
+
 }
 
 /* ================= TOP NAVBAR ================= */
+
+/* RESET */
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    padding-top:60px; /* para hindi matakpan ng navbar */
+}
 
 /* TOP NAVBAR */
 .topbar{
     width:100%;
     height:60px;
-    background: linear-gradient(to right,#2fb36f,#2a8ecb);
+    background: linear-gradient(90deg,#2fb36f,#2a8ecb);
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -24,51 +32,36 @@ body {
     box-sizing:border-box;
     color:white;
 
-    position:fixed; /* naka stay sa taas */
+    position:fixed;
     top:0;
     left:0;
-    z-index:9999;
+    z-index:999;
 
-    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+    box-shadow:0 3px 8px rgba(0,0,0,0.2);
 }
 
-/* LEFT SIDE TITLE */
+/* LEFT TITLE */
 .topbar-left{
     font-size:22px;
     font-weight:600;
-    letter-spacing:0.5px;
 }
 
-/* RIGHT SIDE LINKS */
+/* RIGHT MENU */
+.topbar-right{
+    display:flex;
+    align-items:center;
+}
+
 .topbar-right a{
     color:white;
     text-decoration:none;
     margin-left:25px;
     font-size:16px;
-    font-weight:500;
-    transition:0.3s;
 }
 
 /* HOVER EFFECT */
 .topbar-right a:hover{
     text-decoration:underline;
-    opacity:0.85;
-}
-
-/* ================= HEADINGS ================= */
-h1, h2 {
-    text-align: center;
-    color: #2fb36f;
-}
-
-/* ================= MAIN FLEX CONTAINER ================= */
-.main-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 60px;
-    min-height: 80vh;
-    flex-wrap: wrap;
 }
 
 /* ================= GENERAL CONTAINER ================= */
