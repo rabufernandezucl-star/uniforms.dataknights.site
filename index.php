@@ -35,12 +35,7 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <h2 class="logo">PHINMA UCL</h2>
 
-    <a href="#">Dashboard Overview</a>
-
     <?php if($isAdmin == 1): ?>
-        <a class="green-btn" href="admin_announcement.php">+ Add Announcement</a>
-        <a class="green-btn" href="#">Monthly Stats</a>
-        <a class="green-btn" href="#">Module Requests</a>
     <?php endif; ?>
 
 </div>
