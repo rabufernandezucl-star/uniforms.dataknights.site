@@ -149,6 +149,30 @@ function claim(id, btn){
 
 }
 
+// ================= SALES RECORD =================
+function claimUniform(uniform, price){
+
+fetch("record_sale.php",{
+method:"POST",
+headers:{
+"Content-Type":"application/x-www-form-urlencoded"
+},
+body:
+"uniform="+uniform+
+"&price="+price+
+"&qty=1"
+})
+
+.then(res=>res.json())
+.then(data=>{
+if(data.success){
+alert("Claim Successful!");
+location.reload();
+}
+});
+
+}
+
 
 /* ================= ADMIN UPDATE (CONNECTED TO DATABASE) ================= */
 
