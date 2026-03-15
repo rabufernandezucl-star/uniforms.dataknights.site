@@ -68,36 +68,34 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 
 </div>
 
-<div id="inventory">
+<div class="admin-header">
 
     <p>
         Welcome,
         <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>
     </p>
 
-<!-- ================= BUTTONS ================= -->
+    <div class="admin-buttons">
 
-<a href="logout.php">
-    <button class="admin-btn">
-        Logout
-    </button>
-</a>
+        <a href="logout.php">
+            <button class="admin-btn">Logout</button>
+        </a>
 
-<?php if($isAdmin == 1): ?>
-<a href="./records.php">
-    <button class="admin-btn">
-        View Records
-    </button>
-</a>
-<?php endif; ?>
+        <?php if($isAdmin == 1): ?>
+        <a href="./records.php">
+            <button class="admin-btn">View Records</button>
+        </a>
+        <?php endif; ?>
 
-<?php if($isAdmin == 1): ?>
-<a href="./record_sale.php">
-    <button class="admin-btn">
-        Revenue
-    </button>
-</a>
-<?php endif; ?>
+        <?php if($isAdmin == 1): ?>
+        <a href="./record_sale.php">
+            <button class="admin-btn">Revenue</button>
+        </a>
+        <?php endif; ?>
+
+    </div>
+
+</div>
 
     <?php if($isAdmin == 1): ?>
         <span style="style.css">
