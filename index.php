@@ -48,6 +48,7 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <body>
 
+
 <!-- ================= ANNOUNCEMENT SECTION ================= -->
 <div class="announcement-box">
 
@@ -74,35 +75,28 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
         <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>
     </p>
 
-    <!-- ================= BUTTONS ================= -->
+<!-- ================= BUTTONS ================= -->
 
-    <a href="logout.php">
-        <button style="style.css">
-            Logout
-        </button>
-    </a>
+<a href="logout.php">
+    <button class="admin-btn">
+        Logout
+    </button>
+</a>
 
-    <?php if($isAdmin == 1): ?>
-    <!-- ===== RECORDS BUTTON (ADMIN ONLY) ===== -->
-    <a href="./records.php">
-        <button style="style.css">
-            View Records
-        </button>
-    </a>
+<?php if($isAdmin == 1): ?>
+<a href="./records.php">
+    <button class="admin-btn">
+        View Records
+    </button>
+</a>
 <?php endif; ?>
 
-    <?php if($isAdmin == 1): ?>
-        <span style="style.css">
-        </span>
-    <?php endif; ?>
-    
-    <?php if($isAdmin == 1): ?>
-    <!-- ===== RECORDS BUTTON (ADMIN ONLY) ===== -->
-    <a href="./record_sale.php">
-        <button style="style.css">
-            Revenue
-        </button>
-    </a>
+<?php if($isAdmin == 1): ?>
+<a href="./record_sale.php">
+    <button class="admin-btn">
+        Revenue
+    </button>
+</a>
 <?php endif; ?>
 
     <?php if($isAdmin == 1): ?>
