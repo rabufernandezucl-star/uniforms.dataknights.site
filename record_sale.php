@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . '/shared/config/db.php';
+require_once __DIR__ . '/shared/config/db.php'; // <-- use this only
 
 // Fetch all sales for listing
 $stmt = $pdo->query("SELECT * FROM sales ORDER BY sale_date DESC");
@@ -18,7 +18,6 @@ $stmt2 = $pdo->query("
 ");
 $uniformRevenue = $stmt2->fetchAll();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
