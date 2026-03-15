@@ -8,8 +8,6 @@ body {
     padding: 20px;
     margin: 0;
 
-    /* IMPORTANT FIX */
-    position: relative;
 }
 
 /* ================= TOP NAVBAR ================= */
