@@ -18,16 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    if (!isset($_SESSION['username'])) {
-        echo "session_error";
-        exit;
-    }
-
     $username = $_SESSION['username'];
 
     /* ================= GET UNIFORM ================= */
     $stmt = $pdo->prepare("
-        SELECT stock, status, uniform_name 
+        SELECT stock, status, uniform_name, price
         FROM uniforms 
         WHERE uniform_key = ?
     ");
@@ -54,20 +49,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
 
         /* ================= INSERT INTO CLAIM_RECORDS ================= */
-
         $insert = $pdo->prepare("
             INSERT INTO claim_records 
-            (uniform_key, uniform_name)
-            VALUES (?, ?)
+            (uniform_key, uniform_name, claimed_by)
+            VALUES (?, ?, ?)
         ");
-
         $insert->execute([
             $key,
-            $uniform['uniform_name']
+            $uniform['uniform_name'],
+            $username
         ]);
 
         /* ================= UPDATE STOCK ================= */
-
         $newStock = $currentStock - 1;
         $newStatus = ($newStock <= 0) ? "Not Available" : "Available";
 
@@ -76,11 +69,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             SET stock = ?, status = ?
             WHERE uniform_key = ?
         ");
-
         $update->execute([
             $newStock,
             $newStatus,
             $key
+        ]);
+
+        /* ================= RECORD IN SALES ================= */
+        $saleStmt = $pdo->prepare("
+            INSERT INTO sales (uniform_name, quantity, price, total)
+            VALUES (?, ?, ?, ?)
+        ");
+
+        $quantity = 1; // one per claim
+        $price = floatval($uniform['price']); // take price from uniforms table
+        $total = $quantity * $price;
+
+        $saleStmt->execute([
+            $uniform['uniform_name'],
+            $quantity,
+            $price,
+            $total
         ]);
 
         echo json_encode([
