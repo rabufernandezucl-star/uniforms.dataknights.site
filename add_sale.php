@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $stmt = $pdo->prepare("INSERT INTO sales (uniform_name, quantity, price, total) VALUES (?, ?, ?, ?)");
     $stmt->execute([$name, $qty, $price, $total]);
 
-    header('Location: dashboard.php'); exit;
+    header('Location: record_sale.php'); exit;
 }
 ?>
 
