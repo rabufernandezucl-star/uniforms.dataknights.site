@@ -27,169 +27,216 @@ WHERE sale_date = CURDATE()
 ")->fetchColumn();
 
 /* ================= GET ACTIVE ANNOUNCEMENT ================= */
+
 $today = date('Y-m-d');
 
 $stmt = $pdo->prepare("
-    SELECT * FROM announcements
-    WHERE start_date <= ? AND end_date >= ?
-    ORDER BY id DESC
-    LIMIT 1
+SELECT * FROM announcements
+WHERE start_date <= ? AND end_date >= ?
+ORDER BY id DESC
+LIMIT 1
 ");
+
 $stmt->execute([$today, $today]);
 $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>PHINMA UCL Learning Module System</title>
-    <link rel="stylesheet" href="style.css">
+<title>PHINMA UCL Learning Module System</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!-- ================= TOPBAR ================= -->
 
-<!-- ================= ANNOUNCEMENT SECTION ================= -->
-<div class="announcement-box">
+<div class="topbar">
 
-    <h2></h2>
+    <div class="topbar-left">
+        PHINMA UCL
+    </div>
 
-    <?php if($announcement): ?>
-        <p><?= htmlspecialchars($announcement['message']); ?></p>
-    <?php else: ?>
-        <p>No active announcement.</p>
-    <?php endif; ?>
+    <div class="topbar-right-links">
 
-    <?php if($isAdmin == 1): ?>
-        <a href="admin_announcement.php">
-            <button class="edit-btn">Edit Announcement</button>
-        </a>
-    <?php endif; ?>
+        <span>
+            Welcome,
+            <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>
+        </span>
+
+    </div>
 
 </div>
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<div class="main-content">
+
+<!-- ================= ANNOUNCEMENT ================= -->
+
+<div class="announcement-box">
+
+<h2>Announcement</h2>
+
+<?php if($announcement): ?>
+
+<p>
+<?= htmlspecialchars($announcement['message']); ?>
+</p>
+
+<?php else: ?>
+
+<p>No active announcement.</p>
+
+<?php endif; ?>
+
+<?php if($isAdmin == 1): ?>
+
+<a href="admin_announcement.php">
+<button class="records-btn">
+Edit Announcement
+</button>
+</a>
+
+<?php endif; ?>
+
+</div>
+
+<!-- ================= BUTTON GROUP ================= -->
+
+<div class="button-group">
+
+<a href="logout.php">
+<button class="records-btn">
+Logout
+</button>
+</a>
+
+<?php if($isAdmin == 1): ?>
+
+<a href="records.php">
+<button class="records-btn">
+View Records
+</button>
+</a>
+
+<a href="record_sale.php">
+<button class="records-btn">
+Revenue
+</button>
+</a>
+
+<?php endif; ?>
+
+</div>
+
+<!-- ================= INVENTORY ================= -->
 
 <div id="inventory">
 
-    <p>
-        Welcome,
-        <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>
-    </p>
-
-    <!-- ================= BUTTONS ================= -->
-
-    <a href="logout.php">
-        <button style="style.css">
-            Logout
-        </button>
-    </a>
-
-    <?php if($isAdmin == 1): ?>
-    <!-- ===== RECORDS BUTTON (ADMIN ONLY) ===== -->
-    <a href="./records.php">
-        <button style="style.css">
-            View Records
-        </button>
-    </a>
-<?php endif; ?>
-
-    <?php if($isAdmin == 1): ?>
-        <span style="style.css">
-        </span>
-    <?php endif; ?>
-    
-    <?php if($isAdmin == 1): ?>
-    <!-- ===== RECORDS BUTTON (ADMIN ONLY) ===== -->
-    <a href="./record_sale.php">
-        <button style="style.css">
-            Revenue
-        </button>
-    </a>
-<?php endif; ?>
-
-    <?php if($isAdmin == 1): ?>
-        <span style="style.css">
-        </span>
-    <?php endif; ?>
-
-    <div id="sections"></div>
+<div id="sections"></div>
 
 </div>
 
+</div>
+
+<!-- ================= THANK YOU ================= -->
+
 <div id="thankYou" style="display:none;">
-    <h2>Thank you for claiming!</h2>
+
+<h2>Thank you for claiming!</h2>
+
 </div>
 
 <script src="script.js"></script>
 
 <script>
+
 document.addEventListener("DOMContentLoaded", function(){
 
-    function loadHTML(id, file){
-        return fetch(file)
-        .then(res => {
-            if(!res.ok){
-                throw new Error(file + " not found");
-            }
-            return res.text();
-        })
-        .then(data => {
-            document.getElementById(id).innerHTML += data;
-        })
-        .catch(error => {
-            console.error("Error loading:", error);
-        });
-    }
+function loadHTML(id, file){
 
-    Promise.all([
+return fetch(file)
 
-        loadHTML("sections","college-polo.php"),
-        loadHTML("sections","cass ivory.php"),
-        loadHTML("sections","peshirts.php"),
-        loadHTML("sections","karate.php"),
-        loadHTML("sections","cap black.php"),
-        loadHTML("sections","cap green.php"),
-        loadHTML("sections","pe joggingpants.php"),
-        loadHTML("sections","ispa.php"),
-        loadHTML("sections","nstp.php"),
-        loadHTML("sections","cass yellow-shirt.php"),
-        loadHTML("sections","cass shirt-yellow.php"),
-        loadHTML("sections","cass blue-shirt.php"),
-        loadHTML("sections","cass-shirts.php"),
-        loadHTML("sections","college pants.php"),
-        loadHTML("sections","college blouse.php"),
-        loadHTML("sections","college skirt.php"),
-        loadHTML("sections","rotc.php"),
-        loadHTML("sections","bsa.php")
+.then(res => {
 
-    ]).then(() => {
+if(!res.ok){
 
-        const isAdmin = <?php echo $isAdmin; ?>;
+throw new Error(file + " not found");
 
-        if(isAdmin == 1){
+}
 
-            document.querySelectorAll(".claim-btn").forEach(btn=>{
-                btn.style.display = "none";
-            });
+return res.text();
 
-            document.querySelectorAll(".claim-col").forEach(col=>{
-                col.style.display = "none";
-            });
+})
 
-            document.querySelectorAll(".admin-control").forEach(ctrl=>{
-                ctrl.style.display = "table-cell";
-            });
+.then(data => {
 
-        } else {
+document.getElementById(id).innerHTML += data;
 
-            document.querySelectorAll(".admin-control").forEach(ctrl=>{
-                ctrl.style.display = "none";
-            });
+})
 
-        }
+.catch(error => {
 
-    });
+console.error("Error loading:", error);
 
 });
+
+}
+
+Promise.all([
+
+loadHTML("sections","college-polo.php"),
+loadHTML("sections","cass ivory.php"),
+loadHTML("sections","peshirts.php"),
+loadHTML("sections","karate.php"),
+loadHTML("sections","cap black.php"),
+loadHTML("sections","cap green.php"),
+loadHTML("sections","pe joggingpants.php"),
+loadHTML("sections","ispa.php"),
+loadHTML("sections","nstp.php"),
+loadHTML("sections","cass yellow-shirt.php"),
+loadHTML("sections","cass shirt-yellow.php"),
+loadHTML("sections","cass blue-shirt.php"),
+loadHTML("sections","cass-shirts.php"),
+loadHTML("sections","college pants.php"),
+loadHTML("sections","college blouse.php"),
+loadHTML("sections","college skirt.php"),
+loadHTML("sections","rotc.php"),
+loadHTML("sections","bsa.php")
+
+]).then(() => {
+
+const isAdmin = <?php echo $isAdmin; ?>;
+
+if(isAdmin == 1){
+
+document.querySelectorAll(".claim-btn").forEach(btn=>{
+btn.style.display = "none";
+});
+
+document.querySelectorAll(".claim-col").forEach(col=>{
+col.style.display = "none";
+});
+
+document.querySelectorAll(".admin-control").forEach(ctrl=>{
+ctrl.style.display = "table-cell";
+});
+
+}else{
+
+document.querySelectorAll(".admin-control").forEach(ctrl=>{
+ctrl.style.display = "none";
+});
+
+}
+
+});
+
+});
+
 </script>
 
 </body>
