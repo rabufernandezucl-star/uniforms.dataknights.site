@@ -50,7 +50,6 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <?php if($isAdmin == 1): ?>
         <a href="records.php"><button class="sidebar-btn">View Records</button></a>
-        <a href="record_sale.php"><button class="sidebar-btn">Revenue</button></a>
         <a href="admin_announcement.php"><button class="sidebar-btn">Edit Announcement</button></a>
     <?php endif; ?>
 
