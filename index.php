@@ -38,7 +38,7 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <!-- ================= TOPBAR ================= -->
 <div class="topbar">
-    <div class="topbar-left">PHINMA UCL</div>
+    <div class="topbar-left">PHINMA UCL Learning Module System</div>
     <div class="topbar-right-links">
         <span>Welcome, <b><?php echo htmlspecialchars($_SESSION['username']); ?></b></span>
     </div>
