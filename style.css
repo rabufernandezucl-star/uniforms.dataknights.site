@@ -153,28 +153,19 @@ body {
 }
 
 /* ================= BUTTONS ================= */
-/* RESET DEFAULT BUTTON */
-button {
-    border: none;
-    cursor: pointer;
-}
-
-/* 🔥 RECORD BUTTON = SAME AS SIDEBAR */
-.records-btn {
-    padding: 10px 16px;
-    border-radius: 6px;
-    border: 2px solid #2fb36f;
-    background: transparent;
-    color: #2fb36f;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.25s;
-}
-
-.records-btn:hover {
-    background: #2fb36f;
+button, .records-btn {
+    padding: 8px 15px;
+    background: linear-gradient(135deg, #2fb36f, #1f8f57);
     color: white;
-    transform: translateX(4px);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover, .records-btn:hover {
+    background: #23995c;
+    transform: scale(1.02);
 }
 
 button:disabled {
