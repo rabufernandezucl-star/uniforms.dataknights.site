@@ -191,13 +191,8 @@ button:disabled {
 }
 
 /* ================= ANNOUNCEMENT CARD ================= */
-.announcement-card, .announcement-box, .admin-box {
-    background: rgba(255,255,255,0.6);
-    backdrop-filter: blur(6px);
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    padding: 20px;
-    margin-bottom: 20px;
+.section{
+    margin-top:30px;
 }
 
 /* ================= SECTIONS ================= */
