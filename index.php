@@ -11,9 +11,7 @@ if (!isset($_SESSION['username'])) {
 $isAdmin = $_SESSION['is_admin'] ?? 0;
 
 /* ================= DASHBOARD DATA ================= */
-$totalRevenue = $pdo->query("SELECT SUM(total) FROM sales")->fetchColumn();
 $totalItems = $pdo->query("SELECT SUM(quantity) FROM sales")->fetchColumn();
-$todayRevenue = $pdo->query("SELECT SUM(total) FROM sales WHERE sale_date = CURDATE()")->fetchColumn();
 
 /* ================= GET ACTIVE ANNOUNCEMENT ================= */
 $today = date('Y-m-d');
@@ -38,7 +36,7 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <!-- ================= TOPBAR ================= -->
 <div class="topbar">
-    <div class="topbar-left">PHINMA UCL Learning Module System</div>
+    <div class="topbar-left"> PHINMA UCL Learning Module System</div>
     <div class="topbar-right-links">
         <span>Welcome, <b><?php echo htmlspecialchars($_SESSION['username']); ?></b></span>
     </div>
