@@ -1,26 +1,42 @@
+# =========================
+# Set default page
+# =========================
 DirectoryIndex login.php
 
+# =========================
+# Enable URL rewriting
+# =========================
 RewriteEngine On
 
-# --- Only redirect GET requests to clean URLs ---
+# =========================
+# REDIRECT old .php URLs to clean URLs
+# (only GET requests, hindi maaapektuhan ang POST)
+# =========================
 RewriteCond %{REQUEST_METHOD} GET
-RewriteCond %{THE_REQUEST} /login\.php [NC]
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /login\.php [NC]
 RewriteRule ^login\.php$ / [R=301,L]
 
 RewriteCond %{REQUEST_METHOD} GET
-RewriteCond %{THE_REQUEST} /index\.php [NC]
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php [NC]
 RewriteRule ^index\.php$ / [R=301,L]
 
 RewriteCond %{REQUEST_METHOD} GET
-RewriteCond %{THE_REQUEST} /admin_announcement\.php [NC]
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /admin_announcement\.php [NC]
 RewriteRule ^admin_announcement\.php$ /admin_announcement [R=301,L]
 
 RewriteCond %{REQUEST_METHOD} GET
-RewriteCond %{THE_REQUEST} /records\.php [NC]
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /records\.php [NC]
 RewriteRule ^records\.php$ /records [R=301,L]
 
-# --- Rewrite clean URLs to actual files ---
+# =========================
+# REWRITE clean URLs to actual PHP files
+# =========================
 RewriteRule ^login$ login.php [L]
 RewriteRule ^index$ index.php [L]
 RewriteRule ^admin_announcement$ admin_announcement.php [L]
 RewriteRule ^records$ records.php [L]
+
+# =========================
+# OPTIONAL: Prevent direct access to PHP files if needed
+# =========================
+# RewriteRule ^(login|index|admin_announcement|records)\.php$ - [F,L]
