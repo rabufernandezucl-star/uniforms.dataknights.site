@@ -1,33 +1,62 @@
 <?php
+// -----------------------------
+// ENABLE ERRORS TEMPORARILY (FOR DEBUGGING)
+// -----------------------------
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// -----------------------------
+// SESSION SETUP
+// -----------------------------
+session_set_cookie_params([
+    'path' => '/',           // para makita session sa lahat ng pages
+    'httponly' => true,
+    'secure' => isset($_SERVER['HTTPS']),
+    'samesite' => 'Lax'
+]);
 session_start();
+
+// -----------------------------
+// DATABASE CONNECTION
+// -----------------------------
 require_once __DIR__ . '/shared/config/db.php';
 
-/* ===== ADMIN SECURITY ===== */
+// -----------------------------
+// ADMIN ACCESS CONTROL
+// -----------------------------
 if(!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1){
-    header("Location: /"); // clean login redirect
+    header("Location: /"); // clean login
     exit();
 }
 
-/* ===== GET MONTHLY CLAIMED DATA ===== */
-$stmt = $pdo->query("
-    SELECT 
-        DATE_FORMAT(claim_date, '%Y-%m') AS year_month,
-        uniform_name,
-        COUNT(id) AS total_claimed
-    FROM claim_records
-    GROUP BY year_month, uniform_name
-    ORDER BY year_month DESC, uniform_name
-");
+// -----------------------------
+// FETCH MONTHLY CLAIMED DATA
+// -----------------------------
+try {
+    $stmt = $pdo->query("
+        SELECT 
+            DATE_FORMAT(claim_date, '%Y-%m') AS year_month,
+            uniform_name,
+            COUNT(id) AS total_claimed
+        FROM claim_records
+        GROUP BY year_month, uniform_name
+        ORDER BY year_month DESC, uniform_name
+    ");
+    $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Database Error: " . $e->getMessage());
+}
 
-$records = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-/* ===== CSV DOWNLOAD ===== */
-if(isset($_GET['download']) && $_GET['download'] == 'csv') {
+// -----------------------------
+// CSV DOWNLOAD
+// -----------------------------
+if(isset($_GET['download']) && $_GET['download'] === 'csv') {
     header('Content-Type: text/csv');
     header('Content-Disposition: attachment; filename="claimed_records.csv"');
 
     $output = fopen('php://output', 'w');
-    fputcsv($output, ['Month', 'Uniform', 'Total Claimed']); // CSV header
+    fputcsv($output, ['Month', 'Uniform', 'Total Claimed']);
 
     foreach($records as $row){
         fputcsv($output, [$row['year_month'], $row['uniform_name'], $row['total_claimed']]);
@@ -60,7 +89,7 @@ if(isset($_GET['download']) && $_GET['download'] == 'csv') {
 
 <!-- Buttons -->
 <a href="index"><button>Back to Dashboard</button></a>
-<a href="records.php?download=csv"><button>Download CSV</button></a>
+<a href="records?download=csv"><button>Download CSV</button></a>
 
 <br><br>
 
@@ -72,7 +101,7 @@ if(isset($_GET['download']) && $_GET['download'] == 'csv') {
         <th>Total Claimed</th>
     </tr>
 
-    <?php if(count($records) > 0): ?>
+    <?php if(!empty($records)): ?>
         <?php foreach($records as $row): ?>
             <tr>
                 <td><?= htmlspecialchars($row['year_month']); ?></td>
