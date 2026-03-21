@@ -14,6 +14,7 @@ if(!isset($_SESSION['username']) || ($_SESSION['is_admin'] ?? 0) == 1){
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $student_id = $_POST['student_id'];
     $full_name  = $_POST['full_name'];
+    $full_name  = $_POST['email'];
     $course     = $_POST['course'];
     $uniform    = $_POST['uniform'];
     $size       = $_POST['size'];
@@ -21,11 +22,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // Insert request
     $stmt = $pdo->prepare("
         INSERT INTO uniforms_request
-        (student_id, full_name, course, uniform, size, created_at)
+        (student_id, full_name, email ,course, uniform, size, created_at)
         VALUES (?, ?, ?, ?, ?, NOW())
     ");
 
-    if($stmt->execute([$student_id, $full_name, $course, $uniform, $size])){
+    if($stmt->execute([$student_id, $full_name, $email, $course, $uniform, $size])){
         $success = "Request submitted successfully!";
     } else {
         $error = "Failed to submit request.";
@@ -51,11 +52,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <?php endif; ?>
 
 <!-- Back button -->
-<a href="index"><button type="button">Back to Dashboard</button></a>
+<a href="index"><button type="button">Back</button></a>
 
 <form method="POST">
     <input type="text" name="student_id" placeholder="Student ID" required><br>
     <input type="text" name="full_name" placeholder="Full Name" required><br>
+    <input type="text" name="email" placeholder="email" required><br>
     <input type="text" name="course" placeholder="Course" required><br>
     <input type="text" name="uniform" placeholder="Uniform Type" required><br>
     <input type="text" name="size" placeholder="Size" required><br>
