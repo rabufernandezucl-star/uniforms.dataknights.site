@@ -56,16 +56,21 @@ try {
 
 <!-- ================= SIDEBAR ================= -->
 <div class="sidebar">
-    <div class="sidebar-title">Admin Panel</div>
+    <div class="sidebar-title">
+        <?php if(isset($isAdmin) && $isAdmin == 1) { echo "Admin Panel"; } else { echo "Student Panel"; } ?>
+    </div>
 
-    <?php if($isAdmin == 1): ?>
+    <?php if(isset($isAdmin) && $isAdmin == 1): ?>
+        <!-- Admin-only buttons -->
         <a href="records.php"><button class="sidebar-btn">View Records</button></a>
         <a href="admin_announcement.php"><button class="sidebar-btn">Edit Announcement</button></a>
-        <a href="uniforms_request_admin.php"><button class="sidebar-btn">request</button></a>
+        <a href="uniforms_request_admin.php"><button class="sidebar-btn">View Requests</button></a>
+    <?php else: ?>
+        <!-- Student/User-only button -->
+        <a href="uniform_request.php"><button class="sidebar-btn">Request</button></a>
     <?php endif; ?>
 
     <a href="logout.php"><button class="sidebar-btn">Logout</button></a>
-    <a href="uniforms_request.php"><button class="sidebar-btn">request</button></a>
 </div>
 
 <!-- ================= MAIN CONTENT ================= -->
