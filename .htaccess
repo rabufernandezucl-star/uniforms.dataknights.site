@@ -1,19 +1,21 @@
-# Gumamit ng login.php bilang default
 DirectoryIndex login.php
 
-# Enable URL rewriting
 RewriteEngine On
 
-# --- Redirect old .php URLs to clean URLs ---
+# --- Only redirect GET requests to clean URLs ---
+RewriteCond %{REQUEST_METHOD} GET
 RewriteCond %{THE_REQUEST} /login\.php [NC]
 RewriteRule ^login\.php$ / [R=301,L]
 
+RewriteCond %{REQUEST_METHOD} GET
 RewriteCond %{THE_REQUEST} /index\.php [NC]
 RewriteRule ^index\.php$ / [R=301,L]
 
+RewriteCond %{REQUEST_METHOD} GET
 RewriteCond %{THE_REQUEST} /admin_announcement\.php [NC]
 RewriteRule ^admin_announcement\.php$ /admin_announcement [R=301,L]
 
+RewriteCond %{REQUEST_METHOD} GET
 RewriteCond %{THE_REQUEST} /records\.php [NC]
 RewriteRule ^records\.php$ /records [R=301,L]
 
