@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 require_once __DIR__ . '/shared/config/db.php';
 
@@ -11,18 +14,27 @@ if (!isset($_SESSION['username'])) {
 $isAdmin = $_SESSION['is_admin'] ?? 0;
 
 /* ================= DASHBOARD DATA ================= */
-$totalItems = $pdo->query("SELECT SUM(quantity) FROM sales")->fetchColumn();
+try {
+    $totalItems = $pdo->query("SELECT SUM(quantity) FROM sales")->fetchColumn();
+} catch (Exception $e) {
+    $totalItems = 0;
+}
 
 /* ================= GET ACTIVE ANNOUNCEMENT ================= */
 $today = date('Y-m-d');
-$stmt = $pdo->prepare("
-    SELECT * FROM announcements
-    WHERE start_date <= ? AND end_date >= ?
-    ORDER BY id DESC
-    LIMIT 1
-");
-$stmt->execute([$today, $today]);
-$announcement = $stmt->fetch(PDO::FETCH_ASSOC);
+
+try {
+    $stmt = $pdo->prepare("
+        SELECT * FROM announcements
+        WHERE start_date <= ? AND end_date >= ?
+        ORDER BY id DESC
+        LIMIT 1
+    ");
+    $stmt->execute([$today, $today]);
+    $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    $announcement = null;
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +72,7 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
     <!-- ================= ANNOUNCEMENT ================= -->
     <div class="announcement-box">
         <h2>Announcement</h2>
-        <?php if($announcement): ?>
+        <?php if($announcement && isset($announcement['message'])): ?>
             <p><?= htmlspecialchars($announcement['message']); ?></p>
         <?php else: ?>
             <p>No active announcement.</p>
@@ -85,15 +97,16 @@ $announcement = $stmt->fetch(PDO::FETCH_ASSOC);
 document.addEventListener("DOMContentLoaded", function(){
 
     function loadHTML(id, file){
-        return fetch(file)
+        return fetch(file) // HINDI natin binago
             .then(res => {
                 if(!res.ok) throw new Error(file + " not found");
                 return res.text();
             })
             .then(data => {
+                console.log("Loaded:", file); // debug
                 document.getElementById(id).innerHTML += data;
             })
-            .catch(error => console.error("Error loading:", error));
+            .catch(error => console.error("Error loading:", file, error));
     }
 
     Promise.all([
@@ -116,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function(){
         loadHTML("sections","rotc.php"),
         loadHTML("sections","bsa.php")
     ]).then(() => {
+
         const isAdmin = <?php echo $isAdmin; ?>;
 
         if(isAdmin == 1){
@@ -125,7 +139,9 @@ document.addEventListener("DOMContentLoaded", function(){
         } else {
             document.querySelectorAll(".admin-control").forEach(ctrl => ctrl.style.display = "none");
         }
+
     });
+
 });
 </script>
 
