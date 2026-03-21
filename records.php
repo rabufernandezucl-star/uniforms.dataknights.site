@@ -4,7 +4,7 @@ require_once __DIR__ . '/shared/config/db.php';
 
 /* ===== ADMIN SECURITY ===== */
 if(!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1){
-    header("Location: /");
+    header("Location: index.php");
     exit();
 }
 
