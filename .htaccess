@@ -1,0 +1,24 @@
+# Gumamit ng login.php bilang default
+DirectoryIndex login.php
+
+# Enable URL rewriting
+RewriteEngine On
+
+# --- Redirect old .php URLs to clean URLs ---
+RewriteCond %{THE_REQUEST} /login\.php [NC]
+RewriteRule ^login\.php$ / [R=301,L]
+
+RewriteCond %{THE_REQUEST} /index\.php [NC]
+RewriteRule ^index\.php$ / [R=301,L]
+
+RewriteCond %{THE_REQUEST} /admin_announcement\.php [NC]
+RewriteRule ^admin_announcement\.php$ /admin_announcement [R=301,L]
+
+RewriteCond %{THE_REQUEST} /records\.php [NC]
+RewriteRule ^records\.php$ /records [R=301,L]
+
+# --- Rewrite clean URLs to actual files ---
+RewriteRule ^login$ login.php [L]
+RewriteRule ^index$ index.php [L]
+RewriteRule ^admin_announcement$ admin_announcement.php [L]
+RewriteRule ^records$ records.php [L]
