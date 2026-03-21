@@ -208,10 +208,11 @@ button:hover{
             <p class="error"><?= $error ?></p>
         <?php endif; ?>
 
-        <form method="POST">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
+     <form method="POST" action="/">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+</form>
 
             <div class="forgot">
                 <a href="forgot-password.php">Forgot Password?</a>
