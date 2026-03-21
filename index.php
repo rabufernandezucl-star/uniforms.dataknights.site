@@ -41,14 +41,14 @@ try {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PHINMA UCL Learning Module System</title>
+<title> PHINMA UCL Academic Uniform Management System</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- ================= TOPBAR ================= -->
 <div class="topbar">
-    <div class="topbar-left"> PHINMA UCL Learning Module System</div>
+    <div class="topbar-left"> PHINMA UCL Academic Uniform Management System</div>
     <div class="topbar-right-links">
         <span>Welcome, <b><?php echo htmlspecialchars($_SESSION['username']); ?></b></span>
     </div>
