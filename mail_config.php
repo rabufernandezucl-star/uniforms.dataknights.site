@@ -11,18 +11,17 @@ function sendSystemEmail($to, $subject, $bodyHtml)
     $mail = new PHPMailer(true);
 
     try {
-        // SMTP Settings (Gmail)
+        // SMTP Settings
         $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
+        $mail->Host       = 'mail.dataknights.site';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'laylamalakas36@gmail.com'; // Gmail account
-        $mail->Password   = 'ivjuagwhniqozgqh';       // Gmail App Password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // TLS
-        $mail->Port       = 587;
-
+        $mail->Username   = 'no-reply@dataknights.site';
+        $mail->Password   = 'dk_knights_2026';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port       = 465;
 
         // Email headers
-        $mail->setFrom('laylamalakas36@gmail.com', 'Phinma Uniforms System');
+        $mail->setFrom('no-reply@dataknights.site', 'Dataknights System');
         $mail->addAddress($to);
 
         // Email content
@@ -33,9 +32,9 @@ function sendSystemEmail($to, $subject, $bodyHtml)
 
         $mail->send();
         return true;
-
     } catch (Exception $e) {
-        echo '<p><strong>Mailer Error:</strong> ' . $e->getMessage() . '</p>';
+        // Optional: log error to file (do NOT echo in production)
+        // error_log($mail->ErrorInfo);
         return false;
     }
 }
