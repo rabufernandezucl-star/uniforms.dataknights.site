@@ -14,7 +14,7 @@ if(!isset($_SESSION['username']) || ($_SESSION['is_admin'] ?? 0) == 1){
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $student_id = $_POST['student_id'];
     $full_name  = $_POST['full_name'];
-    $full_name  = $_POST['email'];
+    $email      = $_POST['email']; 
     $course     = $_POST['course'];
     $uniform    = $_POST['uniform'];
     $size       = $_POST['size'];
@@ -22,8 +22,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // Insert request
     $stmt = $pdo->prepare("
         INSERT INTO uniforms_request
-        (student_id, full_name, email ,course, uniform, size, created_at)
-        VALUES (?, ?, ?, ?, ?, NOW())
+        (student_id, full_name, email, course, uniform, size, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, NOW())
     ");
 
     if($stmt->execute([$student_id, $full_name, $email, $course, $uniform, $size])){
@@ -33,7 +33,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
