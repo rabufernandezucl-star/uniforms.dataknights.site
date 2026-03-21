@@ -50,6 +50,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <p style="color:green"><?= htmlspecialchars($success) ?></p>
 <?php endif; ?>
 
+<!-- Back button -->
+<a href="index"><button type="button">Back to Dashboard</button></a>
+
 <form method="POST">
     <input type="text" name="student_id" placeholder="Student ID" required><br>
     <input type="text" name="full_name" placeholder="Full Name" required><br>
