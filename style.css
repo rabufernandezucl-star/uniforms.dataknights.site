@@ -2,7 +2,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding-top: 60px; /* space for topbar */
+    padding-top: 60px; 
     background: url('union.jpg') no-repeat center center fixed;
     background-size: cover;
 }
@@ -304,4 +304,82 @@ input[name="end_date"] {
     gap: 10px;
     margin: 15px 0;
     flex-wrap: wrap;
+}
+/* ================= UNIFORMS REQUEST FORM ================= */
+.uniforms-container {
+    max-width: 450px;
+    margin: 80px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.uniforms-container h1 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.uniforms-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uniforms-container input {
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 80%;
+}
+
+.uniforms-container input:focus {
+    border-color: #2c3e50;
+    outline: none;
+}
+
+.uniforms-container button {
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #2c3e50;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 50%;
+    transition: 0.3s;
+}
+
+.uniforms-container button:hover {
+    background: #34495e;
+    transform: scale(1.02);
+}
+
+.uniforms-container .back-btn {
+    background: #7f8c8d;
+    margin-bottom: 15px;
+    width: 50%;
+}
+
+.uniforms-container .back-btn:hover {
+    background: #636e72;
+}
+
+.uniforms-container .success {
+    background: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.uniforms-container .error {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
 }
