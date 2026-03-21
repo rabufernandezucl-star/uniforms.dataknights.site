@@ -49,7 +49,7 @@ if(isset($_GET['download']) && $_GET['download'] == 'csv') {
 <h1>Claimed Uniform Summary</h1>
 
 <!-- Buttons -->
-<a href="index.php"><button>Back to Dashboard</button></a>
+<a href="index.php"><button>Back</button></a>
 <a href="records.php?download=csv"><button>Download CSV</button></a>
 
 <br><br>
