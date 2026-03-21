@@ -14,6 +14,7 @@ try {
             DATE_FORMAT(created_at, '%Y-%m') AS `month`,
             student_id,
             full_name,
+            email,
             course,
             uniform,
             size,
@@ -33,13 +34,14 @@ if(isset($_GET['download']) && $_GET['download'] == 'csv') {
     header('Content-Disposition: attachment; filename="uniforms_request.csv"');
 
     $output = fopen('php://output', 'w');
-    fputcsv($output, ['Month', 'Student ID', 'Full Name', 'Course', 'Uniform', 'Size', 'Created At', 'Claimed At']);
+    fputcsv($output, ['Month', 'Student ID', 'Full Name','email', 'Course', 'Uniform', 'Size', 'Created At', 'Claimed At']);
 
     foreach($requests as $row){
         fputcsv($output, [
             $row['month'],
             $row['student_id'],
             $row['full_name'],
+             $row['email'],
             $row['course'],
             $row['uniform'],
             $row['size'],
@@ -69,6 +71,7 @@ if(isset($_GET['download']) && $_GET['download'] == 'csv') {
     <th>Month</th>
     <th>Student ID</th>
     <th>Full Name</th>
+    <th>email</th>
     <th>Course</th>
     <th>Uniform</th>
     <th>Size</th>
@@ -82,6 +85,7 @@ if(isset($_GET['download']) && $_GET['download'] == 'csv') {
             <td><?= htmlspecialchars($row['month']); ?></td>
             <td><?= htmlspecialchars($row['student_id']); ?></td>
             <td><?= htmlspecialchars($row['full_name']); ?></td>
+            <td><?= htmlspecialchars($row['email']); ?></td>
             <td><?= htmlspecialchars($row['course']); ?></td>
             <td><?= htmlspecialchars($row['uniform']); ?></td>
             <td><?= htmlspecialchars($row['size']); ?></td>
