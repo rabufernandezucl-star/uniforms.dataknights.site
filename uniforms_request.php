@@ -7,7 +7,7 @@ $success = "";
 
 // Check if user is logged in AND not admin
 if(!isset($_SESSION['username']) || ($_SESSION['is_admin'] ?? 0) == 1){
-    header("Location: login.php");
+    header("Location: index");
     exit();
 }
 
