@@ -7,7 +7,7 @@ require_once __DIR__ . '/shared/config/db.php';
 
 /* ================= LOGIN REQUIRED ================= */
 if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
+    header("Location: /"); // <--- clean URL login
     exit();
 }
 
