@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-<title>PUCL Module Access System</title>
+<title>PHINMA UCL Academic Uniform Management System</title>
 
 <style>
 /* ================= GLOBAL ================= */
@@ -177,7 +177,7 @@ button:hover{
 <!-- TOPBAR -->
 <div class="topbar">
     <div class="topbar-left">
-        PHINMA UCL Learning Module System
+      PHINMA UCL Academic Uniform Management System
     </div>
 
     <div class="topbar-right-links">
