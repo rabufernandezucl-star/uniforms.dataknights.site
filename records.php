@@ -4,18 +4,19 @@ require_once __DIR__ . '/shared/config/db.php';
 
 /* ===== ADMIN SECURITY ===== */
 if(!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1){
-    header("Location: index.php");
+    header("Location: /"); // clean login redirect
     exit();
 }
 
-/* ===== GET CLAIMED DATA ===== */
+/* ===== GET MONTHLY CLAIMED DATA ===== */
 $stmt = $pdo->query("
     SELECT 
+        DATE_FORMAT(claim_date, '%Y-%m') AS year_month,
         uniform_name,
         COUNT(id) AS total_claimed
     FROM claim_records
-    GROUP BY uniform_name
-    ORDER BY uniform_name
+    GROUP BY year_month, uniform_name
+    ORDER BY year_month DESC, uniform_name
 ");
 
 $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -26,10 +27,10 @@ if(isset($_GET['download']) && $_GET['download'] == 'csv') {
     header('Content-Disposition: attachment; filename="claimed_records.csv"');
 
     $output = fopen('php://output', 'w');
-    fputcsv($output, ['Uniform', 'Total Claimed']); // CSV header
+    fputcsv($output, ['Month', 'Uniform', 'Total Claimed']); // CSV header
 
     foreach($records as $row){
-        fputcsv($output, [$row['uniform_name'], $row['total_claimed']]);
+        fputcsv($output, [$row['year_month'], $row['uniform_name'], $row['total_claimed']]);
     }
 
     fclose($output);
@@ -41,39 +42,49 @@ if(isset($_GET['download']) && $_GET['download'] == 'csv') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Claimed Records</title>
+    <title>Claimed Uniform Records (Monthly)</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
+        h1 { color: #2fb36f; }
+        table { border-collapse: collapse; width: 100%; background: #fff; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+        th { background: #2fb36f; color: white; }
+        a button { padding: 10px 15px; margin-right: 10px; border: none; background: #2fb36f; color: #fff; cursor: pointer; border-radius: 5px; }
+        a button:hover { opacity: 0.9; }
+    </style>
 </head>
 <body>
 
-<h1>Claimed Uniform Summary</h1>
+<h1>Claimed Uniform Summary (Monthly)</h1>
 
 <!-- Buttons -->
-<a href="index"><button>Back</button></a>
+<a href="index"><button>Back to Dashboard</button></a>
 <a href="records.php?download=csv"><button>Download CSV</button></a>
 
 <br><br>
 
 <!-- Table -->
-<table border="1" cellpadding="10">
-<tr>
-    <th>Uniform</th>
-    <th>Total Claimed</th>
-</tr>
-
-<?php if(count($records) > 0): ?>
-    <?php foreach($records as $row): ?>
-        <tr>
-            <td><?= htmlspecialchars($row['uniform_name']); ?></td>
-            <td><?= $row['total_claimed']; ?></td>
-        </tr>
-    <?php endforeach; ?>
-<?php else: ?>
+<table>
     <tr>
-        <td colspan="2">No Records Found</td>
+        <th>Month</th>
+        <th>Uniform</th>
+        <th>Total Claimed</th>
     </tr>
-<?php endif; ?>
 
+    <?php if(count($records) > 0): ?>
+        <?php foreach($records as $row): ?>
+            <tr>
+                <td><?= htmlspecialchars($row['year_month']); ?></td>
+                <td><?= htmlspecialchars($row['uniform_name']); ?></td>
+                <td><?= $row['total_claimed']; ?></td>
+            </tr>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="3">No Records Found</td>
+        </tr>
+    <?php endif; ?>
 </table>
 
 </body>
