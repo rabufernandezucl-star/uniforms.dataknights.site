@@ -48,7 +48,7 @@ try {
 
 <!-- ================= TOPBAR ================= -->
 <div class="topbar">
-    <div class="topbar-left"> PHINMA UCL Academic Uniform Management System</div>
+    <div class="topbar-left">  PHINMA UCL Academic Uniform Management System</div>
     <div class="topbar-right-links">
         <span>Welcome, <b><?php echo htmlspecialchars($_SESSION['username']); ?></b></span>
     </div>
@@ -61,9 +61,11 @@ try {
     <?php if($isAdmin == 1): ?>
         <a href="records.php"><button class="sidebar-btn">View Records</button></a>
         <a href="admin_announcement.php"><button class="sidebar-btn">Edit Announcement</button></a>
+        <a href="uniforms_request.php"><button class="sidebar-btn">request</button></a>
     <?php endif; ?>
 
     <a href="logout.php"><button class="sidebar-btn">Logout</button></a>
+    <a href="uniforms_request.php"><button class="sidebar-btn">request</button></a>
 </div>
 
 <!-- ================= MAIN CONTENT ================= -->
