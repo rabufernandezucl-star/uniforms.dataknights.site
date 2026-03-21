@@ -77,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </form>
 
     <br>
-    <a href="index.php">
+    <a href="index">
         <button>Back</button>
     </a>
 
