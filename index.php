@@ -67,7 +67,7 @@ try {
         <a href="uniforms_request_admin.php"><button class="sidebar-btn">View Requests</button></a>
     <?php else: ?>
         <!-- Student/User-only button -->
-        <a href="uniform_request.php"><button class="sidebar-btn">Request</button></a>
+        <a href="uniforms_request.php"><button class="sidebar-btn">Request</button></a>
     <?php endif; ?>
 
     <a href="logout.php"><button class="sidebar-btn">Logout</button></a>
