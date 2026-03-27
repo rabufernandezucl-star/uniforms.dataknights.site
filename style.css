@@ -283,7 +283,7 @@ td {
 /* ================= DATE INPUT ================= */
 input[name="start_date"],
 input[name="end_date"] {
-    width: 100px;
+    width: 75px;
     padding: 8px;
 }
 
